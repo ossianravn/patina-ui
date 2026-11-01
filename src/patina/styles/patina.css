@@ -14,7 +14,8 @@
 
 @custom-variant night (&:where([data-theme="night"], [data-theme="night"] *));
 @custom-variant dark (&:where([data-theme="night"], [data-theme="night"] *));
-@custom-variant calm (&:where([data-variation="calm"], [data-variation="calm"] *));
+/* calm: inside a calm page or region, unless a lively region sits between (the nearest marked ancestor wins). */
+@custom-variant calm (&:where([data-variation="calm"], [data-variation="calm"] *):not(:where([data-variation="calm"] [data-variation="lively"], [data-variation="calm"] [data-variation="lively"] *)));
 /* shadcn's state variants (from shadcn/tailwind.css, MIT), so base-nova sources work without that import: Base UI
    marks state with data attributes, Radix-shaped code with data-state. */
 @custom-variant data-open {

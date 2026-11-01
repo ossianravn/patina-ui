@@ -79,7 +79,7 @@ State lives as attributes on `<html>`, so CSS does the work and every island rea
 - `appearanceScript(defaults)` returns an inline script for `<head>` that applies the saved choice before first paint; it validates saved values against `APPEARANCE`, as `normalize` does. `APPEARANCE_ATTRIBUTES` is what `useAppearance` observes.
 - `apply`, `current`, `readSaved`, `save` and `normalize` work on the attributes and `localStorage` (`patina-appearance`); unknown stored values fall back to the defaults.
 - `useAppearance()` is a `useSyncExternalStore` hook over the attributes: server renders use the defaults, hydration picks up what the script applied, and a `MutationObserver` keeps several islands in step. `system` re-resolves when the operating system switches.
-- Any element can override variation (`data-variation="calm"`), re-ink its region (`data-ink="pink"`, the accent) or choose a print ink set (`data-inks="fluoro"`, or `inks` on `<Print>`); theme and stock apply to the whole document.
+- Any element can override variation, and the nearest marked ancestor wins: `data-variation="calm"` quietens a region, `data-variation="lively"` brings one back inside a calm page (how the docs show a lively mark such as Tape whatever the visitor chose); the variation tokens, Tape and the `calm:` variant all follow it. An element can also re-ink its region (`data-ink="pink"`, the accent) or choose a print ink set (`data-inks="fluoro"`, or `inks` on `<Print>`); theme and stock apply to the whole document.
 
 ## Tokens
 

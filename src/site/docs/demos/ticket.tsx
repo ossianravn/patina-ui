@@ -65,8 +65,10 @@ export default function TicketDemo() {
         <WaderCount />
       </DemoSection>
       <DemoSection title="Variation">
-        <StateRow label="page level">
-          <WaderCount />
+        <StateRow label="lively">
+          <div data-variation="lively">
+            <WaderCount />
+          </div>
         </StateRow>
         <StateRow label="calm">
           <div data-variation="calm">

@@ -53,8 +53,10 @@ export default function IndexCardDemo() {
         </div>
       </DemoSection>
       <DemoSection title="Variation">
-        <StateRow label="page level">
-          <Entry o={bittern} className="mt-tight w-72" />
+        <StateRow label="lively">
+          <div data-variation="lively">
+            <Entry o={bittern} className="mt-tight w-72" />
+          </div>
         </StateRow>
         <StateRow label="calm">
           <div data-variation="calm">

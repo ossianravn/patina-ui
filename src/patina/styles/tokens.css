@@ -59,16 +59,6 @@
   --hl-alpha: 48%;
   --wash-alpha: 26%;
 
-  /* Variation (lively by default; data-variation="calm" quietens it) */
-  --misregister: 2.2px;
-  --tilt-max: 0.8deg;
-  --rough-1: url(#patina-rough-1);
-  --rough-2: url(#patina-rough-2);
-  --rough-3: url(#patina-rough-3);
-  --rough-4: url(#patina-rough-4);
-  --rough-5: url(#patina-rough-5);
-  --rough-6: url(#patina-rough-6);
-
   /* Type faces: read, label, annotate */
   --face-read: "Source Serif 4 Variable", "Iowan Old Style", Georgia, serif;
   --face-label:
@@ -171,6 +161,21 @@
     0 1px 1px rgb(0 0 0 / 0.3), 0 14px 28px -18px rgb(0 0 0 / 0.7);
   --lift-shadow:
     0 1px 1px rgb(0 0 0 / 0.3), 0 22px 36px -20px rgb(0 0 0 / 0.75);
+}
+
+/* Variation: lively by default; data-variation="calm" quietens a page or a region, and data-variation="lively"
+   brings a region back inside a calm page (a docs demo of a lively mark, say). The nearest marked ancestor wins,
+   because each rule sets the values on the marked element itself and its children inherit them. */
+:root,
+[data-variation="lively"] {
+  --misregister: 2.2px;
+  --tilt-max: 0.8deg;
+  --rough-1: url(#patina-rough-1);
+  --rough-2: url(#patina-rough-2);
+  --rough-3: url(#patina-rough-3);
+  --rough-4: url(#patina-rough-4);
+  --rough-5: url(#patina-rough-5);
+  --rough-6: url(#patina-rough-6);
 }
 
 :root[data-variation="calm"],

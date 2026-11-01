@@ -9,6 +9,7 @@ Phase 4: Patina's own extras, the theme studio, blocks and the home page.
 - Blocks (`registry:block`, previewed at `/docs/blocks`): `sign-in-01`, `settings-01`, `dashboard-01`, `pricing-01`, `article-01`, `empty-01` and `hero-01`. The `patina` umbrella item installs everything except blocks.
 - Site: a new home page (a rerollable hero print, a stack of index cards with a calm/lively switch, three scenes of Fieldbook at work, an A–Z index of every component, install and theme); the theme studio at `/studio` with presets and CSS or `registry:theme` export; the specimen moved to `/specimen`. Fieldbook's sign-in, settings and overview render the blocks.
 - The consumer install test also installs and builds a block.
+- `base`: `data-variation="lively"` on a region brings the lively level back inside a calm page (tokens, Tape and the `calm:` variant follow the nearest marked ancestor), so the Marks page and the extras' demos show Tape and tilt whatever the visitor's setting.
 
 Phase 3: the rest of shadcn parity, and Fieldbook's main screens.
 

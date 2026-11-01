@@ -166,6 +166,10 @@
   [data-variation="calm"] & {
     display: none;
   }
+  /* A lively region inside a calm page keeps its tape. */
+  [data-variation="calm"] [data-variation="lively"] & {
+    display: block;
+  }
 }
 
 /* A handwritten aside, tilted with the variation level. Large and bold enough to count as large text, so it
