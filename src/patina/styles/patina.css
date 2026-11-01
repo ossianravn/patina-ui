@@ -1,5 +1,6 @@
 /* Patina UI: the Tailwind entry. Import this file once; it brings Tailwind, the tokens and the marks. */
 @import "tailwindcss";
+@import "tw-animate-css";
 @import "./fonts.css";
 @import "./tokens.css";
 @import "./stocks.css";
@@ -8,10 +9,65 @@
 @import "./roles.css";
 @import "./base.css";
 @import "./marks.css";
+@import "./paper.css";
+@import "./controls.css";
 
 @custom-variant night (&:where([data-theme="night"], [data-theme="night"] *));
 @custom-variant dark (&:where([data-theme="night"], [data-theme="night"] *));
 @custom-variant calm (&:where([data-variation="calm"], [data-variation="calm"] *));
+/* shadcn's state variants (from shadcn/tailwind.css, MIT), so base-nova sources work without that import: Base UI
+   marks state with data attributes, Radix-shaped code with data-state. */
+@custom-variant data-open {
+  &:where([data-state="open"]),
+  &:where([data-open]:not([data-open="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-closed {
+  &:where([data-state="closed"]),
+  &:where([data-closed]:not([data-closed="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-checked {
+  &:where([data-state="checked"]),
+  &:where([data-checked]:not([data-checked="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-unchecked {
+  &:where([data-state="unchecked"]),
+  &:where([data-unchecked]:not([data-unchecked="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-selected {
+  &:where([data-selected="true"]) {
+    @slot;
+  }
+}
+@custom-variant data-disabled {
+  &:where([data-disabled="true"]),
+  &:where([data-disabled]:not([data-disabled="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-active {
+  &:where([data-state="active"]),
+  &:where([data-active]:not([data-active="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-horizontal {
+  &:where([data-orientation="horizontal"]) {
+    @slot;
+  }
+}
+@custom-variant data-vertical {
+  &:where([data-orientation="vertical"]) {
+    @slot;
+  }
+}
 
 @theme inline {
   --default-font-family: var(--face-ui);
@@ -25,6 +81,7 @@
   --text-label: var(--type-label);
   --text-small: var(--type-small);
   --text-ui: var(--type-ui);
+  --text-button: var(--type-button);
   --text-body: var(--type-body);
   --text-lead: var(--type-lead);
   --text-h2: var(--type-h2);
@@ -37,6 +94,7 @@
   --leading-small: var(--lh-small);
   --leading-ui: var(--lh-ui);
   --leading-heading: var(--lh-heading);
+  --leading-subhead: var(--lh-subhead);
   --leading-display: var(--lh-display);
 
   --spacing-hair: var(--space-hair);
@@ -46,6 +104,7 @@
   --spacing-section: var(--space-section);
   --spacing-page: var(--space-page);
   --spacing-control: var(--control-height);
+  --spacing-control-compact: var(--control-height-compact);
   --container-measure: var(--measure);
 
   --radius-sheet: var(--sheet-radius);

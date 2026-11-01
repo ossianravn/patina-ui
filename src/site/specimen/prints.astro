@@ -1,81 +1,94 @@
 ---
-import { print, seedOf, stream } from "@/patina/ink"
+// Paper objects from Fieldbook, the demo product: each one cut differently, printed from its own seed, and worn by
+// the page's patina level.
+import { print } from "@/patina/ink"
+import { Paper } from "@/patina/paper/paper"
+import { Stamp } from "@/patina/marks/stamp"
 import SectionHead from "./section-head.astro"
-
-const CARDS = [
-  {
-    seed: "sunk-cost",
-    ink: "pink",
-    kicker: "Trap",
-    title: "Sunk cost",
-    hook: "You keep going because you've already paid, not because it's still worth it.",
-  },
-  {
-    seed: "pre-mortem",
-    ink: "green",
-    kicker: "Tool",
-    title: "Pre-mortem",
-    hook: "Imagine the plan failed, then ask why, while you can still change it.",
-  },
-  {
-    seed: "goodharts-law",
-    ink: "blue",
-    kicker: "Pattern",
-    title: "Goodhart's law",
-    hook: "Once a number becomes the goal, people start hitting the number instead.",
-  },
-]
-
-const cards = CARDS.map((card) => {
-  const n = seedOf(card.seed)
-  const tilt = stream(n, "tilt").signed()
-  const tape = stream(n, "tape")
-  const style = `rotate: calc(var(--tilt-max) * ${tilt.toFixed(2)}); --tape-tilt: ${(tape.signed() * 4).toFixed(1)}deg; --tape-shift: ${(tape.signed() * 20).toFixed(0)}%`
-  return {
-    ...card,
-    style,
-    art: print({ motif: "orbits", seed: card.seed }).svg,
-  }
-})
 ---
 
 <section
   class="mx-auto max-w-[76rem] px-snug py-section sm:px-line"
-  aria-labelledby="prints"
+  aria-labelledby="objects"
 >
-  <SectionHead n={1} id="prints" title="Seeded prints">
-    Each card draws its tilt, its tape and its print from one seed. Reload,
-    rebuild, render on the server: they stay exactly as they are. Switch to Calm
-    and the tilt and tape step back.
+  <SectionHead n={1} id="objects" title="Paper objects">
+    Notes, tickets and receipts from a field notebook. Each takes its edge,
+    tilt, print and wear from one seed; switch the patina to Worn and watch them
+    age, or to Calm and they straighten.
   </SectionHead>
-  <ul class="m-0 grid list-none gap-section p-0 pt-snug sm:grid-cols-2 lg:grid-cols-3">
-    {cards.map(({ ink, kicker, title, hook, style, art, seed }) => (
-      <li class="index-card" data-ink={ink} style={style}>
-        <span class="tape" style="--tape: var(--k)" aria-hidden="true" />
-        <span class="mx-auto mb-snug mt-hair block w-[62%]" set:html={art} />
-        <span class="label-mono text-k-ink">
-          {kicker} · seed {seed}
-        </span>
-        <span class="mt-hair block text-lead font-semibold leading-heading">
-          {title}
-        </span>
-        <span class="mt-hair block text-small leading-small text-ink-2">
-          {hook}
-        </span>
-      </li>
-    ))}
+
+  <ul class="m-0 grid list-none items-start gap-section p-0 pt-snug sm:grid-cols-2 lg:grid-cols-4">
+    <li>
+      <Paper seed="obs-0412" edge="torn" tilt className="pt-line">
+        <span
+          class="mx-auto block w-3/4"
+          set:html={print({ motif: "horizon", seed: "obs-0412" }).svg}
+        />
+        <p class="label-mono m-0 mt-tight text-k-ink">Observation No. 0412</p>
+        <p class="m-0 mt-hair text-lead font-semibold leading-subhead">
+          Grey heron
+        </p>
+        <p class="m-0 mt-hair text-small leading-small text-ink-2">
+          Tidal flats, 05:42. Still for eleven minutes, then a single strike.
+        </p>
+      </Paper>
+    </li>
+    <li data-ink="orange">
+      <Paper seed="stub-0017" edge="perforated" tilt className="pl-line">
+        <p class="label-mono m-0 text-ink-2">Expedition · Stub 0017</p>
+        <p class="m-0 mt-hair text-lead font-semibold leading-subhead">
+          Saltmarsh walk
+        </p>
+        <p class="m-0 mt-hair text-small leading-small text-ink-2">
+          Sat 14 Nov · Meet at the sluice gate, 07:00
+        </p>
+        <span
+          class="mt-snug block w-1/2"
+          set:html={print({ motif: "tiles", seed: "stub-0017" }).svg}
+        />
+        <Stamp variant="solid" className="mt-tight">
+          Admit one
+        </Stamp>
+      </Paper>
+    </li>
+    <li data-ink="violet">
+      <Paper seed="lichen-23" edge="deckle" dogEar tilt>
+        <span
+          class="mx-auto block w-2/3"
+          set:html={print({ motif: "collage", seed: "lichen-23" }).svg}
+        />
+        <p class="label-mono m-0 mt-tight text-k-ink">Survey · 23 specimens</p>
+        <p class="m-0 mt-hair text-lead font-semibold leading-subhead">
+          Lichen on the sea wall
+        </p>
+        <p class="m-0 mt-hair text-small leading-small text-ink-2">
+          Crustose and foliose, north face only.
+        </p>
+      </Paper>
+    </li>
+    <li>
+      <Paper
+        seed="supplies"
+        edge="pinked"
+        tilt
+        className="pb-section font-label text-small leading-small"
+      >
+        <p class="label-mono m-0 text-center text-ink">Field supplies</p>
+        <dl class="m-0 mt-tight grid grid-cols-[1fr_auto] gap-x-snug gap-y-hair">
+          <dt>Notebook, waxed</dt>
+          <dd class="m-0">6.50</dd>
+          <dt>Hand lens ×10</dt>
+          <dd class="m-0">14.00</dd>
+          <dt>Specimen vials</dt>
+          <dd class="m-0">3.20</dd>
+          <dt class="font-bold">Total</dt>
+          <dd class="m-0 font-bold">23.70</dd>
+        </dl>
+        <span
+          class="mx-auto mt-snug block w-2/5"
+          set:html={print({ motif: "lino", seed: "supplies" }).svg}
+        />
+      </Paper>
+    </li>
   </ul>
 </section>
-
-<style>
-  .index-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: var(--space-snug) var(--space-snug) var(--space-line);
-    background-color: var(--card);
-    background-image: var(--paper-texture);
-    box-shadow: var(--sheet-shadow);
-    border-radius: var(--sheet-radius);
-  }
-</style>

@@ -18,7 +18,8 @@
       "ink/noise.ts",
       "ink/motifs/"
     ],
-    "glyph": ["marks/glyph.tsx", "ink/glyphs.ts"]
+    "glyph": ["marks/glyph.tsx", "ink/glyphs.ts"],
+    "paper": ["paper/paper.tsx", "ink/paper-shapes.ts"]
   },
   "descriptions": {
     "base": "Tokens, paper stocks, ink sets, mark utilities, the appearance runtime, PatinaDefs, SeedScope and the core of the ink engine. Every other item builds on it; make src/patina/styles/patina.css your Tailwind entry.",
@@ -30,7 +31,8 @@
     "paper-marks": "SketchFrame, Wash, Tape and RoughRule: marks that sit on the paper, varied by their seed.",
     "notes": "MarginNote and Annotation: handwritten asides with drawn arrows.",
     "stamp": "Stamp: a rubber-stamp label, outline or solid.",
-    "patina": "Everything in Patina UI."
+    "patina": "Everything in Patina UI.",
+    "paper": "Paper: a sheet with a seeded edge (deckle, torn, perforated, pinked), dog-ear, tilt and wear that follows the patina level."
   },
   "peers": {},
   "devDependencies": {}

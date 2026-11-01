@@ -5,6 +5,7 @@
 //   node tools/registry/build.mjs                 write registry.json and run shadcn build into public/r
 //   node tools/registry/build.mjs --check         fail if either is stale or a kit file cannot be placed
 //   node tools/registry/build.mjs --base <url>    item dependencies as <url>/<name>.json (local install tests)
+//   node tools/registry/build.mjs --out <dir>     write <dir>/registry.json and <dir>/r instead of the repo's copies
 import fs from "node:fs"
 import os from "node:os"
 import path from "node:path"
@@ -42,9 +43,10 @@ const groupOf = (file) =>
 
 function specifiers(source, css) {
   // Statements only: a line that starts with import or export, so import-like text inside strings is not read.
+  // Either quote style, so a single-quoted import cannot drop a dependency unnoticed.
   const pattern = css
-    ? /^@import\s+"([^"]+)"/gmu
-    : /^\s*(?:import|export)\s[^"]*?from\s+"([^"]+)"|^\s*import\s+"([^"]+)"/gmu
+    ? /^@import\s+["']([^"']+)["']/gmu
+    : /^\s*(?:import|export)\s[^"']*?from\s+["']([^"']+)["']|^\s*import\s+["']([^"']+)["']/gmu
   return [...source.matchAll(pattern)].map(([, from, bare]) => from ?? bare)
 }
 
@@ -82,10 +84,15 @@ export function buildRegistry({ base } = {}) {
     .map((file) => file.slice(kit.length + 1))
     .sort()
   // shadcn add rewrites each import to the installed file with the same base name, so two modules called seed.ts
-  // and seed.tsx get mixed up in the consumer. Directory index files are imported by folder and are safe.
-  const names = files
-    .filter((f) => /\.tsx?$/u.test(f))
-    .map((f) => path.posix.basename(f).replace(/\.tsx?$/u, ""))
+  // and seed.tsx get mixed up in the consumer, and so do x.tsx and a folder x/ imported through its index.
+  const modules = files.filter((f) => /\.tsx?$/u.test(f))
+  const folders = modules
+    .filter((f) => /\/index\.tsx?$/u.test(f))
+    .map((f) => path.posix.basename(path.posix.dirname(f)))
+  const names = [
+    ...modules.map((f) => path.posix.basename(f).replace(/\.tsx?$/u, "")),
+    ...folders,
+  ]
   const twins = [
     ...new Set(names.filter((n, i) => n !== "index" && names.indexOf(n) !== i)),
   ]
@@ -188,9 +195,10 @@ const readDir = (dir) =>
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2)
-  const base = args.includes("--base")
-    ? args[args.indexOf("--base") + 1]
-    : undefined
+  const option = (flag) =>
+    args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined
+  const base = option("--base")
+  const out = option("--out")
   const json = `${JSON.stringify(buildRegistry({ base }), null, 2)}\n`
   const items = JSON.parse(json).items.length
 
@@ -214,11 +222,16 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     }
     console.log(`registry up to date: ${items} items`)
   } else {
-    fs.writeFileSync(path.join(root, "registry.json"), json)
-    fs.rmSync(path.join(root, "public/r"), { recursive: true, force: true })
-    shadcnBuild("registry.json", "public/r")
+    // The default paths are relative to the repository root, where shadcn build runs; --out is relative to the shell.
+    const dir = out ? path.resolve(out) : root
+    const registryFile = out ? path.join(dir, "registry.json") : "registry.json"
+    const output = out ? path.join(dir, "r") : "public/r"
+    fs.mkdirSync(dir, { recursive: true })
+    fs.writeFileSync(path.join(dir, "registry.json"), json)
+    fs.rmSync(path.resolve(root, output), { recursive: true, force: true })
+    shadcnBuild(registryFile, output)
     console.log(
-      `registry.json and public/r: ${items} items${base ? ` (dependencies at ${base})` : ""}`,
+      `registry.json and ${out ? `r in ${dir}` : output}: ${items} items${base ? ` (dependencies at ${base})` : ""}`,
     )
   }
 }

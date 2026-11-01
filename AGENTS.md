@@ -32,6 +32,7 @@ Prefer installed packages. Propose a new dependency with the need it serves and 
 | Prints, seeds, randomness, variation levels or age marks                | [Seeded variation](docs/seeded-variation.md) |
 | Repository layout, kit boundaries, rendering, theme runtime or registry | [Architecture](docs/architecture.md)         |
 | Which components exist, their treatment or status                       | [Component inventory](docs/components.md)    |
+| A shadcn primitive: its classes, marks, class merging or docs demo      | [Primitives](docs/primitives.md)             |
 | Site pages, the demo product, the Press playground or deployment        | [Demo site](docs/demo-site.md)               |
 | Accessibility, interaction or performance                               | [Quality contract](docs/quality.md)          |
 | Phase scope, decisions and open questions                               | [Plan](docs/plan.md)                         |

@@ -79,6 +79,8 @@ Alternatives considered: a **small-press shop** (riso zines: storefront, cart, o
 
 Demo data comes from static fixtures with seeded ids, so every observation keeps its print and avatar across reloads. Mutations reset on reload; appearance preferences persist locally.
 
+Worst-case data lives beside the demo data (`src/site/fieldbook/worst-case.ts`). In dev, `/fieldbook/data/worst`, `empty`, `one` and `thousand` start the observations screen from it, with a switch at the bottom of the screen; the build generates none of these pages. Astro never passes a query string to a prerendered page, even in dev, so dev-only variants use a path. Add a worst-case row whenever a screen renders a new field.
+
 ## Stageshow
 
 [Stageshow](https://github.com/benjitaylor/skills/tree/main/stageshow) (MIT) guides the home-page scenes and any feature illustrations: faux product UI that reads as a real product, simplified to what the viewer needs, framed with intent, every motion with a cause. We follow its workflow (plan the story, start from the closest gold example, set the poster frame first, film and review at the shown width and at 390 px) and use real Patina components inside the stage instead of its placeholder parts. Its bundled app icons are not MIT-licensed and stay out of this project.

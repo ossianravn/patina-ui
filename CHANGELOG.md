@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+Phase 2: Patina's own look, and the core primitives.
+
+- Identity: a new default palette (verdigris, copper, indigo, plum, rose, ochre, oxblood), the Archive stock (ivory; bronze at night) as the default, Field kept as a stock and an ink set, a new mark, and site copy drawn from Fieldbook rather than Mental Models.
+- Paper: six generated layers (tooth, relief, fibres, specks, mottle, foxing) at tile sizes that never visibly repeat; edge toning by patina level; per-stock text and hand inks derived by `node tools/check-contrast.mjs --suggest`.
+- `paper`: a sheet with a seeded deckle, torn, perforated or pinked edge, a dog-ear, tilt, and wear that follows the patina level (smudge and fold when handled; coffee rings, foxing, creases and a worn corner when worn).
+- `print`: three new motifs, `collage`, `tiles` and `lino` (fifteen in all), and the `patina` ink set as the default.
+- Primitives on Base UI (shadcn `base-nova` sources in the Patina language): `alert`, `alert-dialog`, `avatar`, `badge`, `button`, `card`, `checkbox`, `dialog`, `dropdown-menu`, `field`, `input`, `kbd`, `label`, `native-select`, `popover`, `progress`, `radio-group`, `select`, `separator`, `skeleton`, `slider`, `spinner`, `switch`, `tabs`, `textarea`, `toggle`, `toggle-group` and `tooltip`.
+- `base`: `cn` built with `createCn` so Patina's theme names survive class merging; `controls.css` and `paper.css`.
+- Type: small text, lead paragraphs and mono labels get more leading, and `leading-subhead` (1.3) sets titles at lead and body size, after a golden-ratio audit.
+- Site: component docs at `/docs`, and Fieldbook, the demo product, at `/fieldbook` (observations, new observation, sign-in, settings), checked against worst-case data. The Press's ink picker shows swatches, so it fits a phone.
+- Consumer install test (`npm run test:consumer`): registry items install offline into a fresh Vite app and build.
+
 Phase 1: marks, prints and the registry.
 
 - Registry (`npm run registry`, `npm run registry:check`): `base`, `print`, `glyph`, `highlight`, `hand-underline`, `hand-marks`, `paper-marks`, `notes`, `stamp` and the `patina` umbrella.

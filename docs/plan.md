@@ -1,6 +1,6 @@
 # Plan
 
-Status: Phase 1 done, 2026-11-01. The maintainer approved the recommended stack, primitives, demo product and license on 2026-11-01; decisions still marked **proposed** wait for them, and the open questions at the end list what remains.
+Status: Phase 2 done, 2026-11-01. The maintainer approved the recommended stack, primitives, demo product and license on 2026-11-01; decisions still marked **proposed** wait for them, and the open questions at the end list what remains.
 
 ## What Patina UI is
 
@@ -84,6 +84,13 @@ Button, badge, card, input, textarea, label, field, checkbox, radio group, switc
 
 Exit: every Phase 2 component has its docs page with all states in both themes and both variation levels; the three demo screens pass a `break-ui` worst-case pass; the first consumer install test exists in `tests/consumer/`.
 
+Outcome (2026-11-01): met. The 28 primitives ship on Base UI, each with a docs page at `/docs/components/<name>`, and Fieldbook has its observations list (search, filter, add, duplicate, delete), the new-observation dialog, sign-in and settings. Before the primitives, Patina moved away from Mental Models at the maintainer's request: its own palette, the Archive stock, six generated paper layers, the `Paper` component with seeded edges and wear, and three new motifs.
+
+- **Worst case** (dev-only `/fieldbook/data/worst`, `empty`, `one` and `thousand`): fixed an id collision after a delete, counts without separators, species cut off with no way to read them, count and status missing on phones, dates split across lines, the wrong empty state for an empty notebook, a header and filter row wider than 320 px, "1,284" rejected as a count, and 450–970 ms keystrokes at 1,000 rows (now 50 rows a page, 83 ms).
+- **Consumer install** (`npm run test:consumer`): `base`, `print`, `paper`, three mark items and four primitives install offline into a fresh Vite app through the shadcn CLI, byte-identical, and the app builds.
+- **Type and spacing**: the golden-ratio audit raised small, lead and label leading and added `leading-subhead` ([Type and spacing](design-language.md#audit)).
+- Not covered: WebKit, and a side-by-side review of every docs page in all eight appearance combinations. Docs pages were checked for errors and horizontal overflow at 1440 and 390 px; Fieldbook at 320 to 1440 px, day and night.
+
 ### Phase 3: data, navigation and the rest of parity
 
 Table and data table, pagination, breadcrumb, accordion, collapsible, command, combobox, sheet, drawer, menubar, navigation menu, context menu, hover card, calendar and date picker, chart (hand-drawn strokes, hatch fills, accurate data), sonner, sidebar, scroll area, resizable, carousel, input OTP, input group, button group, form, empty, item, aspect ratio, typography, direction, and the conversation set (message, bubble, message scroller, attachment, marker, trace, code block, questionnaire). shadcn's legacy `toast` is served by sonner. Demo product: detail screen, collections, an overview with charts.
@@ -92,7 +99,7 @@ Exit: parity table complete; a 200-row table with sketch styling scrolls without
 
 ### Phase 4: Patina extras, blocks and the home page
 
-Index card, index row, paper stock, ticket, drawn checklist, ringed steps, scale, concept map, decision map, reading progress, pull quote, sidenote, drop cap, edition number, postmark. Blocks: sign-in, settings, dashboard, pricing, article, empty states, hero. Home page with stageshow-style scenes built from real Patina components. Theme studio with presets and export.
+Index card, index row, ticket, drawn checklist, ringed steps, scale, concept map, decision map, reading progress, pull quote, sidenote, drop cap, edition number, postmark. Blocks: sign-in, settings, dashboard, pricing, article, empty states, hero. Home page with stageshow-style scenes built from real Patina components. Theme studio with presets and export.
 
 Exit: home page and theme studio reviewed at wide and narrow widths in both themes; blocks install through the registry.
 
@@ -124,4 +131,4 @@ Answered on 2026-11-01: Astro with React islands (D3), Base UI (D2), Fieldbook a
 
 ## Next step
 
-Phase 2: the core primitives on Base UI, their docs pages and the demo product's first screens, plus the lasting consumer install test in `tests/consumer/`.
+Phase 3: data, navigation and the rest of shadcn parity, led by the table, and Fieldbook's detail, collections and overview screens.

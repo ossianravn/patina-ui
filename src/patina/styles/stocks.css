@@ -1,6 +1,51 @@
-/* Paper stocks besides Field (whose values are the defaults in tokens.css). Each stock sets its paper and reading
-   inks per theme; its grain lives in textures.generated.css. Drums stay the same across stocks. */
+/* Paper stocks besides Archive (whose values are the defaults in tokens.css). Each stock sets its paper, reading
+   inks, and the text and hand inks derived for it (node tools/check-contrast.mjs --suggest); its grain lives in
+   textures.generated.css. The drums themselves stay the same across stocks. */
 
+/* Field: a cool grey stock, the paper Patina started from */
+:root[data-stock="field"] {
+  --paper: #d9d4c9;
+  --paper-2: #d0c9bc;
+  --paper-3: #c5bdae;
+  --card: #e6e2d9;
+  --rule: #b5ac9c;
+  --line: #36312a;
+  --ink: #26231e;
+  --ink-2: #48433b;
+  --ink-3: #48433b;
+  --ink-faint: #7b7366;
+  --ink-blue: #2e4275;
+  --ink-pink: #673540;
+  --ink-green: #284a40;
+  --ink-orange: #613a24;
+  --ink-red: #752b33;
+  --hand-pink: #974159;
+  --hand-green: #29685a;
+  --hand-orange: #8f4c29;
+}
+
+:root[data-stock="field"][data-theme="night"] {
+  --paper: #1f1c17;
+  --paper-2: #27231d;
+  --paper-3: #312c24;
+  --card: #25211b;
+  --rule: #4a4235;
+  --line: #d9ccb2;
+  --ink: #ece3cf;
+  --ink-2: #bdb19b;
+  --ink-3: #aaa497;
+  --ink-faint: #7d7362;
+  --ink-blue: var(--print-blue);
+  --ink-pink: var(--print-pink);
+  --ink-green: var(--print-green);
+  --ink-orange: var(--print-orange);
+  --ink-red: #e48c94;
+  --hand-pink: var(--print-pink);
+  --hand-green: var(--print-green);
+  --hand-orange: var(--print-orange);
+}
+
+/* Newsprint: cool grey paper, soft black ink, visible fibres */
 :root[data-stock="newsprint"] {
   --paper: #d6d6cf;
   --paper-2: #cdcdc5;
@@ -9,9 +54,17 @@
   --rule: #adada4;
   --line: #2c2c2a;
   --ink: #1e1e1d;
-  --ink-2: #464643;
-  --ink-3: #4f4f4b;
+  --ink-2: #40403d;
+  --ink-3: #40403d;
   --ink-faint: #75756f;
+  --ink-blue: #2c4176;
+  --ink-pink: #673342;
+  --ink-green: #234a42;
+  --ink-orange: #613924;
+  --ink-red: #752a33;
+  --hand-pink: #97405a;
+  --hand-green: #27675b;
+  --hand-orange: #8e4b29;
 }
 
 :root[data-stock="newsprint"][data-theme="night"] {
@@ -23,6 +76,14 @@
   --line: #d2d3d0;
   --ink: #e6e6e1;
   --ink-2: #b6b7b2;
-  --ink-3: #94958f;
+  --ink-3: #a5a6a0;
   --ink-faint: #74756f;
+  --ink-blue: var(--print-blue);
+  --ink-pink: var(--print-pink);
+  --ink-green: var(--print-green);
+  --ink-orange: var(--print-orange);
+  --ink-red: #e38d96;
+  --hand-pink: var(--print-pink);
+  --hand-green: var(--print-green);
+  --hand-orange: var(--print-orange);
 }

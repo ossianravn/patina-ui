@@ -32,7 +32,7 @@ export const monogram: Motif = (seed, inks, { text }) => {
   )
   const letters = initials(text)
   const size = letters.length > 1 ? 84 : 104
-  const type = `fill:${inks.detail};font-family:var(--face-read, Georgia, serif);font-size:${size}px;font-weight:650;letter-spacing:-0.02em`
+  const type = `fill:${inks.text ?? inks.detail};font-family:var(--face-read, Georgia, serif);font-size:${size}px;font-weight:650;letter-spacing:-0.02em`
 
   return {
     line: sketch.circle(

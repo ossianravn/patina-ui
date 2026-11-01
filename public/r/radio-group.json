@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "title": "Radio Group",
+  "description": "Radio Group, in the Patina language.",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/radio-group.tsx",
+      "content": "import { Radio as RadioPrimitive } from \"@base-ui/react/radio\"\nimport { RadioGroup as RadioGroupPrimitive } from \"@base-ui/react/radio-group\"\nimport { cn } from \"@/patina/lib/utils\"\nimport { sketch } from \"@/patina/ink/rough\"\n\n// A pen-drawn circle; choosing it inks a rough dot in the region's drum. The 24px hit area comes from the ::after\n// inset, as on the checkbox.\nconst DOT = sketch.circle(12, 12, 12.5, {\n  seed: 31,\n  stroke: \"var(--k)\",\n  strokeWidth: 1.4,\n  fill: \"var(--k)\",\n  fillStyle: \"solid\",\n  roughness: 0.7,\n})\n\nfunction RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {\n  return (\n    <RadioGroupPrimitive\n      data-slot=\"radio-group\"\n      className={cn(\"grid w-full gap-tight\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {\n  return (\n    <RadioPrimitive.Root\n      data-slot=\"radio-group-item\"\n      className={cn(\n        \"group/radio-group-item peer relative flex aspect-square size-[1.15rem] shrink-0 cursor-pointer rounded-full border-[1.5px] border-line bg-card transition-colors after:absolute after:-inset-x-3 after:-inset-y-2 hover:border-ink data-disabled:cursor-not-allowed data-disabled:border-dashed data-disabled:opacity-60 aria-invalid:border-ink-red data-checked:border-ink\",\n        className,\n      )}\n      {...props}\n    >\n      <RadioPrimitive.Indicator\n        data-slot=\"radio-group-indicator\"\n        className=\"pointer-events-none absolute inset-0 flex items-center justify-center\"\n      >\n        <svg\n          viewBox=\"0 0 24 24\"\n          aria-hidden=\"true\"\n          className=\"size-[1.15rem] overflow-visible\"\n          dangerouslySetInnerHTML={{ __html: DOT }}\n        />\n      </RadioPrimitive.Indicator>\n    </RadioPrimitive.Root>\n  )\n}\n\nexport { RadioGroup, RadioGroupItem }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/radio-group.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

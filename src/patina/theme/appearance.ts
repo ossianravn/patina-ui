@@ -3,7 +3,7 @@
 
 export const APPEARANCE = {
   theme: ["system", "day", "night"],
-  stock: ["field", "newsprint"],
+  stock: ["archive", "field", "newsprint"],
   variation: ["calm", "lively"],
   patina: ["clean", "handled", "worn"],
 } as const
@@ -22,7 +22,7 @@ export interface Appearance {
 
 export const defaultAppearance: Appearance = {
   theme: "system",
-  stock: "field",
+  stock: "archive",
   variation: "lively",
   patina: "handled",
 }

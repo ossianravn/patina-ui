@@ -1,11 +1,12 @@
 ---
 import { print, sketch } from "@/patina/ink"
+import { Paper } from "@/patina/paper/paper"
 
-const seed = "quiet-heron"
+const seed = "salt-marsh"
 const art = print({
-  motif: "orbits",
+  motif: "collage",
   seed,
-  title: "An orbits print from the seed quiet-heron",
+  title: "A collage print from the seed salt-marsh",
 })
 const arrow = sketch.arrow(
   6,
@@ -18,32 +19,32 @@ const arrow = sketch.arrow(
 )
 ---
 
-<section class="mx-auto grid max-w-[76rem] items-center gap-line px-snug pb-section pt-section sm:px-line md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
+<section class="mx-auto grid max-w-[76rem] items-center gap-section px-snug pb-section pt-section sm:px-line md:grid-cols-[minmax(0,1fr)_minmax(0,24rem)]">
   <div>
-    <p class="label-mono m-0 text-ink-2">Patina UI · Specimen No. 0</p>
+    <p class="label-mono m-0 text-ink-2">Patina UI · Specimen No. 1</p>
     <h1 class="mb-snug mt-tight text-display leading-display">
-      shadcn/ui, with <span class="highlight highlight-accent">a patina.</span>
+      shadcn/ui, with <span class="highlight">a patina.</span>
     </h1>
-    <p class="m-0 max-w-measure text-lead leading-lead text-ink-2">
-      A component library that looks like printed matter that has been handled:
-      warm paper, riso inks slightly out of register, a serif to read, a hand to
-      annotate and a mono to label.
+    <p class="m-0 max-w-measure text-body leading-body text-ink-2 sm:text-lead sm:leading-lead">
+      Components that look printed, cut and handled: overprinted ink on
+      real-feeling paper, a serif to read, a hand to annotate, a mono to label,
+      and wear that deepens the longer a page is used.
     </p>
   </div>
-  <figure class="relative m-0 mx-auto w-full max-w-[17rem] md:max-w-[22rem]">
-    <div class="px-line" set:html={art.svg} />
-    <figcaption class="mt-tight flex flex-wrap items-end justify-between gap-tight">
-      <span class="label-mono text-ink-2">Seed · {seed}</span>
-      <span class="margin-note flex items-end gap-hair">
-        <svg
-          width="36"
-          height="38"
-          viewBox="0 0 36 38"
-          aria-hidden="true"
-          set:html={arrow}
-        />
-        same seed, same print
-      </span>
+  <figure class="relative m-0 mx-auto w-full max-w-[18rem] md:max-w-[24rem]">
+    <Paper seed={seed} edge="torn" tilt className="px-line pb-snug pt-line">
+      <div set:html={art.svg} />
+      <p class="label-mono m-0 mt-tight text-ink-2">Collage · seed {seed}</p>
+    </Paper>
+    <figcaption class="margin-note mt-snug flex items-end gap-hair">
+      <svg
+        width="36"
+        height="38"
+        viewBox="0 0 36 38"
+        aria-hidden="true"
+        set:html={arrow}
+      />
+      same seed, same print
     </figcaption>
   </figure>
 </section>

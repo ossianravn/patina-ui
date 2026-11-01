@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "description": "Badge, in the Patina language.",
+  "dependencies": [
+    "@base-ui/react@^1.9.0",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/badge.tsx",
+      "content": "import { mergeProps } from \"@base-ui/react/merge-props\"\nimport { useRender } from \"@base-ui/react/use-render\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/patina/lib/utils\"\n\n// A small stamp: a mono uppercase label in a 1.5px border of its own colour, with sheet corners. The default is a\n// solid ink stamp; destructive stamps in red text ink. Calm: badges sit in lists and tables, so they never tilt.\nconst badgeVariants = cva(\n  \"group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-sheet border-[1.5px] border-transparent px-1.5 font-label text-label leading-none font-bold tracking-[0.08em] whitespace-nowrap uppercase no-underline transition-colors has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-invalid:border-ink-red [&>svg]:pointer-events-none [&>svg]:size-3!\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"border-ink bg-ink text-paper [a]:hover:border-print-violet [a]:hover:bg-print-violet\",\n        secondary: \"bg-paper-3 text-ink [a]:hover:bg-paper-2\",\n        destructive: \"border-current text-ink-red [a]:hover:bg-print-red/10\",\n        outline: \"border-current text-ink [a]:hover:bg-paper-3\",\n        ghost: \"text-ink-2 hover:bg-paper-3 hover:text-ink\",\n        link: \"px-0 text-k-ink underline decoration-[1.5px] decoration-k-ink/50 underline-offset-[0.3em] hover:decoration-k-ink\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  },\n)\n\nfunction Badge({\n  className,\n  variant = \"default\",\n  render,\n  ...props\n}: useRender.ComponentProps<\"span\"> & VariantProps<typeof badgeVariants>) {\n  return useRender({\n    defaultTagName: \"span\",\n    props: mergeProps<\"span\">(\n      {\n        className: cn(badgeVariants({ variant }), className),\n      },\n      props,\n    ),\n    render,\n    state: {\n      slot: \"badge\",\n      variant,\n    },\n  })\n}\n\nexport { Badge, badgeVariants }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/badge.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

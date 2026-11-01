@@ -1,0 +1,42 @@
+---
+import Base from "@/site/layouts/base.astro"
+import type { DemoMeta } from "@/site/docs/demo-kit"
+
+const modules = import.meta.glob<{ meta: DemoMeta }>(
+  "../../site/docs/demos/*.tsx",
+  { eager: true },
+)
+const entries = Object.entries(modules)
+  .map(([path, mod]) => ({
+    name: path.replace(/^.*\/(.+)\.tsx$/, "$1"),
+    ...mod.meta,
+  }))
+  .sort((a, b) => a.title.localeCompare(b.title))
+---
+
+<Base
+  title="Components"
+  description="Every Patina UI component, with its states and the command that installs it."
+>
+  <div class="mx-auto max-w-[76rem] px-snug pt-section sm:px-line">
+    <p class="label-mono m-0 text-ink-2">Patina UI · Components</p>
+    <h1 class="mb-tight mt-tight text-title">Components</h1>
+    <p class="m-0 max-w-measure text-ink-2">
+      shadcn/ui's parts with shadcn's names, props and data-slots, built on Base
+      UI and printed in Patina.
+    </p>
+  </div>
+  <ol class="mx-auto mt-section max-w-[76rem] list-none px-snug sm:px-line">
+    {entries.map(({ name, title, description }) => (
+      <li class="border-b border-dashed border-rule">
+        <a
+          href={`/docs/components/${name}`}
+          class="grid gap-x-section gap-y-hair py-tight no-underline md:grid-cols-[14rem_minmax(0,1fr)] md:items-baseline"
+        >
+          <span class="font-semibold">{title}</span>
+          <span class="text-small leading-small text-ink-2">{description}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</Base>

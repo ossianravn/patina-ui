@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "title": "Label",
+  "description": "Label, in the Patina language.",
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/label.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"@/patina/lib/utils\"\n\nfunction Label({ className, ...props }: React.ComponentProps<\"label\">) {\n  return (\n    <label\n      data-slot=\"label\"\n      className={cn(\n        \"flex items-center gap-tight text-small leading-small font-semibold text-ink select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:text-ink-faint peer-disabled:cursor-not-allowed peer-disabled:text-ink-faint has-data-disabled:cursor-not-allowed has-data-disabled:text-ink-faint\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Label }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/label.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

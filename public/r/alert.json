@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "Alert",
+  "description": "Alert, in the Patina language.",
+  "dependencies": [
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/alert.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/patina/lib/utils\"\n\n// A wash of the region's drum with a drawn glyph (pass a Glyph or a Lucide icon as the first child) and copy in the\n// reading inks. Destructive washes in red and sets the title and glyph in red text ink.\nconst alertVariants = cva(\n  \"group/alert relative grid w-full gap-0.5 rounded-sheet px-snug py-tight text-left text-small leading-small text-ink has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pr-28 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-tight *:[svg]:row-span-2 *:[svg]:translate-y-px *:[svg:not([class*='size-'])]:size-5\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-k/10 *:[svg]:text-k-ink\",\n        destructive:\n          \"bg-print-red/10 *:data-[slot=alert-title]:text-ink-red *:[svg]:text-ink-red\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  },\n)\n\nfunction Alert({\n  className,\n  variant,\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof alertVariants>) {\n  return (\n    <div\n      data-slot=\"alert\"\n      role=\"alert\"\n      className={cn(alertVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction AlertTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-title\"\n      className={cn(\n        \"font-semibold group-has-[>svg]/alert:col-start-2\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-description\"\n      className={cn(\n        \"max-w-measure text-small leading-small text-balance text-ink-2 md:text-pretty [&_p]:m-0 [&_p:not(:last-child)]:mb-hair\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertAction({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-action\"\n      className={cn(\"absolute top-1/2 right-tight -translate-y-1/2\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Alert, AlertTitle, AlertDescription, AlertAction }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/alert.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

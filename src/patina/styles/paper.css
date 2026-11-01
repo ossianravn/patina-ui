@@ -1,0 +1,50 @@
+/* Paper surfaces: the texture on a sheet, its shadow (a drop shadow, so it follows a cut edge), its inner edge
+   toning, the dog-eared corner, and which age marks show at each patina level. */
+
+:root {
+  --paper-drop: drop-shadow(0 1px 1px rgb(60 40 10 / 0.12))
+    drop-shadow(0 12px 12px rgb(60 40 10 / 0.14));
+}
+:root[data-theme="night"] {
+  --paper-drop: drop-shadow(0 1px 1px rgb(0 0 0 / 0.4))
+    drop-shadow(0 12px 14px rgb(0 0 0 / 0.45));
+}
+
+.paper-surface {
+  background-image: var(--paper-texture);
+  background-size: var(--paper-texture-size);
+  box-shadow: inset 0 0 48px
+    rgb(var(--tone-rgb) / calc(var(--paper-tone) * 0.9));
+}
+
+/* The folded-over corner: the flap's back, lit from the top left, with a little shadow under the fold. */
+.paper-dog-ear {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: linear-gradient(
+    to top left,
+    transparent 50%,
+    var(--paper-3) 50%,
+    var(--paper-2) 100%
+  );
+  filter: drop-shadow(-1px -1px 1.5px rgb(60 40 10 / 0.25));
+  pointer-events: none;
+}
+
+.patina-age-handled,
+.patina-age-worn {
+  display: none;
+}
+:root:not([data-patina="clean"]) .patina-age-handled,
+:root[data-patina="worn"] .patina-age-worn {
+  display: inline;
+}
+@media (forced-colors: active), (prefers-contrast: more) {
+  .patina-age-handled,
+  .patina-age-worn {
+    display: none !important;
+  }
+}

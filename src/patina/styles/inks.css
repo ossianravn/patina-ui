@@ -1,10 +1,17 @@
-/* Ink sets: the three drums a print uses (data-inks on the print or any ancestor). Field is the default set from
-   tokens.css; the others approximate common riso inks. Night values are lighter so they screen onto dark paper. */
+/* Ink sets: the three drums a print uses (data-inks on the print or any ancestor). Patina is the default set from
+   tokens.css; Field keeps the riso blue, pink and violet Patina started from; the others approximate common riso
+   inks. Night values are lighter so they screen onto dark paper. */
+
+[data-inks="patina"] {
+  --print-line: var(--print-green);
+  --print-accent: var(--print-orange);
+  --print-detail: var(--print-violet);
+}
 
 [data-inks="field"] {
-  --print-line: var(--print-blue);
-  --print-accent: var(--print-pink);
-  --print-detail: var(--print-violet);
+  --print-line: #2c6db3;
+  --print-accent: #e0508f;
+  --print-detail: #2f2a74;
 }
 
 [data-inks="fluoro"] {
@@ -23,6 +30,13 @@
   --print-line: var(--ink);
   --print-accent: var(--k);
   --print-detail: var(--ink);
+}
+
+:root[data-theme="night"] [data-inks="field"],
+:root[data-theme="night"][data-inks="field"] {
+  --print-line: #74a9e6;
+  --print-accent: #f283b6;
+  --print-detail: #a9a2f0;
 }
 
 :root[data-theme="night"] [data-inks="fluoro"],

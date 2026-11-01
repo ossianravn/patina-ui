@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "Spinner, in the Patina language.",
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/spinner.tsx",
+      "content": "import { cn } from \"@/patina/lib/utils\"\nimport { sketch } from \"@/patina/ink/rough\"\n\n// A hand-drawn arc in currentColor, turning. Three quarters of a pen circle, so the gap shows the motion.\nconst ARC = sketch.path(\"M 12 3 A 9 9 0 1 1 3 12\", {\n  seed: 41,\n  stroke: \"currentColor\",\n  strokeWidth: 2.2,\n  roughness: 0.7,\n  disableMultiStroke: true,\n})\n\nfunction Spinner({ className, ...props }: React.ComponentProps<\"svg\">) {\n  return (\n    <svg\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      data-slot=\"spinner\"\n      role=\"status\"\n      aria-label=\"Loading\"\n      className={cn(\"size-4 animate-spin overflow-visible\", className)}\n      {...props}\n    >\n      <g dangerouslySetInnerHTML={{ __html: ARC }} />\n    </svg>\n  )\n}\n\nexport { Spinner }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/spinner.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

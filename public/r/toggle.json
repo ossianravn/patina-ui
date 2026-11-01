@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle",
+  "title": "Toggle",
+  "description": "Toggle, in the Patina language.",
+  "dependencies": [
+    "@base-ui/react@^1.9.0",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/toggle.tsx",
+      "content": "import { Toggle as TogglePrimitive } from \"@base-ui/react/toggle\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/patina/lib/utils\"\n\n// A stamped label that stays down: the button's mono voice, and solid ink with paper text while pressed, like the\n// specimen's segmented controls. Disabled and pressed keeps a paper-3 fill so the state still reads.\nconst toggleVariants = cva(\n  \"group/toggle inline-flex shrink-0 cursor-pointer items-center justify-center gap-hair rounded-sheet border-[1.5px] border-transparent font-label text-button font-bold tracking-[0.08em] whitespace-nowrap text-ink-2 uppercase transition-[background-color,color,translate] select-none hover:text-ink active:translate-y-px disabled:pointer-events-none disabled:border-dashed disabled:text-ink-faint aria-invalid:border-ink-red data-pressed:bg-ink data-pressed:text-paper disabled:data-pressed:border-line disabled:data-pressed:bg-paper-3 disabled:data-pressed:text-ink-faint [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-transparent hover:not-data-pressed:bg-paper-3\",\n        outline: \"border-line bg-card hover:not-data-pressed:bg-paper-3\",\n      },\n      size: {\n        default:\n          \"h-control min-w-control px-tight has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5\",\n        sm: \"h-control-compact min-w-control-compact px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-3.5\",\n        lg: \"h-12 min-w-12 px-snug has-data-[icon=inline-end]:pr-tight has-data-[icon=inline-start]:pl-tight\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  },\n)\n\nfunction Toggle({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  ...props\n}: TogglePrimitive.Props & VariantProps<typeof toggleVariants>) {\n  return (\n    <TogglePrimitive\n      data-slot=\"toggle\"\n      className={cn(toggleVariants({ variant, size, className }))}\n      {...props}\n    />\n  )\n}\n\nexport { Toggle, toggleVariants }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/toggle.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

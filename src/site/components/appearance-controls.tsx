@@ -13,7 +13,7 @@ const GROUPS: {
   {
     key: "stock",
     legend: "Paper",
-    labels: { field: "Field", newsprint: "Newsprint" },
+    labels: { archive: "Archive", field: "Field", newsprint: "Newsprint" },
   },
   {
     key: "variation",
@@ -37,7 +37,7 @@ export function AppearanceControls() {
           key={key}
           role="radiogroup"
           aria-labelledby={`appearance-${key}`}
-          className="flex items-center gap-tight"
+          className="flex items-center gap-tight max-[23rem]:flex-col max-[23rem]:items-start max-[23rem]:gap-hair"
         >
           <span
             id={`appearance-${key}`}

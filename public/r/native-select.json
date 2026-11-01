@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "native-select",
+  "title": "Native Select",
+  "description": "Native Select, in the Patina language.",
+  "dependencies": [
+    "lucide-react@^1.66.0"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/native-select.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"@/patina/lib/utils\"\nimport { ChevronDownIcon } from \"lucide-react\"\n\ntype NativeSelectProps = Omit<React.ComponentProps<\"select\">, \"size\"> & {\n  size?: \"sm\" | \"default\"\n}\n\n// The platform's own select inside the same calm control-field as Select's trigger, with a Lucide chevron drawn\n// over it. The open list stays native and follows the paper's colour scheme.\nfunction NativeSelect({\n  className,\n  size = \"default\",\n  ...props\n}: NativeSelectProps) {\n  return (\n    <div\n      className={cn(\"group/native-select relative w-fit\", className)}\n      data-slot=\"native-select-wrapper\"\n      data-size={size}\n    >\n      <select\n        data-slot=\"native-select\"\n        data-size={size}\n        className=\"control-field h-control w-full min-w-0 cursor-pointer appearance-none py-0 pr-9 pl-tight has-[option[value='']:checked]:text-ink-3 data-[size=sm]:h-control-compact\"\n        {...props}\n      />\n      <ChevronDownIcon\n        className=\"pointer-events-none absolute top-1/2 right-2.5 size-4 -translate-y-1/2 text-ink-2 select-none group-has-[select:disabled]/native-select:text-ink-faint\"\n        aria-hidden=\"true\"\n        data-slot=\"native-select-icon\"\n      />\n    </div>\n  )\n}\n\nfunction NativeSelectOption({\n  className,\n  ...props\n}: React.ComponentProps<\"option\">) {\n  return (\n    <option\n      data-slot=\"native-select-option\"\n      className={cn(\"bg-[Canvas] text-[CanvasText]\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction NativeSelectOptGroup({\n  className,\n  ...props\n}: React.ComponentProps<\"optgroup\">) {\n  return (\n    <optgroup\n      data-slot=\"native-select-optgroup\"\n      className={cn(\"bg-[Canvas] text-[CanvasText]\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { NativeSelect, NativeSelectOptGroup, NativeSelectOption }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/native-select.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

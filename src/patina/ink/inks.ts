@@ -8,14 +8,17 @@ export interface PrintInks {
   accent: string
   /** A small dark detail. */
   detail: string
+  /** Letters a motif prints, such as a monogram; falls back to the detail drum. */
+  text?: string
 }
 
 export const CSS_INKS: PrintInks = {
   line: "var(--print-line)",
   accent: "var(--print-accent)",
   detail: "var(--print-detail)",
+  text: "var(--ink)",
 }
 
 /** Named ink sets, defined in styles/inks.css. */
-export const INK_SETS = ["field", "fluoro", "earth", "spot"] as const
+export const INK_SETS = ["patina", "field", "fluoro", "earth", "spot"] as const
 export type InkSet = (typeof INK_SETS)[number]

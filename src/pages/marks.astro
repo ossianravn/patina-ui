@@ -30,9 +30,8 @@ import { Glyph } from "@/patina/marks/glyph"
         <span>This phrase matters</span>
       </dt>
       <dd>
-        Sunk costs are{" "}
-        <Highlight>already gone, whatever you decide next.</Highlight> The{" "}
-        <Highlight accent>accent</Highlight> variant prints in the region's
+        The heron <Highlight>was already standing in the shallows</Highlight>{" "}
+        The <Highlight accent>accent</Highlight> variant prints in the region's
         drum.
       </dd>
     </div>
@@ -43,7 +42,7 @@ import { Glyph } from "@/patina/marks/glyph"
       </dt>
       <dd>
         <HandUnderline className="text-lead font-semibold">
-          Pre-mortem
+          Ardea cinerea
         </HandUnderline>
       </dd>
     </div>
@@ -53,8 +52,8 @@ import { Glyph } from "@/patina/marks/glyph"
         <span>Look here</span>
       </dt>
       <dd>
-        Expected value: <Circle>£42</Circle>, and the long shot:{" "}
-        <Circle data-ink="pink">£1,250,000</Circle>
+        Count at dawn: <Circle>42</Circle> waders, and one{" "}
+        <Circle data-ink="pink">bittern</Circle>
       </dd>
     </div>
     <div class="mark-row">
@@ -63,7 +62,7 @@ import { Glyph } from "@/patina/marks/glyph"
         <span>No longer holds</span>
       </dt>
       <dd>
-        Launch on <Strike>Friday</Strike> Monday, after the pre-mortem.
+        Meet at the <Strike>harbour</Strike> sluice gate at seven.
       </dd>
     </div>
     <div class="mark-row">
@@ -73,9 +72,9 @@ import { Glyph } from "@/patina/marks/glyph"
       </dt>
       <dd>
         <Bracket className="max-w-measure" data-ink="green">
-          <p class="m-0">Name the decision you're about to make.</p>
-          <p class="m-0">Imagine it failed a year from now.</p>
-          <p class="m-0">Write down why, before anyone defends it.</p>
+          <p class="m-0">Note the time and the tide.</p>
+          <p class="m-0">Sketch what you see before naming it.</p>
+          <p class="m-0">Write the name last, and how sure you are.</p>
         </Bracket>
       </dd>
     </div>
@@ -86,9 +85,9 @@ import { Glyph } from "@/patina/marks/glyph"
       </dt>
       <dd class="flex flex-wrap gap-snug">
         {[
-          "What kind of idea is it?",
-          "Is my mind doing this?",
-          "What will happen next?",
+          "Which bird was it?",
+          "How many were there?",
+          "What was it doing?",
         ].map((q) => (
           <SketchFrame seed={q} className="px-snug py-tight">
             {q}
@@ -103,13 +102,13 @@ import { Glyph } from "@/patina/marks/glyph"
       </dt>
       <dd class="flex flex-wrap gap-section">
         <Wash ink="green" className="px-tight font-semibold">
-          Tools to try
+          Seen today
         </Wash>
         <Wash ink="pink" className="px-tight font-semibold">
-          Traps you might be in
+          Heard only
         </Wash>
         <Wash ink="blue" className="px-tight font-semibold">
-          Patterns at play
+          Confirmed
         </Wash>
       </dd>
     </div>
@@ -122,7 +121,7 @@ import { Glyph } from "@/patina/marks/glyph"
         {["pink", "green", "yellow"].map((ink) => (
           <div
             class="relative w-44 rounded-sheet bg-card px-snug pb-snug pt-line text-small leading-small shadow-sheet"
-            style="background-image: var(--paper-texture)"
+            style="background-image: var(--paper-texture); background-size: var(--paper-texture-size)"
           >
             <Tape ink={ink as "pink"} seed={ink} />A note held down with {ink}{" "}
             tape.
@@ -146,7 +145,7 @@ import { Glyph } from "@/patina/marks/glyph"
         <span>An aside from the reader</span>
       </dt>
       <dd>
-        <MarginNote data-ink="pink">tick what rings true</MarginNote>
+        <MarginNote data-ink="pink">check against last spring</MarginNote>
       </dd>
     </div>
     <div class="mark-row">
@@ -155,8 +154,8 @@ import { Glyph } from "@/patina/marks/glyph"
         <span>Points at what it describes</span>
       </dt>
       <dd class="flex flex-col items-start gap-y-page py-snug">
-        <Annotation note="the number to beat" side="right">
-          <b class="text-h2">72%</b>
+        <Annotation note="best count this year" side="right">
+          <b class="text-h2">72</b>
         </Annotation>
         <Annotation note="new" side="top" data-ink="green" className="ml-line">
           <span class="label-mono rounded-sheet border border-line px-tight py-hair">
@@ -172,11 +171,11 @@ import { Glyph } from "@/patina/marks/glyph"
       </dt>
       <dd class="flex flex-wrap items-center gap-snug">
         <Stamp>Draft</Stamp>
-        <Stamp data-ink="green">Reviewed</Stamp>
+        <Stamp data-ink="green">Verified</Stamp>
         <Stamp variant="solid" data-ink="pink">
-          Contested
+          Rare
         </Stamp>
-        <Stamp variant="solid">Established</Stamp>
+        <Stamp variant="solid">Recorded</Stamp>
       </dd>
     </div>
     <div class="mark-row">

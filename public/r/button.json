@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "title": "Button",
+  "description": "Button, in the Patina language.",
+  "dependencies": [
+    "@base-ui/react@^1.9.0",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/button.tsx",
+      "content": "import { Button as ButtonPrimitive } from \"@base-ui/react/button\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/patina/lib/utils\"\n\n// A stamped label: mono, uppercase and bold on solid ink or a pen-line frame, with irregular sheet corners. Ghost\n// buttons get a highlighter swipe; links a pen underline. Focus uses the page's dashed ring.\nconst buttonVariants = cva(\n  \"group/button inline-flex shrink-0 cursor-pointer items-center justify-center rounded-sheet border-[1.5px] border-transparent font-label text-button font-bold tracking-[0.08em] whitespace-nowrap uppercase transition-[background-color,color,translate] select-none active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:border-dashed disabled:text-ink-faint aria-invalid:border-ink-red [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"bg-ink text-paper hover:bg-print-violet disabled:border-line disabled:bg-transparent\",\n        outline:\n          \"border-line bg-card text-ink hover:bg-paper-3 aria-expanded:bg-paper-3\",\n        secondary:\n          \"bg-paper-3 text-ink hover:bg-paper-2 aria-expanded:bg-paper-2\",\n        ghost:\n          \"relative isolate text-ink before:pointer-events-none before:absolute before:inset-x-1 before:inset-y-0 before:-z-10 hover:before:highlight aria-expanded:before:highlight\",\n        destructive:\n          \"bg-ink-red text-paper hover:bg-ink disabled:border-line disabled:bg-transparent\",\n        link: \"h-auto! border-0 px-0! text-k-ink underline decoration-[1.5px] underline-offset-[0.3em] decoration-k-ink/50 hover:decoration-k-ink\",\n      },\n      size: {\n        default:\n          \"h-control gap-tight px-snug has-data-[icon=inline-end]:pr-tight has-data-[icon=inline-start]:pl-tight\",\n        xs: \"h-7 gap-hair px-tight [&_svg:not([class*='size-'])]:size-3\",\n        sm: \"h-control-compact gap-hair px-tight [&_svg:not([class*='size-'])]:size-3.5\",\n        lg: \"h-12 gap-tight px-line\",\n        icon: \"size-control\",\n        \"icon-xs\": \"size-7 [&_svg:not([class*='size-'])]:size-3\",\n        \"icon-sm\": \"size-control-compact\",\n        \"icon-lg\": \"size-12\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  },\n)\n\nfunction Button({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  ...props\n}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {\n  return (\n    <ButtonPrimitive\n      data-slot=\"button\"\n      className={cn(buttonVariants({ variant, size, className }))}\n      {...props}\n    />\n  )\n}\n\nexport { Button, buttonVariants }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/button.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

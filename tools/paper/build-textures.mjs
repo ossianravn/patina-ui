@@ -1,106 +1,107 @@
-// Writes src/patina/styles/textures.generated.css: paper grain as tiny seeded SVG noise, one per stock, theme and
-// wear level. SVG text ships through the shadcn registry, which carries only text files, and tiles seamlessly.
-// Run: node tools/paper/build-textures.mjs
+// Writes src/patina/styles/textures.generated.css: the paper layers for every stock and theme, as seamless SVG
+// tiles in data URIs (text, so they ship through the shadcn registry). base.css stacks them by patina level.
+// Run: npm run build:textures
 import { writeFileSync } from "node:fs"
+import { fibres, foxing, relief, tinted } from "./layers.mjs"
 
-const TILE = 480
+// Neutral layers, shared by every stock. Tile sizes share no factors, so the stack never visibly repeats.
+const NEUTRAL = {
+  day: {
+    tooth: relief(353, 0.55, 3, 0.15),
+    relief: relief(541, 0.08, 9, 0.1),
+    fibres: fibres(613, 130, 17, [
+      ["#fffdf6", 0.75],
+      ["#fffdf6", 0.6],
+      ["#6b5638", 0.35],
+      ["#a08560", 0.4],
+    ]),
+    foxing: foxing(1613, 61, [150, 95, 40], 1),
+  },
+  night: {
+    tooth: relief(353, 0.55, 3, 0.16, [0, 0, 0]),
+    relief: relief(541, 0.08, 9, 0.12, [0, 0, 0]),
+    fibres: fibres(613, 130, 17, [
+      ["#efe6d2", 0.22],
+      ["#efe6d2", 0.16],
+      ["#000000", 0.45],
+      ["#000000", 0.3],
+    ]),
+    foxing: foxing(1613, 61, [190, 140, 80], 0.45),
+  },
+}
 
-// A layer maps one fractal-noise channel (R, 0..1) to an ink colour at alpha = a * R + b, clamped to 0..1.
-// Low frequencies mottle, high frequencies grain, a steep slope keeps only rare peaks (specks), and an uneven
-// frequency ("x y") stretches the noise into fibres.
-const layer = (frequency, octaves, seed, rgb, a, b) => ({
-  frequency,
-  octaves,
-  seed,
-  rgb,
-  a,
-  b,
-})
-
+// Tinted layers per stock: low-frequency mottling and rare specks in the stock's own colour.
 const STOCKS = {
+  archive: {
+    day: {
+      mottle: [[0.45, 0.33, 0.15], 0.26, -0.1],
+      specks: [[0.25, 0.18, 0.12], 6, -5.1],
+    },
+    night: {
+      mottle: [[0, 0, 0], 0.4, -0.14],
+      specks: [[0.85, 0.8, 0.68], 4, -3.45],
+    },
+  },
   field: {
-    day: [
-      layer(0.006, 3, 11, [0.24, 0.19, 0.12], 0.12, -0.045),
-      layer(0.9, 2, 4, [0.2, 0.16, 0.1], 0.12, -0.045),
-      layer(0.7, 1, 9, [1, 1, 0.97], 0.2, -0.08),
-      layer(0.28, 2, 23, [0.2, 0.16, 0.12], 5, -4.25),
-    ],
-    night: [
-      layer(0.006, 3, 11, [0, 0, 0], 0.3, -0.1),
-      layer(0.9, 2, 4, [1, 0.95, 0.85], 0.08, -0.03),
-      layer(0.28, 2, 23, [0.85, 0.8, 0.7], 4, -3.45),
-    ],
-    wear: {
-      day: [
-        layer(0.003, 3, 31, [0.45, 0.3, 0.12], 0.24, -0.1),
-        layer("0.02 0.22", 2, 37, [1, 1, 0.96], 0.4, -0.25),
-        layer(0.2, 2, 41, [0.35, 0.22, 0.1], 4.5, -3.7),
-      ],
-      night: [
-        layer(0.003, 3, 31, [0, 0, 0], 0.4, -0.15),
-        layer("0.02 0.22", 2, 37, [0.9, 0.85, 0.75], 0.14, -0.088),
-      ],
+    day: {
+      mottle: [[0.24, 0.19, 0.12], 0.26, -0.1],
+      specks: [[0.2, 0.16, 0.12], 5, -4.25],
+    },
+    night: {
+      mottle: [[0, 0, 0], 0.4, -0.14],
+      specks: [[0.85, 0.8, 0.7], 4, -3.45],
     },
   },
   newsprint: {
-    day: [
-      layer(0.008, 3, 5, [0.2, 0.2, 0.19], 0.14, -0.05),
-      layer(0.85, 2, 14, [0.15, 0.15, 0.15], 0.16, -0.06),
-      layer("0.02 0.22", 2, 19, [0.25, 0.25, 0.24], 0.24, -0.15),
-      layer(0.3, 2, 27, [0.12, 0.12, 0.12], 5, -4.2),
-    ],
-    night: [
-      layer(0.008, 3, 5, [0, 0, 0], 0.3, -0.1),
-      layer(0.85, 2, 14, [0.9, 0.9, 0.88], 0.09, -0.035),
-      layer("0.02 0.22", 2, 19, [0.8, 0.8, 0.78], 0.12, -0.075),
-    ],
-    wear: {
-      day: [
-        layer(0.003, 3, 33, [0.5, 0.38, 0.15], 0.24, -0.1),
-        layer(0.2, 2, 43, [0.3, 0.25, 0.15], 4.5, -3.7),
-      ],
-      night: [layer(0.003, 3, 33, [0, 0, 0], 0.4, -0.15)],
+    day: {
+      mottle: [[0.2, 0.2, 0.19], 0.3, -0.11],
+      specks: [[0.12, 0.12, 0.12], 5, -4.2],
+    },
+    night: {
+      mottle: [[0, 0, 0], 0.4, -0.14],
+      specks: [[0.8, 0.8, 0.78], 4, -3.45],
     },
   },
 }
 
-function svg(layers) {
-  const body = layers
-    .map(({ frequency, octaves, seed, rgb, a, b }, i) => {
-      const [r, g, bl] = rgb
-      const matrix = `0 0 0 0 ${r}  0 0 0 0 ${g}  0 0 0 0 ${bl}  ${a} 0 0 0 ${b}`
-      return (
-        `<filter id='n${i}' x='0' y='0' width='100%' height='100%' color-interpolation-filters='sRGB'>` +
-        `<feTurbulence type='fractalNoise' baseFrequency='${frequency}' numOctaves='${octaves}' seed='${seed}' stitchTiles='stitch'/>` +
-        `<feColorMatrix values='${matrix}'/></filter><rect width='100%' height='100%' filter='url(#n${i})'/>`
-      )
-    })
-    .join("")
-  const markup = `<svg xmlns='http://www.w3.org/2000/svg' width='${TILE}' height='${TILE}'>${body}</svg>`
-  return `url("data:image/svg+xml;utf8,${markup.replace(/[%#<>"]/g, (c) => encodeURIComponent(c))}")`
-}
+const block = (selector, vars) =>
+  `${selector} {\n${Object.entries(vars)
+    .map(([k, v]) => `  --tex-${k}: ${v};`)
+    .join("\n")}\n}`
 
-const blocks = Object.entries(STOCKS).map(([stock, s]) => {
-  const day =
-    stock === "field"
+const selectorFor = (stock, theme) => {
+  const isDefault = stock === "archive"
+  if (theme === "day")
+    return isDefault
       ? `:root,\n:root[data-stock="${stock}"]`
       : `:root[data-stock="${stock}"]`
-  const night =
-    stock === "field"
-      ? `:root[data-theme="night"]`
-      : `:root[data-stock="${stock}"][data-theme="night"]`
-  return [
-    `${day} {\n  --paper-grain: ${svg(s.day)};\n  --paper-wear: ${svg(s.wear.day)};\n}`,
-    `${night} {\n  --paper-grain: ${svg(s.night)};\n  --paper-wear: ${svg(s.wear.night)};\n}`,
-  ].join("\n\n")
-})
+  return isDefault
+    ? `:root[data-theme="night"]`
+    : `:root[data-stock="${stock}"][data-theme="night"]`
+}
 
-const out = new URL(
+const out = [
+  block(":root", NEUTRAL.day),
+  block(':root[data-theme="night"]', NEUTRAL.night),
+  ...Object.entries(STOCKS).flatMap(([stock, themes]) =>
+    ["day", "night"].map((theme) => {
+      const { mottle, specks } = themes[theme]
+      return block(selectorFor(stock, theme), {
+        mottle: tinted(1201, 0.0035, 4, 41, ...mottle),
+        specks: tinted(877, 0.22, 2, 53, ...specks),
+      })
+    }),
+  ),
+]
+
+const file = new URL(
   "../../src/patina/styles/textures.generated.css",
   import.meta.url,
 )
-const header = `/* Generated by tools/paper/build-textures.mjs. Edit the stock layers there, then rerun it. */\n`
-writeFileSync(out, header + blocks.join("\n\n") + "\n")
+writeFileSync(
+  file,
+  `/* Generated by tools/paper/build-textures.mjs. Edit the layers there, then rerun it. */\n${out.join("\n\n")}\n`,
+)
 console.log(
-  `wrote ${out.pathname}: ${Object.keys(STOCKS).length} stocks, ${TILE}px tiles`,
+  `wrote ${file.pathname}: ${Object.keys(STOCKS).length} stocks, 6 layers each`,
 )

@@ -194,7 +194,7 @@
   font-family: var(--face-label);
   font-size: var(--type-label);
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.45;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -211,4 +211,21 @@
 }
 :root[data-theme="night"] .patina-drum {
   mix-blend-mode: screen;
+}
+
+/* Paper texture on any surface, stacked at the same sizes as the page. */
+@utility paper-texture {
+  background-image: var(--paper-texture);
+  background-size: var(--paper-texture-size);
+}
+
+/* A raised sheet of card stock: texture, a paper shadow and inner edges toned by the patina level. */
+@utility sheet {
+  background-color: var(--card);
+  background-image: var(--paper-texture);
+  background-size: var(--paper-texture-size);
+  border-radius: var(--sheet-radius);
+  box-shadow:
+    var(--sheet-shadow),
+    inset 0 0 48px rgb(var(--tone-rgb) / calc(var(--paper-tone) * 0.9));
 }

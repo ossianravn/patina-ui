@@ -17,7 +17,7 @@ export interface PressState {
 export const DEFAULT_PRESS: PressState = {
   motif: "sprig",
   seed: "quiet-heron",
-  inks: "field",
+  inks: "patina",
   text: "Ossian Ravn",
   misregister: 2.2,
 }

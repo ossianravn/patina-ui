@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "Textarea, in the Patina language.",
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/textarea.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"@/patina/lib/utils\"\n\n// A calm pen-line field that grows with its content. data-ruled=\"true\" adds notebook lines on the text baseline.\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(\n        \"control-field flex field-sizing-content min-h-24 w-full px-tight py-tight data-[ruled=true]:bg-[linear-gradient(transparent_calc(1lh-1px),var(--rule)_calc(1lh-1px))] data-[ruled=true]:bg-size-[100%_1lh] data-[ruled=true]:bg-local data-[ruled=true]:bg-origin-content\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Textarea }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/textarea.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

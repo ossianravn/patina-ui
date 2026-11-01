@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "Skeleton, in the Patina language.",
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/skeleton.tsx",
+      "content": "import { cn } from \"@/patina/lib/utils\"\n\n// A block of toned paper in the shape of the content it stands in for, with a slow pulse. Give it that content's\n// own geometry at the call site: a line of text, a circle for an avatar, a print's aspect ratio.\nfunction Skeleton({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      className={cn(\n        \"animate-pulse rounded-sheet bg-paper-3 [animation-duration:2.6s]\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Skeleton }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/skeleton.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

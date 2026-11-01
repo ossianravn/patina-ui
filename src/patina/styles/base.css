@@ -1,14 +1,31 @@
 /* Page-level defaults: the paper, the reading voice, links, focus and the accessibility fallbacks. */
 
-/* Patina level: how handled the paper looks. "worn" adds stains and fibres over the grain; "clean" is flat. */
+/* Patina level: how handled the paper looks. The layers stack at their own tile sizes, which share no factors, so
+   the paper never visibly repeats. "handled" is the stock's tooth, fibres, mottling and specks with faint edge
+   toning; "worn" adds foxing and deeper toning (and the Paper component's stains, creases and dog-ears); "clean" is
+   flat colour. --paper-tone is the toning strength, used by the page vignette and by sheets' inner edges. */
 :root {
-  --paper-texture: var(--paper-grain);
+  --paper-texture:
+    var(--tex-specks), var(--tex-fibres), var(--tex-tooth), var(--tex-relief),
+    var(--tex-mottle);
+  --paper-texture-size: 877px, 613px, 353px, 541px, 1201px;
+  --paper-tone: 0.07;
+  --tone-rgb: 150 105 45;
 }
 :root[data-patina="worn"] {
-  --paper-texture: var(--paper-wear), var(--paper-grain);
+  --paper-texture:
+    var(--tex-foxing), var(--tex-specks), var(--tex-fibres), var(--tex-tooth),
+    var(--tex-relief), var(--tex-mottle);
+  --paper-texture-size: 1613px, 877px, 613px, 353px, 541px, 1201px;
+  --paper-tone: 0.16;
 }
 :root[data-patina="clean"] {
   --paper-texture: none;
+  --paper-texture-size: auto;
+  --paper-tone: 0;
+}
+:root[data-theme="night"] {
+  --tone-rgb: 0 0 0;
 }
 
 @layer base {
@@ -22,6 +39,7 @@
     color: var(--ink);
     background-color: var(--paper);
     background-image: var(--paper-texture);
+    background-size: var(--paper-texture-size);
     font-family: var(--face-ui);
     font-size: var(--type-body);
     line-height: var(--lh-body);
@@ -39,6 +57,11 @@
     line-height: var(--lh-heading);
     letter-spacing: -0.012em;
     text-wrap: balance;
+  }
+
+  h3,
+  h4 {
+    line-height: var(--lh-subhead);
   }
 
   p,
@@ -69,6 +92,20 @@
   svg {
     flex: none;
   }
+
+  /* Edge toning stays with the window, the way old paper darkens towards its edges; it sits behind the content. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at 50% 45%,
+      transparent 58%,
+      rgb(var(--tone-rgb) / var(--paper-tone)) 100%
+    );
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -85,6 +122,8 @@
 @media (prefers-contrast: more) {
   :root {
     --paper-texture: none;
+    --paper-texture-size: auto;
+    --paper-tone: 0;
     --misregister: 0px;
   }
 }
@@ -94,6 +133,8 @@
 @media (forced-colors: active) {
   :root {
     --paper-texture: none;
+    --paper-texture-size: auto;
+    --paper-tone: 0;
   }
   .patina-print[aria-hidden="true"] {
     display: none;

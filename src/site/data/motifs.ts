@@ -3,6 +3,18 @@ import type { MotifName } from "@/patina/ink"
 /** What each motif pictures and what it suits, for the gallery and the Press. */
 export const MOTIF_INFO: Record<MotifName, { picture: string; suits: string }> =
   {
+    collage: {
+      picture: "Cut-paper shapes in solid ink, overprinting",
+      suits: "Covers, heroes, announcements",
+    },
+    tiles: {
+      picture: "Truchet tiles of quarter arcs",
+      suits: "Patterns, backgrounds, systems",
+    },
+    lino: {
+      picture: "Linocut gouges carved round a form",
+      suits: "Covers, seasons, landscapes",
+    },
     rings: {
       picture: "Concentric rings narrowing to a pit",
       suits: "Warnings, traps, focus",

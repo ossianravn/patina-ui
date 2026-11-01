@@ -15,7 +15,8 @@
       "devDependencies": [
         "@fontsource-variable/caveat@^5.3.0",
         "@fontsource-variable/jetbrains-mono@^5.3.0",
-        "@fontsource-variable/source-serif-4@^5.3.1"
+        "@fontsource-variable/source-serif-4@^5.3.1",
+        "tw-animate-css@^1.4.0"
       ],
       "files": [
         {
@@ -54,6 +55,11 @@
           "target": "~/src/patina/styles/base.css"
         },
         {
+          "path": "src/patina/styles/controls.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/controls.css"
+        },
+        {
           "path": "src/patina/styles/fonts.css",
           "type": "registry:file",
           "target": "~/src/patina/styles/fonts.css"
@@ -67,6 +73,11 @@
           "path": "src/patina/styles/marks.css",
           "type": "registry:file",
           "target": "~/src/patina/styles/marks.css"
+        },
+        {
+          "path": "src/patina/styles/paper.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/paper.css"
         },
         {
           "path": "src/patina/styles/patina.css",
@@ -112,6 +123,203 @@
           "path": "src/patina/theme/use-appearance.ts",
           "type": "registry:file",
           "target": "~/src/patina/theme/use-appearance.ts"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:component",
+      "title": "Alert",
+      "description": "Alert, in the Patina language.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/alert.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/alert.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:component",
+      "title": "Alert Dialog",
+      "description": "Alert Dialog, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/button"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/alert-dialog.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/alert-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:component",
+      "title": "Avatar",
+      "description": "Avatar, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/print"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/avatar.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:component",
+      "title": "Badge",
+      "description": "Badge, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/badge.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:component",
+      "title": "Button",
+      "description": "Button, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/button.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:component",
+      "title": "Card",
+      "description": "Card, in the Patina language.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/card.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:component",
+      "title": "Checkbox",
+      "description": "Checkbox, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/checkbox.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:component",
+      "title": "Dialog",
+      "description": "Dialog, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/button",
+        "@patina/paper-marks"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/dialog.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:component",
+      "title": "Dropdown Menu",
+      "description": "Dropdown Menu, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "lucide-react@^1.66.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/dropdown-menu.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/dropdown-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:component",
+      "title": "Field",
+      "description": "Field, in the Patina language.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/glyph",
+        "@patina/label",
+        "@patina/separator"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/field.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/field.tsx"
         }
       ]
     },
@@ -185,6 +393,76 @@
       ]
     },
     {
+      "name": "input",
+      "type": "registry:component",
+      "title": "Input",
+      "description": "Input, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/input.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:component",
+      "title": "Kbd",
+      "description": "Kbd, in the Patina language.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/kbd.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/kbd.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:component",
+      "title": "Label",
+      "description": "Label, in the Patina language.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/label.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:component",
+      "title": "Native Select",
+      "description": "Native Select, in the Patina language.",
+      "dependencies": [
+        "lucide-react@^1.66.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/native-select.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/native-select.tsx"
+        }
+      ]
+    },
+    {
       "name": "notes",
       "type": "registry:component",
       "title": "Notes",
@@ -201,6 +479,27 @@
       ]
     },
     {
+      "name": "paper",
+      "type": "registry:component",
+      "title": "Paper",
+      "description": "Paper: a sheet with a seeded edge (deckle, torn, perforated, pinked), dog-ear, tilt and wear that follows the patina level.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ink/paper-shapes.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/paper-shapes.ts"
+        },
+        {
+          "path": "src/patina/paper/paper.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/paper/paper.tsx"
+        }
+      ]
+    },
+    {
       "name": "paper-marks",
       "type": "registry:component",
       "title": "Paper Marks",
@@ -213,6 +512,25 @@
           "path": "src/patina/marks/paper-marks.tsx",
           "type": "registry:file",
           "target": "~/src/patina/marks/paper-marks.tsx"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:component",
+      "title": "Popover",
+      "description": "Popover, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/popover.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/popover.tsx"
         }
       ]
     },
@@ -239,6 +557,11 @@
           "path": "src/patina/ink/motifs/blocks.ts",
           "type": "registry:file",
           "target": "~/src/patina/ink/motifs/blocks.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/collage.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/collage.ts"
         },
         {
           "path": "src/patina/ink/motifs/constellation.ts",
@@ -276,6 +599,11 @@
           "target": "~/src/patina/ink/motifs/lens.ts"
         },
         {
+          "path": "src/patina/ink/motifs/lino.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/lino.ts"
+        },
+        {
           "path": "src/patina/ink/motifs/monogram.ts",
           "type": "registry:file",
           "target": "~/src/patina/ink/motifs/monogram.ts"
@@ -306,6 +634,11 @@
           "target": "~/src/patina/ink/motifs/sprig.ts"
         },
         {
+          "path": "src/patina/ink/motifs/tiles.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/tiles.ts"
+        },
+        {
           "path": "src/patina/ink/motifs/types.ts",
           "type": "registry:file",
           "target": "~/src/patina/ink/motifs/types.ts"
@@ -328,6 +661,134 @@
       ]
     },
     {
+      "name": "progress",
+      "type": "registry:component",
+      "title": "Progress",
+      "description": "Progress, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/progress.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/progress.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:component",
+      "title": "Radio Group",
+      "description": "Radio Group, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/radio-group.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/radio-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:component",
+      "title": "Select",
+      "description": "Select, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "lucide-react@^1.66.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/select.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:component",
+      "title": "Separator",
+      "description": "Separator, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/separator.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:component",
+      "title": "Skeleton",
+      "description": "Skeleton, in the Patina language.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/skeleton.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/skeleton.tsx"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:component",
+      "title": "Slider",
+      "description": "Slider, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/slider.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:component",
+      "title": "Spinner",
+      "description": "Spinner, in the Patina language.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/spinner.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/spinner.tsx"
+        }
+      ]
+    },
+    {
       "name": "stamp",
       "type": "registry:component",
       "title": "Stamp",
@@ -344,20 +805,164 @@
       ]
     },
     {
+      "name": "switch",
+      "type": "registry:component",
+      "title": "Switch",
+      "description": "Switch, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/switch.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:component",
+      "title": "Tabs",
+      "description": "Tabs, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/tabs.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:component",
+      "title": "Textarea",
+      "description": "Textarea, in the Patina language.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/textarea.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:component",
+      "title": "Toggle",
+      "description": "Toggle, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/toggle.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:component",
+      "title": "Toggle Group",
+      "description": "Toggle Group, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0",
+        "class-variance-authority@^0.7.1"
+      ],
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/toggle"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/toggle-group.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/toggle-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:component",
+      "title": "Tooltip",
+      "description": "Tooltip, in the Patina language.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ui/tooltip.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
       "name": "patina",
       "type": "registry:item",
       "title": "Patina",
       "description": "Everything in Patina UI.",
       "registryDependencies": [
         "@patina/base",
+        "@patina/alert",
+        "@patina/alert-dialog",
+        "@patina/avatar",
+        "@patina/badge",
+        "@patina/button",
+        "@patina/card",
+        "@patina/checkbox",
+        "@patina/dialog",
+        "@patina/dropdown-menu",
+        "@patina/field",
         "@patina/glyph",
         "@patina/hand-marks",
         "@patina/hand-underline",
         "@patina/highlight",
+        "@patina/input",
+        "@patina/kbd",
+        "@patina/label",
+        "@patina/native-select",
         "@patina/notes",
+        "@patina/paper",
         "@patina/paper-marks",
+        "@patina/popover",
         "@patina/print",
-        "@patina/stamp"
+        "@patina/progress",
+        "@patina/radio-group",
+        "@patina/select",
+        "@patina/separator",
+        "@patina/skeleton",
+        "@patina/slider",
+        "@patina/spinner",
+        "@patina/stamp",
+        "@patina/switch",
+        "@patina/tabs",
+        "@patina/textarea",
+        "@patina/toggle",
+        "@patina/toggle-group",
+        "@patina/tooltip"
       ],
       "files": []
     }

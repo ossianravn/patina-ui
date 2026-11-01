@@ -47,14 +47,11 @@ const ARROW = sketch.arrow(
   6,
 )
 const STEPS = [
-  "Name the decision you're about to make",
-  "Imagine it failed a year from now",
-  "Write down why",
+  "Note the time and the tide",
+  "Sketch what you see before naming it",
+  "Write the name last",
 ]
-const TICKS = [
-  "You've already spent a lot on it",
-  "Stopping feels like admitting a mistake",
-]
+const TICKS = ["Binoculars and hand lens", "Today's tide table"]
 ---
 
 <section
@@ -72,8 +69,8 @@ const TICKS = [
         <span class="text-small text-ink-2">This phrase matters</span>
       </dt>
       <dd>
-        Sunk costs are{" "}
-        <span class="highlight">already gone, whatever you decide next.</span>
+        The heron{" "}
+        <span class="highlight">was already standing in the shallows</span>
       </dd>
     </div>
     <div class="mark-row">
@@ -82,7 +79,9 @@ const TICKS = [
         <span class="text-small text-ink-2">A term, emphasized</span>
       </dt>
       <dd>
-        <span class="hand-underline text-lead font-semibold">Pre-mortem</span>
+        <span class="hand-underline text-lead font-semibold">
+          Ardea cinerea
+        </span>
       </dd>
     </div>
     <div class="mark-row">
@@ -92,7 +91,7 @@ const TICKS = [
       </dt>
       <dd>
         <span class="sketch-frame inline-block px-snug py-tight">
-          What kind of idea is it?
+          Which bird was it?
         </span>
       </dd>
     </div>
@@ -105,7 +104,7 @@ const TICKS = [
       </dt>
       <dd>
         <span class="wash inline-block px-tight font-semibold" data-ink="green">
-          Tools to try
+          Seen today
         </span>
       </dd>
     </div>
@@ -124,7 +123,7 @@ const TICKS = [
             aria-hidden="true"
             set:html={ARROW}
           />
-          tick what rings true
+          check against last spring
         </p>
       </dd>
     </div>

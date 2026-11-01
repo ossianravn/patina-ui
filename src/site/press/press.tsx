@@ -63,7 +63,7 @@ export function Press() {
   } as CSSProperties
 
   return (
-    <div className="grid gap-x-section gap-y-line lg:grid-cols-[minmax(0,1fr)_22rem]">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-x-section gap-y-line lg:grid-cols-[minmax(0,1fr)_22rem]">
       <figure
         ref={sheetRef}
         data-inks={state.inks}
@@ -72,7 +72,10 @@ export function Press() {
       >
         <div
           className="w-full max-w-[34rem] rounded-sheet bg-card p-line shadow-sheet"
-          style={{ backgroundImage: "var(--paper-texture)" }}
+          style={{
+            backgroundImage: "var(--paper-texture)",
+            backgroundSize: "var(--paper-texture-size)",
+          }}
         >
           <Print
             motif={state.motif}
@@ -170,37 +173,41 @@ export function Press() {
           </Row>
         )}
         <Row label="Inks">
-          <div
-            role="radiogroup"
-            aria-label="Inks"
-            className="inline-flex w-fit rounded-sheet border-[1.5px] border-line"
-          >
-            {INK_SETS.map((inks) => (
-              <label
-                key={inks}
-                data-inks={inks}
-                className="label-mono flex h-control cursor-pointer items-center gap-hair px-tight text-ink-2 hover:text-ink has-checked:bg-ink has-checked:text-paper has-focus-visible:outline-2 has-focus-visible:outline-dashed has-focus-visible:outline-k-ink"
-              >
-                <input
-                  type="radio"
-                  name="press-inks"
-                  className="sr-only"
-                  checked={state.inks === inks}
-                  onChange={() => set({ inks })}
-                />
-                <span aria-hidden="true" className="flex -space-x-1">
-                  {["line", "accent", "detail"].map((d) => (
-                    <span
-                      key={d}
-                      className="size-2.5 rounded-full"
-                      style={{ background: `var(--print-${d})` }}
-                    />
-                  ))}
-                </span>
-                {inks}
-              </label>
-            ))}
-          </div>
+          <span className="flex items-center gap-tight">
+            <div
+              role="radiogroup"
+              aria-label="Inks"
+              className="inline-flex w-fit rounded-sheet border-[1.5px] border-line"
+            >
+              {INK_SETS.map((inks) => (
+                <label
+                  key={inks}
+                  data-inks={inks}
+                  title={inks}
+                  className="flex h-control cursor-pointer items-center px-tight hover:bg-paper-2 has-checked:bg-ink has-focus-visible:outline-2 has-focus-visible:outline-dashed has-focus-visible:outline-k-ink"
+                >
+                  <input
+                    type="radio"
+                    name="press-inks"
+                    aria-label={inks}
+                    className="sr-only"
+                    checked={state.inks === inks}
+                    onChange={() => set({ inks })}
+                  />
+                  <span aria-hidden="true" className="flex -space-x-1">
+                    {["line", "accent", "detail"].map((d) => (
+                      <span
+                        key={d}
+                        className="size-2.5 rounded-full"
+                        style={{ background: `var(--print-${d})` }}
+                      />
+                    ))}
+                  </span>
+                </label>
+              ))}
+            </div>
+            <span className="label-mono text-ink-2">{state.inks}</span>
+          </span>
         </Row>
         <Row label="Misregistration" htmlFor="press-register">
           <span className="flex items-center gap-tight">

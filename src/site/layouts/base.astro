@@ -13,35 +13,33 @@ const { title, description } = Astro.props
 const fullTitle = title === "Patina UI" ? title : `${title} · Patina UI`
 const path = Astro.url.pathname.replace(/\/$/, "") || "/"
 const NAV = [
-  { href: "/", label: "Specimen" },
   { href: "/prints", label: "Prints" },
   { href: "/marks", label: "Marks" },
   { href: "/press", label: "Press" },
+  { href: "/docs", label: "Docs" },
+  { href: "/fieldbook", label: "Fieldbook" },
 ]
 
+// The mark: a verdigris slab overprinted by a copper disc, a little out of register.
+const solid = (color: string, seed: number) => ({
+  seed,
+  stroke: color,
+  fill: color,
+  fillStyle: "solid" as const,
+  strokeWidth: 1,
+  roughness: 0.6,
+})
 const logo =
-  sketch.circle(16, 16, 26, {
-    seed: 4,
-    stroke: "var(--print-blue)",
-    strokeWidth: 2.2,
-    roughness: 0.8,
-  }) +
-  sketch.circle(17.2, 15, 8, {
-    seed: 5,
-    stroke: "var(--print-pink)",
-    fill: "var(--print-pink)",
-    fillStyle: "solid",
-    strokeWidth: 1,
-    roughness: 0.5,
-  }) +
-  sketch.circle(16, 16, 7.5, {
-    seed: 6,
-    stroke: "var(--print-violet)",
-    fill: "var(--print-violet)",
-    fillStyle: "solid",
-    strokeWidth: 1,
-    roughness: 0.5,
-  })
+  `<g class="patina-drum">${sketch.polygon(
+    [
+      [3, 6],
+      [24, 3.5],
+      [26.5, 24],
+      [5, 26.5],
+    ],
+    solid("var(--print-green)", 11),
+  )}</g>` +
+  `<g class="patina-drum" style="translate:1px -0.5px">${sketch.circle(21, 20, 15, solid("var(--print-orange)", 12))}</g>`
 ---
 
 <!doctype html>
@@ -74,16 +72,23 @@ const logo =
             aria-hidden="true"
             set:html={logo}
           />
-          <span class="text-[1.1rem] font-semibold tracking-[-0.01em] max-[30rem]:sr-only">
+          <span class="text-body leading-heading font-semibold tracking-[-0.01em] max-[30rem]:sr-only">
             Patina UI
           </span>
         </a>
-        <nav aria-label="Main" class="flex items-center gap-tight sm:gap-snug">
+        <nav
+          aria-label="Main"
+          class="flex items-center gap-hair min-[22rem]:gap-tight sm:gap-snug"
+        >
           {NAV.map(({ href, label }) => (
             <a
               class="label-mono text-ink-2 no-underline hover:text-ink aria-[current=page]:highlight aria-[current=page]:text-ink"
               href={href}
-              aria-current={path === href ? "page" : undefined}
+              aria-current={
+                path === href || path.startsWith(`${href}/`)
+                  ? "page"
+                  : undefined
+              }
             >
               {label}
             </a>
@@ -100,9 +105,7 @@ const logo =
           Patina UI · shadcn/ui, with a patina
         </p>
         <p class="label-mono m-0 text-ink-2">
-          Style from{" "}
-          <a href="https://mentalmodels.ossianravn.dev">Mental Models</a> ·
-          <a href="https://github.com/ossianravn/patina-ui">Source</a>
+          MIT · <a href="https://github.com/ossianravn/patina-ui">Source</a>
         </p>
       </div>
     </footer>
@@ -113,6 +116,7 @@ const logo =
   .site-header {
     background-color: var(--paper);
     background-image: var(--paper-texture);
+    background-size: var(--paper-texture-size);
   }
   .site-header::after,
   .site-footer::before {

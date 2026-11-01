@@ -2,7 +2,7 @@
 
 A [shadcn/ui](https://ui.shadcn.com) component library that looks like printed matter that has been handled: warm paper, riso inks slightly out of register, a serif to read, a hand to annotate, a mono to label, and marks drawn with a pen. Every card, outline, avatar and illustration is drawn from a seed, so each one differs from its neighbours and looks the same on every render.
 
-**Status:** Phase 1 is done: tokens and generated paper, the ink engine with twelve print motifs and four ink sets, `<Print>`, eleven marks, the Press and a shadcn registry. The shadcn primitives start in Phase 2; [the plan](docs/plan.md) lists the phases, decisions and open questions.
+**Status:** Phase 2 done; Phase 3 (data, navigation and the rest of shadcn parity) is next. Patina has its own palette, layered paper that ages with use, cut-paper sheets, fifteen print motifs, the marks, the core shadcn primitives on Base UI, component docs and Fieldbook, the demo product. [The plan](docs/plan.md) lists the phases, decisions and open questions.
 
 ## Run it
 
@@ -13,7 +13,7 @@ npm ci
 npm run dev
 ```
 
-Open `http://127.0.0.1:4321`: the specimen, the print gallery (`/prints`), the marks (`/marks`) and the Press (`/press`). `package.json` lists the checks (`typecheck`, `lint`, `build`, `check:contrast`); `npm run build:textures` regenerates the paper grain after a stock's layers change in `tools/paper/build-textures.mjs`.
+Open `http://127.0.0.1:4321`: the specimen, the print gallery (`/prints`), the marks (`/marks`), the Press (`/press`), the component docs (`/docs`) and Fieldbook (`/fieldbook`). `package.json` lists the checks (`typecheck`, `lint`, `build`, `check:contrast`); `npm run build:textures` regenerates the paper grain after a stock's layers change in `tools/paper/build-textures.mjs`.
 
 ## Use the kit
 
@@ -38,6 +38,7 @@ Items install into `src/patina/` (the project needs an `@/` alias for `src/`). M
 | [Seeded variation](docs/seeded-variation.md) | Seeds, generative prints, variation and patina levels         |
 | [Architecture](docs/architecture.md)         | Repository layout, rendering, theme runtime, tokens, registry |
 | [Component inventory](docs/components.md)    | Every planned component, its treatment and phase              |
+| [Primitives](docs/primitives.md)             | How shadcn's parts are printed in Patina                      |
 | [Demo site](docs/demo-site.md)               | Site map, the Press, theme studio, the Fieldbook demo product |
 | [Quality contract](docs/quality.md)          | Accessibility, performance, definition of done                |
 | [Sources](docs/sources.md)                   | References, licenses and what each contributes                |
