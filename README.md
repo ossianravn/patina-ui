@@ -13,14 +13,14 @@ npm ci
 npm run dev
 ```
 
-Open `http://127.0.0.1:4321`: the specimen, the print gallery (`/prints`), the marks (`/marks`), the Press (`/press`), the component docs (`/docs`) and Fieldbook (`/fieldbook`). `package.json` lists the checks (`typecheck`, `lint`, `build`, `check:contrast`); `npm run build:textures` regenerates the paper grain after a stock's layers change in `tools/paper/build-textures.mjs`.
+Open `http://127.0.0.1:4782`: the specimen, the print gallery (`/prints`), the marks (`/marks`), the Press (`/press`), the component docs (`/docs`) and Fieldbook (`/fieldbook`). `package.json` lists the checks (`typecheck`, `lint`, `build`, `check:contrast`); `npm run build:textures` regenerates the paper grain after a stock's layers change in `tools/paper/build-textures.mjs`.
 
 ## Use the kit
 
 The kit installs with the shadcn CLI from its registry (`public/r/`, served by the site). Until the site has a domain, serve it locally with `npm run dev` and point a project at it:
 
 ```json
-{ "registries": { "@patina": "http://localhost:4321/r/{name}.json" } }
+{ "registries": { "@patina": "http://127.0.0.1:4782/r/{name}.json" } }
 ```
 
 ```sh
