@@ -64,16 +64,19 @@ Still a convention: kit stylesheets style only what kit components render.
 
 State lives as attributes on `<html>`, so CSS does the work and every island reads the same state (`src/patina/theme/`):
 
-| Attribute               | Values                     | Default   | Status  |
-| ----------------------- | -------------------------- | --------- | ------- |
-| `data-theme`            | `day`, `night` (resolved)  | system    | built   |
-| `data-theme-preference` | `system`, `day`, `night`   | `system`  | built   |
-| `data-stock`            | `field`, `newsprint`       | `field`   | built   |
-| `data-variation`        | `calm`, `lively`           | `lively`  | built   |
-| `data-patina`           | `clean`, `handled`, `worn` | `handled` | built   |
-| `data-density`          | `comfortable`, `compact`   | —         | planned |
+| Attribute               | Values                                             | Default       | Status |
+| ----------------------- | -------------------------------------------------- | ------------- | ------ |
+| `data-theme`            | `day`, `night` (resolved)                          | system        | built  |
+| `data-theme-preference` | `system`, `day`, `night`                           | `system`      | built  |
+| `data-stock`            | `archive`, `field`, `newsprint`                    | `archive`     | built  |
+| `data-variation`        | `calm`, `lively`                                   | `lively`      | built  |
+| `data-patina`           | `clean`, `handled`, `worn`                         | `handled`     | built  |
+| `data-inks`             | `patina`, `field`, `fluoro`, `earth`, `spot`       | `patina`      | built  |
+| `data-accent`           | `green`, `orange`, `blue`, `pink`, `violet`, `red` | `green`       | built  |
+| `data-density`          | `comfortable`, `compact`                           | `comfortable` | built  |
+| `data-face`             | `serif`, `sans`                                    | `serif`       | built  |
 
-- `appearanceScript(defaults)` returns an inline script for `<head>` that applies the saved choice before first paint.
+- `appearanceScript(defaults)` returns an inline script for `<head>` that applies the saved choice before first paint; it validates saved values against `APPEARANCE`, as `normalize` does. `APPEARANCE_ATTRIBUTES` is what `useAppearance` observes.
 - `apply`, `current`, `readSaved`, `save` and `normalize` work on the attributes and `localStorage` (`patina-appearance`); unknown stored values fall back to the defaults.
 - `useAppearance()` is a `useSyncExternalStore` hook over the attributes: server renders use the defaults, hydration picks up what the script applied, and a `MutationObserver` keeps several islands in step. `system` re-resolves when the operating system switches.
 - Any element can override variation (`data-variation="calm"`), re-ink its region (`data-ink="pink"`, the accent) or choose a print ink set (`data-inks="fluoro"`, or `inks` on `<Print>`); theme and stock apply to the whole document.
@@ -92,7 +95,7 @@ Paper grain is generated: `tools/paper/build-textures.mjs` turns each stock's no
 
 ## Registry
 
-`npm run registry` generates `registry.json` and `public/r/*.json` from `src/patina/` (Groundwork's builder, adapted): membership is in `tools/registry/items.json`, and npm and item dependencies are read from each file's imports. A file outside every group is an item named after the file; a part split across files (chart, sidebar, combobox, questionnaire) needs a group, and groups match in order, so a specific path must not fall under an earlier folder pattern. `requires` adds an item a part works with but does not import (`code-block` and its highlighting hook). Nobody edits the outputs by hand; `npm run registry:check` fails when they are stale.
+`npm run registry` generates `registry.json` and `public/r/*.json` from `src/patina/` (Groundwork's builder, adapted): membership is in `tools/registry/items.json`, and npm and item dependencies are read from each file's imports. A file outside every group is an item named after the file; a part split across files (chart, sidebar, combobox, questionnaire) needs a group, and groups match in order, so a specific path must not fall under an earlier folder pattern. `requires` adds an item a part works with but does not import (`code-block` and its highlighting hook). A file at `blocks/<name>-<number>.tsx` is a block item of type `registry:block`, and `blocks/<block>-<part>.tsx` helpers install with it. The `patina` umbrella item installs everything except blocks, which are sample pages a consumer picks one at a time. Nobody edits the outputs by hand; `npm run registry:check` fails when they are stale.
 
 | Item                                                                                  | Contents                                                                                                                                           |
 | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |

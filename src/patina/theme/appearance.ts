@@ -4,20 +4,35 @@
 export const APPEARANCE = {
   theme: ["system", "day", "night"],
   stock: ["archive", "field", "newsprint"],
+  /** The print ink sets in styles/inks.css (INK_SETS in ink/inks.ts lists the same five). */
+  inks: ["patina", "field", "fluoro", "earth", "spot"],
+  /** The drum that is the document's accent, --k. Ochre has no text ink, so it never carries marks. */
+  accent: ["green", "orange", "blue", "pink", "violet", "red"],
   variation: ["calm", "lively"],
   patina: ["clean", "handled", "worn"],
+  density: ["comfortable", "compact"],
+  /** The interface face, --face-ui: the reading serif, or Instrument Sans. Prose keeps the serif. */
+  face: ["serif", "sans"],
 } as const
 
 export type ThemePreference = (typeof APPEARANCE.theme)[number]
 export type Stock = (typeof APPEARANCE.stock)[number]
 export type Variation = (typeof APPEARANCE.variation)[number]
 export type PatinaLevel = (typeof APPEARANCE.patina)[number]
+export type InkSetName = (typeof APPEARANCE.inks)[number]
+export type AccentDrum = (typeof APPEARANCE.accent)[number]
+export type Density = (typeof APPEARANCE.density)[number]
+export type InterfaceFace = (typeof APPEARANCE.face)[number]
 
 export interface Appearance {
   theme: ThemePreference
   stock: Stock
   variation: Variation
   patina: PatinaLevel
+  inks: InkSetName
+  accent: AccentDrum
+  density: Density
+  face: InterfaceFace
 }
 
 export const defaultAppearance: Appearance = {
@@ -25,9 +40,17 @@ export const defaultAppearance: Appearance = {
   stock: "archive",
   variation: "lively",
   patina: "handled",
+  inks: "patina",
+  accent: "green",
+  density: "comfortable",
+  face: "serif",
 }
 
 export const STORAGE_KEY = "patina-appearance"
+
+const KEYS = Object.keys(APPEARANCE) as (keyof Appearance)[]
+/** Settings written to <html> under their own name: data-stock, data-inks, data-accent and so on. */
+const ATTRIBUTES = KEYS.filter((key) => key !== "theme")
 
 const pick = <T extends string>(
   options: readonly T[],
@@ -40,18 +63,16 @@ export function normalize(
   value: Partial<Record<keyof Appearance, unknown>>,
   defaults = defaultAppearance,
 ): Appearance {
-  return {
-    theme: pick(APPEARANCE.theme, value.theme, defaults.theme),
-    stock: pick(APPEARANCE.stock, value.stock, defaults.stock),
-    variation: pick(APPEARANCE.variation, value.variation, defaults.variation),
-    patina: pick(APPEARANCE.patina, value.patina, defaults.patina),
-  }
+  const next: Record<string, string> = {}
+  for (const key of KEYS)
+    next[key] = pick<string>(APPEARANCE[key], value[key], defaults[key])
+  return next as unknown as Appearance
 }
 
 export function readSaved(defaults = defaultAppearance): Appearance {
   try {
     return normalize(
-      JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}"),
+      JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}") ?? {},
       defaults,
     )
   } catch {
@@ -80,15 +101,22 @@ export function apply(
 ) {
   root.dataset.theme = resolveTheme(appearance.theme)
   root.dataset.themePreference = appearance.theme
-  root.dataset.stock = appearance.stock
-  root.dataset.variation = appearance.variation
-  root.dataset.patina = appearance.patina
+  for (const key of ATTRIBUTES) root.dataset[key] = appearance[key]
 }
 
 /** The appearance currently applied to the document. */
 export function current(
   root: HTMLElement = document.documentElement,
 ): Appearance {
-  const { themePreference, stock, variation, patina } = root.dataset
-  return normalize({ theme: themePreference, stock, variation, patina })
+  const value: Partial<Record<keyof Appearance, unknown>> = {
+    theme: root.dataset.themePreference,
+  }
+  for (const key of ATTRIBUTES) value[key] = root.dataset[key]
+  return normalize(value)
 }
+
+/** The <html> attributes useAppearance watches. */
+export const APPEARANCE_ATTRIBUTES = [
+  "data-theme-preference",
+  ...ATTRIBUTES.map((key) => `data-${key}`),
+]

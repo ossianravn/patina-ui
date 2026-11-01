@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "edition-number",
+  "title": "Edition Number",
+  "description": "EditionNumber: zero-padded No. 0012 numbering.",
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/extras/edition-number.tsx",
+      "content": "import type { ComponentProps } from \"react\"\nimport { cn } from \"@/patina/lib/utils\"\n\n// \"No. 0012\": an entry's number in the label voice, zero padded to a fixed count of digits so a run of numbers lines\n// up, with tabular figures. It takes the size and colour of its context, such as a label-mono kicker; in running\n// serif text, text-[0.86em] matches the mono's x-height to the serif's, as inline code does in Typography. Screen\n// readers hear \"Number 12 of 200\" instead of the abbreviation and the padding.\n\nexport interface EditionNumberProps extends Omit<\n  ComponentProps<\"span\">,\n  \"children\"\n> {\n  value: number\n  /** How many digits to pad to. */\n  digits?: number\n  /** The size of the edition: \"No. 0012 of 0200\". */\n  of?: number\n  /** The printed abbreviation before the number. */\n  prefix?: string\n  /** What assistive technology reads in place of the prefix. */\n  label?: string\n}\n\nconst NBSP = String.fromCharCode(0xa0)\nconst whole = (n: number) => Math.max(0, Math.trunc(Number.isFinite(n) ? n : 0))\nconst pad = (n: number, digits: number) =>\n  String(whole(n)).padStart(digits, \"0\")\n\n/** An entry's number, zero padded: \"No. 0012\" or \"No. 0012 of 0200\". */\nexport function EditionNumber({\n  value,\n  digits = 4,\n  of,\n  prefix = \"No.\",\n  label = \"Number\",\n  className,\n  ...props\n}: EditionNumberProps) {\n  const total = of === undefined ? \"\" : `${NBSP}of${NBSP}${pad(of, digits)}`\n  const spoken = `${label} ${whole(value)}${of === undefined ? \"\" : ` of ${whole(of)}`}`\n  return (\n    <span\n      data-slot=\"edition-number\"\n      className={cn(\"font-label whitespace-nowrap tabular-nums\", className)}\n      {...props}\n    >\n      <span aria-hidden=\"true\">\n        {prefix ? `${prefix}${NBSP}` : \"\"}\n        {pad(value, digits)}\n        {total}\n      </span>\n      <span className=\"sr-only\">{spoken}</span>\n    </span>\n  )\n}\n",
+      "type": "registry:file",
+      "target": "~/src/patina/extras/edition-number.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -14,6 +14,7 @@
       ],
       "devDependencies": [
         "@fontsource-variable/caveat@^5.3.0",
+        "@fontsource-variable/instrument-sans@^5.3.0",
         "@fontsource-variable/jetbrains-mono@^5.3.0",
         "@fontsource-variable/source-serif-4@^5.3.1",
         "tw-animate-css@^1.4.0"
@@ -181,6 +182,48 @@
           "path": "src/patina/ui/alert-dialog.tsx",
           "type": "registry:file",
           "target": "~/src/patina/ui/alert-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "appearance-control",
+      "type": "registry:component",
+      "title": "Appearance Control",
+      "description": "Appearance Control, in the Patina language.",
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/switch",
+        "@patina/toggle-group"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/appearance-control.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/appearance-control.tsx"
+        }
+      ]
+    },
+    {
+      "name": "article-01",
+      "type": "registry:block",
+      "title": "Article 01",
+      "description": "Article block: a long-form field note with ReadingProgress, an edition-numbered kicker, a drop cap, a PullQuote, sidenotes, a printed figure and a Postmark.",
+      "registryDependencies": [
+        "@patina/badge",
+        "@patina/base",
+        "@patina/edition-number",
+        "@patina/postmark",
+        "@patina/print",
+        "@patina/pull-quote",
+        "@patina/reading-progress",
+        "@patina/sidenote",
+        "@patina/typography"
+      ],
+      "files": [
+        {
+          "path": "src/patina/blocks/article-01.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/blocks/article-01.tsx"
         }
       ]
     },
@@ -459,6 +502,27 @@
       ]
     },
     {
+      "name": "checklist",
+      "type": "registry:component",
+      "title": "Checklist",
+      "description": "Checklist: tickable rows with drawn boxes and ticks, a note per item and a mono tally.",
+      "dependencies": [
+        "@base-ui/react@^1.9.0"
+      ],
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/checkbox",
+        "@patina/glyph"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/checklist.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/checklist.tsx"
+        }
+      ]
+    },
+    {
       "name": "code-block",
       "type": "registry:component",
       "title": "Code Block",
@@ -549,6 +613,32 @@
       ]
     },
     {
+      "name": "concept-map",
+      "type": "registry:component",
+      "title": "Concept Map",
+      "description": "ConceptMap: a hand-drawn graph of typed connections that becomes a grouped list on narrow screens.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/concept-map-labels.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/concept-map-labels.ts"
+        },
+        {
+          "path": "src/patina/extras/concept-map-layout.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/concept-map-layout.ts"
+        },
+        {
+          "path": "src/patina/extras/concept-map.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/concept-map.tsx"
+        }
+      ]
+    },
+    {
       "name": "context-menu",
       "type": "registry:component",
       "title": "Context Menu",
@@ -565,6 +655,58 @@
           "path": "src/patina/ui/context-menu.tsx",
           "type": "registry:file",
           "target": "~/src/patina/ui/context-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dashboard-01",
+      "type": "registry:block",
+      "title": "Dashboard 01",
+      "description": "Dashboard block: headline numbers, two drawn bar charts in hatch, a ledger of records and a survey progress card, laid out by container width.",
+      "dependencies": [
+        "recharts@^3.8.0"
+      ],
+      "registryDependencies": [
+        "@patina/badge",
+        "@patina/base",
+        "@patina/card",
+        "@patina/chart",
+        "@patina/progress",
+        "@patina/table"
+      ],
+      "files": [
+        {
+          "path": "src/patina/blocks/dashboard-01-lists.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/blocks/dashboard-01-lists.tsx"
+        },
+        {
+          "path": "src/patina/blocks/dashboard-01-parts.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/blocks/dashboard-01-parts.tsx"
+        },
+        {
+          "path": "src/patina/blocks/dashboard-01.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/blocks/dashboard-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "decision-map",
+      "type": "registry:component",
+      "title": "Decision Map",
+      "description": "DecisionMap: one question branching to options, with the best fit inked and stamped.",
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/paper-marks",
+        "@patina/stamp"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/decision-map.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/decision-map.tsx"
         }
       ]
     },
@@ -648,6 +790,22 @@
       ]
     },
     {
+      "name": "edition-number",
+      "type": "registry:component",
+      "title": "Edition Number",
+      "description": "EditionNumber: zero-padded No. 0012 numbering.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/edition-number.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/edition-number.tsx"
+        }
+      ]
+    },
+    {
       "name": "empty",
       "type": "registry:component",
       "title": "Empty",
@@ -663,6 +821,29 @@
           "path": "src/patina/ui/empty.tsx",
           "type": "registry:file",
           "target": "~/src/patina/ui/empty.tsx"
+        }
+      ]
+    },
+    {
+      "name": "empty-01",
+      "type": "registry:block",
+      "title": "Empty 01",
+      "description": "Empty states block: a first-run notebook, a search with no results and an offline page, each a print, a title, one line and one action.",
+      "dependencies": [
+        "lucide-react@^1.66.0"
+      ],
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/button",
+        "@patina/empty",
+        "@patina/input-group",
+        "@patina/print"
+      ],
+      "files": [
+        {
+          "path": "src/patina/blocks/empty-01.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/blocks/empty-01.tsx"
         }
       ]
     },
@@ -742,6 +923,31 @@
       ]
     },
     {
+      "name": "hero-01",
+      "type": "registry:block",
+      "title": "Hero 01",
+      "description": "Hero 01, in the Patina language.",
+      "dependencies": [
+        "lucide-react@^1.66.0"
+      ],
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/button",
+        "@patina/code-block",
+        "@patina/highlight",
+        "@patina/notes",
+        "@patina/paper",
+        "@patina/print"
+      ],
+      "files": [
+        {
+          "path": "src/patina/blocks/hero-01.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/blocks/hero-01.tsx"
+        }
+      ]
+    },
+    {
       "name": "highlight",
       "type": "registry:component",
       "title": "Highlight",
@@ -773,6 +979,40 @@
           "path": "src/patina/ui/hover-card.tsx",
           "type": "registry:file",
           "target": "~/src/patina/ui/hover-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "index-card",
+      "type": "registry:component",
+      "title": "Index Card",
+      "description": "IndexCard: a tilted, taped card with a cover print, kicker, title and hook; optionally a whole-card link.",
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/paper-marks",
+        "@patina/print"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/index-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/index-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "index-row",
+      "type": "registry:component",
+      "title": "Index Row",
+      "description": "IndexList and IndexRow: typeset index entries with number, hook and a dotted leader.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/index-row.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/index-row.tsx"
         }
       ]
     },
@@ -1099,6 +1339,51 @@
       ]
     },
     {
+      "name": "postmark",
+      "type": "registry:component",
+      "title": "Postmark",
+      "description": "Postmark: a circular dated cancellation mark with wavy lines.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/postmark.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/postmark.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pricing-01",
+      "type": "registry:block",
+      "title": "Pricing 01",
+      "description": "Pricing block: three plans with a monthly or yearly segmented control, the recommended plan taped and stamped, drawn ticks and a FAQ accordion.",
+      "registryDependencies": [
+        "@patina/accordion",
+        "@patina/base",
+        "@patina/button",
+        "@patina/card",
+        "@patina/glyph",
+        "@patina/notes",
+        "@patina/paper-marks",
+        "@patina/stamp",
+        "@patina/toggle-group"
+      ],
+      "files": [
+        {
+          "path": "src/patina/blocks/pricing-01-plan.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/blocks/pricing-01-plan.tsx"
+        },
+        {
+          "path": "src/patina/blocks/pricing-01.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/blocks/pricing-01.tsx"
+        }
+      ]
+    },
+    {
       "name": "print",
       "type": "registry:component",
       "title": "Print",
@@ -1244,6 +1529,22 @@
       ]
     },
     {
+      "name": "pull-quote",
+      "type": "registry:component",
+      "title": "Pull Quote",
+      "description": "PullQuote: a large serif quote with a hand mark and attribution.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/pull-quote.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/pull-quote.tsx"
+        }
+      ]
+    },
+    {
       "name": "questionnaire",
       "type": "registry:component",
       "title": "Questionnaire",
@@ -1289,6 +1590,22 @@
       ]
     },
     {
+      "name": "reading-progress",
+      "type": "registry:component",
+      "title": "Reading Progress",
+      "description": "ReadingProgress: a torn-edged strip that follows reading through an article.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/reading-progress.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/reading-progress.tsx"
+        }
+      ]
+    },
+    {
       "name": "resizable",
       "type": "registry:component",
       "title": "Resizable",
@@ -1304,6 +1621,23 @@
           "path": "src/patina/ui/resizable.tsx",
           "type": "registry:file",
           "target": "~/src/patina/ui/resizable.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scale",
+      "type": "registry:component",
+      "title": "Scale",
+      "description": "Scale: a drawn scale with the current stop circled by hand, as a meter.",
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/hand-marks"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/scale.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/scale.tsx"
         }
       ]
     },
@@ -1362,6 +1696,28 @@
           "path": "src/patina/ui/separator.tsx",
           "type": "registry:file",
           "target": "~/src/patina/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "settings-01",
+      "type": "registry:block",
+      "title": "Settings 01",
+      "description": "Settings block: a narrow column of settings rows with profile fields, AppearanceControl, notification switches and a danger zone that confirms in an alert dialog.",
+      "registryDependencies": [
+        "@patina/alert-dialog",
+        "@patina/appearance-control",
+        "@patina/base",
+        "@patina/button",
+        "@patina/field",
+        "@patina/input",
+        "@patina/switch"
+      ],
+      "files": [
+        {
+          "path": "src/patina/blocks/settings-01.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/blocks/settings-01.tsx"
         }
       ]
     },
@@ -1425,6 +1781,49 @@
           "path": "src/patina/ui/sidebar.tsx",
           "type": "registry:file",
           "target": "~/src/patina/ui/sidebar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidenote",
+      "type": "registry:component",
+      "title": "Sidenote",
+      "description": "Sidenote, SidenoteRef and SidenoteLayout: numbered margin notes, inline on narrow screens.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/sidenote.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/sidenote.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sign-in-01",
+      "type": "registry:block",
+      "title": "Sign In 01",
+      "description": "Sign-in block: a card on deckled paper with email and password validation, keep me signed in and a magic-link alternative.",
+      "dependencies": [
+        "lucide-react@^1.66.0"
+      ],
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/button",
+        "@patina/checkbox",
+        "@patina/field",
+        "@patina/input",
+        "@patina/input-group",
+        "@patina/label",
+        "@patina/paper",
+        "@patina/print"
+      ],
+      "files": [
+        {
+          "path": "src/patina/blocks/sign-in-01.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/blocks/sign-in-01.tsx"
         }
       ]
     },
@@ -1518,6 +1917,22 @@
       ]
     },
     {
+      "name": "steps",
+      "type": "registry:component",
+      "title": "Steps",
+      "description": "Steps: ringed-number steps joined by a pen line, vertical or horizontal.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/steps.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/steps.tsx"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "registry:component",
       "title": "Switch",
@@ -1585,6 +2000,24 @@
           "path": "src/patina/ui/textarea.tsx",
           "type": "registry:file",
           "target": "~/src/patina/ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ticket",
+      "type": "registry:component",
+      "title": "Ticket",
+      "description": "Ticket: a perforated, notched ticket with mono fields and a numbered stub.",
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/edition-number",
+        "@patina/paper"
+      ],
+      "files": [
+        {
+          "path": "src/patina/extras/ticket.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/extras/ticket.tsx"
         }
       ]
     },
@@ -1725,12 +2158,13 @@
       "name": "patina",
       "type": "registry:item",
       "title": "Patina",
-      "description": "Everything in Patina UI.",
+      "description": "Every part of Patina UI: tokens, primitives, marks, prints and extras. Blocks are sample pages, so they install one at a time.",
       "registryDependencies": [
         "@patina/base",
         "@patina/accordion",
         "@patina/alert",
         "@patina/alert-dialog",
+        "@patina/appearance-control",
         "@patina/aspect-ratio",
         "@patina/attachment",
         "@patina/avatar",
@@ -1744,15 +2178,19 @@
         "@patina/carousel",
         "@patina/chart",
         "@patina/checkbox",
+        "@patina/checklist",
         "@patina/code-block",
         "@patina/collapsible",
         "@patina/combobox",
         "@patina/command",
+        "@patina/concept-map",
         "@patina/context-menu",
+        "@patina/decision-map",
         "@patina/dialog",
         "@patina/direction",
         "@patina/drawer",
         "@patina/dropdown-menu",
+        "@patina/edition-number",
         "@patina/empty",
         "@patina/field",
         "@patina/glyph",
@@ -1760,6 +2198,8 @@
         "@patina/hand-underline",
         "@patina/highlight",
         "@patina/hover-card",
+        "@patina/index-card",
+        "@patina/index-row",
         "@patina/input",
         "@patina/input-group",
         "@patina/input-otp",
@@ -1777,25 +2217,32 @@
         "@patina/paper",
         "@patina/paper-marks",
         "@patina/popover",
+        "@patina/postmark",
         "@patina/print",
         "@patina/progress",
+        "@patina/pull-quote",
         "@patina/questionnaire",
         "@patina/radio-group",
+        "@patina/reading-progress",
         "@patina/resizable",
+        "@patina/scale",
         "@patina/scroll-area",
         "@patina/select",
         "@patina/separator",
         "@patina/sheet",
         "@patina/sidebar",
+        "@patina/sidenote",
         "@patina/skeleton",
         "@patina/slider",
         "@patina/sonner",
         "@patina/spinner",
         "@patina/stamp",
+        "@patina/steps",
         "@patina/switch",
         "@patina/table",
         "@patina/tabs",
         "@patina/textarea",
+        "@patina/ticket",
         "@patina/toggle",
         "@patina/toggle-group",
         "@patina/tooltip",

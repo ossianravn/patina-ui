@@ -16,7 +16,7 @@ import { Button } from "@/patina/ui/button"
 import { DemoSection, StateRow, type DemoMeta } from "../demo-kit"
 
 export const meta: DemoMeta = {
-  title: "Alert Dialog",
+  title: "Alert dialog",
   description:
     "A calm sheet that asks for a decision before something that cannot be undone.",
   item: "alert-dialog",

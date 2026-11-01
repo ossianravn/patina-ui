@@ -1,0 +1,35 @@
+---
+// The specimen: Patina's materials laid out on one sheet, as the first home page showed them. Paper objects, paper
+// and inks, the three voices and the type scale, and the marks.
+import Base from "@/site/layouts/base.astro"
+import { AppearanceControl } from "@/patina/extras/appearance-control"
+import Marks from "@/site/specimen/marks.astro"
+import PaperInks from "@/site/specimen/paper-inks.astro"
+import Prints from "@/site/specimen/prints.astro"
+import VoicesScale from "@/site/specimen/voices-scale.astro"
+---
+
+<Base
+  title="Specimen"
+  description="Patina's materials on one sheet: paper objects, paper and inks, the three type voices and scale, and the marks."
+>
+  <div class="mx-auto max-w-[76rem] px-snug pt-section sm:px-line">
+    <p class="label-mono m-0 text-ink-2">Patina UI · Specimen No. 1</p>
+    <h1 class="mb-tight mt-tight text-title">Paper, ink and type</h1>
+    <p class="m-0 max-w-measure text-ink-2">
+      The materials every component is made of. Change the paper below and every
+      sheet on this page follows; the
+      <a href="/studio">theme studio</a> has the rest.
+    </p>
+    <div class="mt-line max-w-[44rem] rounded-sheet bg-paper-2 px-snug">
+      <AppearanceControl
+        client:idle
+        rows={["theme", "stock", "variation", "patina"]}
+      />
+    </div>
+  </div>
+  <Prints />
+  <PaperInks />
+  <VoicesScale />
+  <Marks />
+</Base>

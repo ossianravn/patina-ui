@@ -10,7 +10,7 @@ import {
 import { DemoSection, StateRow, type DemoMeta } from "../demo-kit"
 
 export const meta: DemoMeta = {
-  title: "Navigation Menu",
+  title: "Navigation menu",
   description:
     "A product's main links, with panels that open to show the pages in each section.",
   item: "navigation-menu",

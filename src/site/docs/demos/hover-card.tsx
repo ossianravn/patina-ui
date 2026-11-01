@@ -13,7 +13,7 @@ import {
 import { DemoSection, StateRow, type DemoMeta } from "../demo-kit"
 
 export const meta: DemoMeta = {
-  title: "Hover Card",
+  title: "Hover card",
   description:
     "A preview that appears while a link is hovered or focused, so a reader can glance at a record without leaving the page.",
   item: "hover-card",

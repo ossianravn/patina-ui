@@ -38,6 +38,11 @@
     "use-highlighted-code": [
       "hooks/use-highlighted-code.ts",
       "lib/highlighter.tsx"
+    ],
+    "concept-map": [
+      "extras/concept-map.tsx",
+      "extras/concept-map-layout.ts",
+      "extras/concept-map-labels.ts"
     ]
   },
   "descriptions": {
@@ -50,11 +55,30 @@
     "paper-marks": "SketchFrame, Wash, Tape and RoughRule: marks that sit on the paper, varied by their seed.",
     "notes": "MarginNote and Annotation: handwritten asides with drawn arrows.",
     "stamp": "Stamp: a rubber-stamp label, outline or solid.",
-    "patina": "Everything in Patina UI.",
+    "patina": "Every part of Patina UI: tokens, primitives, marks, prints and extras. Blocks are sample pages, so they install one at a time.",
     "paper": "Paper: a sheet with a seeded edge (deckle, torn, perforated, pinked), dog-ear, tilt and wear that follows the patina level.",
     "chart": "Chart: shadcn's Recharts chart with series in the ink set's drums, hatch fills per series, and drawn bars, curves and slices that keep every data point exact.",
     "use-highlighted-code": "useHighlightedCode: lazy Shiki highlighting with a theme drawn from Patina's text inks, for CodeBlock.",
-    "typography": "Typography: a prose container for long-form text, with a kicker and an optional drop cap."
+    "typography": "Typography: a prose container for long-form text, with a kicker and an optional drop cap.",
+    "index-card": "IndexCard: a tilted, taped card with a cover print, kicker, title and hook; optionally a whole-card link.",
+    "index-row": "IndexList and IndexRow: typeset index entries with number, hook and a dotted leader.",
+    "ticket": "Ticket: a perforated, notched ticket with mono fields and a numbered stub.",
+    "postmark": "Postmark: a circular dated cancellation mark with wavy lines.",
+    "edition-number": "EditionNumber: zero-padded No. 0012 numbering.",
+    "pull-quote": "PullQuote: a large serif quote with a hand mark and attribution.",
+    "sidenote": "Sidenote, SidenoteRef and SidenoteLayout: numbered margin notes, inline on narrow screens.",
+    "checklist": "Checklist: tickable rows with drawn boxes and ticks, a note per item and a mono tally.",
+    "steps": "Steps: ringed-number steps joined by a pen line, vertical or horizontal.",
+    "scale": "Scale: a drawn scale with the current stop circled by hand, as a meter.",
+    "concept-map": "ConceptMap: a hand-drawn graph of typed connections that becomes a grouped list on narrow screens.",
+    "decision-map": "DecisionMap: one question branching to options, with the best fit inked and stamped.",
+    "reading-progress": "ReadingProgress: a torn-edged strip that follows reading through an article.",
+    "sign-in-01": "Sign-in block: a card on deckled paper with email and password validation, keep me signed in and a magic-link alternative.",
+    "settings-01": "Settings block: a narrow column of settings rows with profile fields, AppearanceControl, notification switches and a danger zone that confirms in an alert dialog.",
+    "dashboard-01": "Dashboard block: headline numbers, two drawn bar charts in hatch, a ledger of records and a survey progress card, laid out by container width.",
+    "pricing-01": "Pricing block: three plans with a monthly or yearly segmented control, the recommended plan taped and stamped, drawn ticks and a FAQ accordion.",
+    "article-01": "Article block: a long-form field note with ReadingProgress, an edition-numbered kicker, a drop cap, a PullQuote, sidenotes, a printed figure and a Postmark.",
+    "empty-01": "Empty states block: a first-run notebook, a search with no results and an offline page, each a print, a title, one line and one action."
   },
   "requires": {
     "code-block": ["use-highlighted-code"]

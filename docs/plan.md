@@ -1,6 +1,6 @@
 # Plan
 
-Status: Phase 3 done, 2026-11-01. The maintainer approved the recommended stack, primitives, demo product and license on 2026-11-01; decisions still marked **proposed** wait for them, and the open questions at the end list what remains.
+Status: Phase 4 done, 2026-11-01. The maintainer approved the recommended stack, primitives, demo product and license on 2026-11-01; decisions still marked **proposed** wait for them, and the open questions at the end list what remains.
 
 ## What Patina UI is
 
@@ -112,6 +112,15 @@ Index card, index row, ticket, drawn checklist, ringed steps, scale, concept map
 
 Exit: home page and theme studio reviewed at wide and narrow widths in both themes; blocks install through the registry.
 
+Outcome (2026-11-01): met. Fourteen extras, seven blocks, the theme studio and the new home page ship; the appearance runtime gained ink set, accent drum, density and interface face.
+
+- **Review:** the home page and the studio at 1440, 1024, 390 and 320 px, on day and night paper, calm and lively, and the studio's presets (Ledger switches to sans, compact and copper), with no horizontal scroll and no hydration warnings. The home page's scenes play once when on screen, pause off screen and show their poster frame under reduced motion.
+- **Blocks install:** the consumer test installs `sign-in-01` with `base` and the other items into a fresh Vite app and builds it; dropping one of the block's dependencies made it fail, as it should. Fieldbook renders `sign-in-01`, `settings-01` and `dashboard-01` as its own screens.
+- **Theme export:** the studio's `registry:theme` JSON installed with the shadcn CLI into a scratch app, byte-identical, and its values matched the page's computed tokens in day and night.
+- **Sweep:** all 94 pages at 1440 and 390 px without errors, hydration warnings or horizontal scroll.
+- **Weight:** the home page is 450 KB of HTML (61 KB gzipped) and about 148 KB of JavaScript gzipped across its islands.
+- Open: meaningful marks in some accents miss 3:1 on day paper ([open question 3](#open-questions-for-the-maintainer)); stocks apply only on `:root`, so the home page's stock scene re-scopes them at build time, and a `[data-stock]` container rule would let it and the studio preview a stock locally. Not covered: forced colours, Safari, a real phone.
+
 ### Phase 5: release v0.1
 
 Docs complete, CHANGELOG, share images (satori pipeline from Mental Models), consumer installs into Vite and Next.js, accessibility review against the quality contract, performance check, deployment of the static site.
@@ -137,7 +146,8 @@ Answered on 2026-11-01: Astro with React islands (D3), Base UI (D2), Fieldbook a
 
 1. **Visibility (D8):** when should the repository become public? The GitHub registry form needs it; the hosted registry does not.
 2. **Domain:** later, by the maintainer's choice; until then the site is local only.
+3. **Mark contrast:** meaningful marks in print inks (ticks, radio dots, switch fills, chart lines) miss 3:1 on day paper for verdigris and copper against the darkest texture (about 2.6–2.8:1) and for rose even on flat paper (2.9:1). Options: darker mark tints of each drum for meaning-carrying marks only (prints and washes keep the bright inks), or accept it because state never rests on colour alone. Recommended: the darker mark tints.
 
 ## Next step
 
-Phase 4: Patina's own extras (index cards, tickets, checklists, scales, concept maps and the rest), blocks, and the home page with Stageshow-style scenes built from real components.
+Phase 5: release v0.1: complete docs, share images, consumer installs into Vite and Next.js, an accessibility review against the quality contract, a performance check, and deployment once the maintainer chooses the domain and approves publishing.

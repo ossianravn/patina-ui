@@ -1,0 +1,113 @@
+---
+// Every surface has a history: four Fieldbook observations as a loose pile of index cards, each printed, taped and
+// tilted from its own seed. The pile's angles scale with --tilt-max and its overlap belongs to the lively level, so
+// the Calm/Lively switch squares it up or loosens it with no re-render; the cards render here, at build time, and
+// only the switch is an island.
+import { IndexCard } from "@/patina/extras/index-card"
+import { OBSERVATIONS } from "@/site/fieldbook/data"
+import SectionHead from "@/site/specimen/section-head.astro"
+import { VariationSwitch } from "./variation-switch"
+
+const PICKS = ["obs-0412", "obs-0410", "obs-0407", "obs-0402"]
+const cards = PICKS.map((id) => OBSERVATIONS.find((o) => o.id === id)!)
+// Turns (× --tilt-max, 0.8° at lively) and offsets for each card in the pile: small, alternating, uneven.
+const PILE = [
+  { turn: -5, dx: "0rem", dy: "0.6rem" },
+  { turn: 3.5, dx: "-0.4rem", dy: "-0.4rem" },
+  { turn: -2, dx: "0.3rem", dy: "1.1rem" },
+  { turn: 4.5, dx: "-0.2rem", dy: "0rem" },
+]
+---
+
+<section
+  class="mx-auto max-w-[76rem] px-snug py-section sm:px-line"
+  aria-labelledby="history"
+>
+  <SectionHead n={1} id="history" title="Every surface has a history">
+    Each card takes its print, its tape and its tilt from one seed: different
+    from its neighbours, and the same on every visit.
+  </SectionHead>
+  <VariationSwitch client:idle />
+  <ol class="pile m-0 mt-line grid list-none grid-cols-2 p-0 lg:grid-cols-4">
+    {cards.map((o, i) => (
+      <li
+        style={`--turn: ${PILE[i]!.turn}; --dx: ${PILE[i]!.dx}; --dy: ${PILE[i]!.dy}`}
+      >
+        <IndexCard
+          seed={o.id}
+          motif={o.motif}
+          kicker={`No. ${o.id.slice(4)} · ${o.place}`}
+          title={o.species}
+          hook={o.notes}
+          href={`/fieldbook/observations/${o.id}`}
+          className="h-full"
+        />
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  /* The cards sit in an ordinary grid with gaps. At the lively level each is pulled toward the pile's centre until
+     neighbours overlap a little, like paper dropped on a table, and turned and nudged by its own amount; calm lets
+     them go back to their cells, upright. All of it is translate and rotate, so the grid itself never moves. */
+  .pile {
+    gap: var(--space-snug);
+    padding-block: var(--space-snug);
+    --step: calc(var(--space-snug) + 0.4rem);
+  }
+  .pile > li {
+    position: relative;
+    min-width: 0;
+    rotate: calc(var(--tilt-max) * var(--turn));
+    translate: calc(var(--pull-x, 0rem) + var(--dx))
+      calc(var(--pull-y, 0rem) + var(--dy));
+    transition:
+      rotate 420ms cubic-bezier(0.25, 0.8, 0.25, 1),
+      translate 420ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  /* Two by two: each card leans toward the middle of the square. */
+  .pile > li:nth-child(odd) {
+    --pull-x: calc(var(--step) / 2);
+  }
+  .pile > li:nth-child(even) {
+    --pull-x: calc(var(--step) / -2);
+  }
+  .pile > li:nth-child(-n + 2) {
+    --pull-y: calc(var(--step) / 2);
+  }
+  .pile > li:nth-child(n + 3) {
+    --pull-y: calc(var(--step) / -2);
+  }
+  .pile > li:hover,
+  .pile > li:focus-within {
+    z-index: 1;
+  }
+  :global([data-variation="calm"]) .pile > li {
+    translate: none;
+  }
+  /* Phones keep the print, number and title; the hook would make four tall cards. */
+  @media (max-width: 40rem) {
+    .pile :global([data-slot="index-card-hook"]) {
+      display: none;
+    }
+  }
+  /* One row of four: the outer cards lean in furthest. */
+  @media (min-width: 64rem) {
+    .pile > li:nth-child(n) {
+      --pull-y: 0rem;
+    }
+    .pile > li:nth-child(1) {
+      --pull-x: calc(var(--step) * 1.5);
+    }
+    .pile > li:nth-child(2) {
+      --pull-x: calc(var(--step) * 0.5);
+    }
+    .pile > li:nth-child(3) {
+      --pull-x: calc(var(--step) * -0.5);
+    }
+    .pile > li:nth-child(4) {
+      --pull-x: calc(var(--step) * -1.5);
+    }
+  }
+</style>

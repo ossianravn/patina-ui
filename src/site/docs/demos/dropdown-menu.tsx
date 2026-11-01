@@ -27,7 +27,7 @@ import {
 import { DemoSection, StateRow, type DemoMeta } from "../demo-kit"
 
 export const meta: DemoMeta = {
-  title: "Dropdown Menu",
+  title: "Dropdown menu",
   description:
     "A list of actions or view options that opens from a button and closes once one is chosen.",
   item: "dropdown-menu",

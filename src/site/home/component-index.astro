@@ -1,0 +1,160 @@
+---
+// The index: every component as a typeset A–Z list, read from the docs demos' meta so it never falls behind. Each
+// entry carries a hand-drawn glyph for its group (the key sits above the list) and opens its docs page. Rendered at
+// build time; the rows are links, nothing here hydrates. React props cannot take Astro markup, so the glyphs go in
+// through the "media" slot.
+import type { GlyphName } from "@/patina/ink/glyphs"
+import { IndexList, IndexRow } from "@/patina/extras/index-row"
+import { Glyph } from "@/patina/marks/glyph"
+import type { DemoMeta } from "@/site/docs/demo-kit"
+import SectionHead from "@/site/specimen/section-head.astro"
+
+type Group = NonNullable<DemoMeta["group"]> | "Other"
+
+const metas = import.meta.glob<DemoMeta>("../docs/demos/*.tsx", {
+  eager: true,
+  import: "meta",
+})
+const entries = Object.entries(metas)
+  .map(([path, meta]) => ({
+    name: path.replace(/^.*\/(.+)\.tsx$/, "$1"),
+    title: meta.title,
+    group: (meta.group ?? "Other") as Group,
+  }))
+  .sort((a, b) => a.title.localeCompare(b.title))
+
+// One glyph per group, in the inventory's order (docs/components.md), seeded by the group so every entry repeats the
+// key's own drawing (and the repeated markup compresses to almost nothing).
+const GROUPS: [Group, GlyphName][] = [
+  ["Actions", "arrow"],
+  ["Forms", "box"],
+  ["Overlays", "orbit"],
+  ["Navigation", "hook"],
+  ["Data display", "dot"],
+  ["Charts", "constellation"],
+  ["Conversation", "asterisk"],
+  ["Patina extras", "star"],
+  ["Other", "plus"],
+]
+const glyphOf = new Map(GROUPS)
+const used = GROUPS.filter(([group]) => entries.some((e) => e.group === group))
+const letters = [...new Set(entries.map((e) => e.title[0]!.toUpperCase()))]
+---
+
+<section
+  class="mx-auto max-w-[76rem] px-snug py-section sm:px-line"
+  aria-labelledby="index"
+>
+  <SectionHead n={3} id="index" title="The index">
+    All {entries.length} components, A to Z. Each opens its page: a preview on
+    paper, the install command, every state and the API.
+  </SectionHead>
+  <ul
+    class="m-0 mb-line flex list-none flex-wrap gap-x-snug gap-y-hair p-0"
+    aria-label="Key"
+  >
+    {used.map(([group, glyph]) => (
+      <li class="label-mono flex items-center gap-hair text-ink-2">
+        <Glyph name={glyph} seed={group} size={18} className="text-k-ink" />
+        {group}
+      </li>
+    ))}
+  </ul>
+  <div class="index-columns">
+    {letters.map((letter) => (
+      <section
+        aria-labelledby={`index-${letter}`}
+        class="index-letter grid grid-cols-[2.25rem_minmax(0,1fr)] items-baseline"
+      >
+        <h3
+          id={`index-${letter}`}
+          class="m-0 pt-tight font-read text-lead leading-none font-semibold text-k-ink"
+        >
+          {letter}
+        </h3>
+        <IndexList>
+          {entries
+            .filter((e) => e.title[0]!.toUpperCase() === letter)
+            .map((e) => (
+              <IndexRow
+                title={e.title}
+                href={`/docs/components/${e.name}`}
+                className="py-hair"
+              >
+                <Glyph
+                  slot="media"
+                  name={glyphOf.get(e.group) ?? "plus"}
+                  seed={e.group}
+                  size={18}
+                />
+              </IndexRow>
+            ))}
+        </IndexList>
+      </section>
+    ))}
+  </div>
+</section>
+
+<style>
+  .index-columns {
+    column-gap: var(--space-section);
+  }
+  .index-letter {
+    break-inside: avoid;
+    padding-bottom: var(--space-snug);
+  }
+  /* Phones set the index run-in, as a printed index does in a narrow column: each letter, then its entries in one
+     wrapping line, separated by points. The rows' own layout is undone through their data-slots; the links and
+     their hit areas stay as they are. */
+  @media (max-width: 39.99rem) {
+    .index-letter {
+      display: block;
+      padding-bottom: var(--space-tight);
+      line-height: 2.1;
+    }
+    .index-letter h3 {
+      display: inline;
+      margin-inline-end: var(--space-tight);
+      vertical-align: baseline;
+    }
+    .index-letter :global([data-slot="index-list"]),
+    .index-letter :global([data-slot="index-row"]),
+    .index-letter :global([data-slot="index-row"] > span) {
+      display: inline;
+    }
+    .index-letter :global([data-slot="index-row"]) {
+      padding: 0;
+      border: 0;
+    }
+    .index-letter :global([data-slot="index-row-title"]) {
+      line-height: inherit;
+      white-space: nowrap;
+    }
+    .index-letter
+      :global([data-slot="index-row"] > [data-slot="index-row-media"]) {
+      display: none;
+    }
+    /* The space after the point is where a line may break; names themselves stay whole. */
+    .index-letter :global([data-slot="index-row"]:not(:last-child)::after) {
+      content: "· ";
+      margin-inline-start: 0.45em;
+      word-spacing: 0.2em;
+      color: var(--ink-faint);
+    }
+  }
+  @media (min-width: 40rem) {
+    .index-columns {
+      columns: 2;
+    }
+  }
+  @media (min-width: 64rem) {
+    .index-columns {
+      columns: 3;
+    }
+  }
+  @media (min-width: 76rem) {
+    .index-columns {
+      columns: 4;
+    }
+  }
+</style>

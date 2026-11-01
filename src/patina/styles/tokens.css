@@ -185,6 +185,35 @@
   --rough-6: url(#patina-rough-calm-6);
 }
 
+/* Accent drum: which drum is the document's accent (data-accent on <html>; verdigris when unset). Marks, links,
+   focus rings and the spot ink set follow --k; the ink set keeps its own print drums. Ochre has no text ink, so it
+   is never the accent. data-ink below still re-inks a region on top. */
+:root[data-accent="orange"] {
+  --k: var(--print-orange);
+  --k-ink: var(--ink-orange);
+  --k-hand: var(--hand-orange);
+}
+:root[data-accent="blue"] {
+  --k: var(--print-blue);
+  --k-ink: var(--ink-blue);
+  --k-hand: var(--hand-blue);
+}
+:root[data-accent="pink"] {
+  --k: var(--print-pink);
+  --k-ink: var(--ink-pink);
+  --k-hand: var(--hand-pink);
+}
+:root[data-accent="violet"] {
+  --k: var(--print-violet);
+  --k-ink: var(--ink-violet);
+  --k-hand: var(--hand-violet);
+}
+:root[data-accent="red"] {
+  --k: var(--print-red);
+  --k-ink: var(--ink-red);
+  --k-hand: var(--hand-red);
+}
+
 /* Re-ink a region in one drum. Blue regions print their accent in pink, since their lines are already blue. */
 [data-ink="blue"] {
   --k: var(--print-blue);
@@ -215,4 +244,26 @@
   --k-ink: var(--ink-violet);
   --k-hand: var(--hand-violet);
   --print-accent: var(--print-violet);
+}
+
+/* Compact density, for dense application screens (data-density on <html>). Every spacing unit moves half a step
+   down the φ^(n/2) progression the type scale uses (× φ^−½ ≈ 0.786: a 24.9px primary line instead of 31.7px),
+   rounded to half pixels, and controls take the compact heights. Type sizes and leading stay; the smallest control
+   (30px) stays above the 24px target minimum. */
+:root[data-density="compact"] {
+  --space-hair: 0.375rem; /* 6px */
+  --space-tight: 0.594rem; /* 9.5px */
+  --space-snug: 0.969rem; /* 15.5px */
+  --space-line: 1.563rem; /* 25px */
+  --space-section: 2.531rem; /* 40.5px */
+  --space-page: 4.063rem; /* 65px */
+  --control-height: 2.25rem; /* 36px */
+  --control-height-compact: 1.875rem; /* 30px */
+}
+
+/* Interface face (data-face on <html>): Instrument Sans for controls, labels and interface text. Headings, prose,
+   and card and dialog titles keep the reading serif through --face-read. */
+:root[data-face="sans"] {
+  --face-ui:
+    "Instrument Sans Variable", "Helvetica Neue", Arial, system-ui, sans-serif;
 }

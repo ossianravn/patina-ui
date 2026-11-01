@@ -13,7 +13,7 @@ Status: proposed, 2026-11-01. Built so far: the specimen at `/` (standing in for
 | `/prints`             | Print gallery (built)  | Every motif and format, with seeds                                                     |
 | `/docs/blocks/*`      | Blocks                 | Installable compositions                                                               |
 | `/press`              | The Press (built)      | Generative print playground                                                            |
-| `/themes`             | Theme studio           | Stocks, inks, variation and patina on real screens; export                             |
+| `/studio`             | Theme studio           | Stocks, inks, variation and patina on real screens; export                             |
 | `/fieldbook/*`        | Demo product           | The kit used end to end                                                                |
 | `/changelog`          | Changelog              | Rendered from `CHANGELOG.md`                                                           |
 | `/r/{name}.json`      | Registry               | Generated shadcn registry items                                                        |
@@ -25,6 +25,8 @@ Status: proposed, 2026-11-01. Built so far: the specimen at `/` (standing in for
 3. **In use.** Two or three Stageshow-style scenes built from real Patina components: a Fieldbook entry receiving a margin note, a settings panel switching paper stock, a checklist being ticked. Each scene has one idea, a poster frame that tells the story alone, and a compact design for phone widths.
 4. **The index.** All components as a typeset A–Z list with glyphs, the way Mental Models lists its models, rather than a grid of identical boxes.
 5. **Install and theme.** The registry command, then a link to the theme studio.
+
+Built in Phase 4 (`src/site/home/`): the hero is the `hero-01` block; the calm/lively switch sets the visitor's real variation setting; the paper-stock scene re-scopes the stock rules to the scene at build time, because stocks apply only on `:root`; the index reads every demo's `meta`. The former specimen sections live at `/specimen`.
 
 ## Component pages
 
@@ -75,7 +77,7 @@ The product that proves the kit, chosen on 2026-11-01: **Fieldbook**, a notebook
 | Team and comments           | Avatars, message scroller, marker, sonner                                                                                           |
 | Settings                    | Settings rows in a narrow column, appearance control, switch, select, alert dialog                                                  |
 
-Built so far (Phase 3): sign-in, Observations, Observation, Expeditions, Overview and Settings, inside a sidebar shell (`src/site/fieldbook/shell.tsx`). Observation pages exist for the static records only; records added in the demo have none.
+Built so far: sign-in, Observations, Observation, Expeditions, Overview and Settings, inside a sidebar shell (`src/site/fieldbook/shell.tsx`). Sign-in, Settings and Overview render the kit's `sign-in-01`, `settings-01` and `dashboard-01` blocks, so each exists once; Overview passes the figures it computes from the records as the block's `data`. Observation pages exist for the static records only; records added in the demo have none.
 
 Alternatives considered: a **small-press shop** (riso zines: storefront, cart, order admin; the most literal fit, but checkout dominates) or a **reading log** (books and highlights; strong for typography, thin on data views, and close to Mental Models).
 

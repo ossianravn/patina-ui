@@ -75,7 +75,7 @@ The context accent `--k` defaults to verdigris. `data-ink="orange"` re-inks a su
 
 Bright drums fail as text on mid-tone paper, and the paper's layers cost every pair another 10–15 %. So each drum comes in three strengths:
 
-- **Print inks** (`--print-<drum>`) fill shapes, highlights, washes, tape and art. Where a mark carries meaning (a tick, a focus ring, a chart line), it meets 3:1.
+- **Print inks** (`--print-<drum>`) fill shapes, highlights, washes, tape and art. Where a mark carries meaning (a tick, a chart line), it aims for 3:1, and today that holds only in part: on flat Archive paper verdigris and copper reach 3.2:1 and rose 2.9:1, and against the darkest 1 % of the texture they fall to about 2.6–2.8:1 (rose 2.3–2.6:1); indigo, plum and oxblood pass everywhere. So meaning never rests on a mark's colour alone (a tick also changes the control's checked state and name; chart series also differ by hatch), and raising the mark inks is an open question in the [plan](plan.md#open-questions-for-the-maintainer). Focus rings use the text ink `--k-ink`.
 - **Text inks** (`--ink-<drum>`) are the drum mixed toward the stock's `--ink` until it reads at 4.6:1 on that stock's worst surface; each stock carries its own (`node tools/check-contrast.mjs --suggest` derives them). On Archive: indigo `#2f4785`, rose `#753645`, verdigris `#265146`, copper `#6f3d23`, oxblood `#832b35`; plum passes as it is.
 - **Hand inks** (`--hand-<drum>`) are for handwriting, which is set at 700 weight and 22.9 px, large bold text in WCAG's terms, so 3:1 suffices and more of the drum survives. On Archive: verdigris `#296f60`, copper `#9a4f29`, rose `#a4435f`; indigo, plum and oxblood pass as they are.
 
@@ -84,6 +84,8 @@ On night paper the drums themselves pass, so text and hand inks are the drums, e
 Reading inks on Archive: `--ink` `#221d17` / `#ebe5d6`, `--ink-2` `#4a4237` / `#b9b2a2`, `--ink-3` `#50493d` / `#aaa497`. Textured paper leaves no room for a faint text grey, so `--ink-3` sits close to `--ink-2` and hierarchy comes from size and voice. `--ink-faint` keeps a faint grey for disabled text and decorative markers, both exempt from contrast requirements.
 
 `npm run check:contrast` checks every text, hand and pen ink against every stock, theme and patina level, with the layers composited at their real tile sizes and half the edge toning added; all pairs pass.
+
+- **Accent drum** (`data-accent` on `<html>`: verdigris by default, or copper, indigo, rose, plum, oxblood) chooses the document's `--k`, `--k-ink` and `--k-hand`. Marks, links, focus rings, ticks and the spot ink set follow it; the ink set keeps its print drums. Ochre has no text or hand ink, so it is never the accent. A region's `data-ink` still re-inks on top.
 
 ### Ink sets
 
@@ -99,7 +101,7 @@ Three voices, each with one job.
 | Label    | JetBrains Mono                          | Metadata, buttons, kickers, numbers | 11.1 px (`label-mono`), 500, uppercase, 0.06 em tracking        |
 | Annotate | Caveat                                  | Margin notes, callouts, hand labels | 700, 22.9 px or larger, line-height 1.08, tilted with variation |
 
-Planned: an optional interface sans (Instrument Sans) for dense application screens such as tables and settings, through `--face-ui`. The serif stays the default.
+**Interface face** (`data-face="sans"`): Instrument Sans through `--face-ui` for controls, labels, tables and interface text on dense screens; text that does not opt into `font-read` follows it, so on the documentation site a visitor who picks sans also gets sans lead paragraphs. Headings, Typography prose, and card, dialog and popover titles keep Source Serif 4 through `--face-read`. Mono labels and Caveat do not change. The serif stays the default.
 
 ## Type and spacing
 
@@ -133,6 +135,7 @@ Exceptions, each deliberate:
 - **`text-ui` is 16 px**, off the scale: the platform's control size, and the size below which iOS zooms focused inputs.
 - **Controls are 2.75 rem tall** (2.25 rem compact): touch target and shadcn convention rather than a spacing unit.
 - **Phone leading drops to 1.66**: the narrower phone measure differs from desktop by more than 0.1 in GRT's tuned ratio.
+- **Compact density** (`data-density="compact"`) is a derived scale, not a second GRT: every spacing unit moves half a step down the φ^(n/2) progression the type scale uses (× φ^−½ ≈ 0.786, a 24.9 px primary line): hair 6, tight 9.5, snug 15.5, line 25, section 40.5, page 65 px. Controls are 2.25 rem and compact controls 1.875 rem, above the 24 px target minimum. Type sizes, leading and measure stay, so only the gaps tighten.
 - Mental Models' 1.35 rem sub-heading and 0.72 rem labels snap to the nearest steps (1.431 and 0.695 rem); its 3.75 rem hero maximum is step 5 exactly.
 
 ### Audit

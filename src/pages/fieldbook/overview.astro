@@ -1,8 +1,9 @@
 ---
 import Fieldbook from "@/site/layouts/fieldbook.astro"
-import { Overview } from "@/site/fieldbook/overview"
+import { Dashboard01 } from "@/patina/blocks/dashboard-01"
+import { overview } from "@/site/fieldbook/overview-data"
 ---
 
 <Fieldbook title="Overview" section="overview">
-  <Overview client:load />
+  <Dashboard01 client:load data={overview} />
 </Fieldbook>

@@ -34,7 +34,7 @@ import {
 import { DemoSection, StateRow, type DemoMeta } from "../demo-kit"
 
 export const meta: DemoMeta = {
-  title: "Context Menu",
+  title: "Context menu",
   description:
     "The actions for one thing, opened where the pointer is with a right-click or a long press.",
   item: "context-menu",

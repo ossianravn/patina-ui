@@ -2,6 +2,7 @@
 
 import { useCallback, useSyncExternalStore } from "react"
 import {
+  APPEARANCE_ATTRIBUTES,
   apply,
   current,
   defaultAppearance,
@@ -22,12 +23,7 @@ function subscribe(onChange: () => void) {
   const observer = new MutationObserver(onChange)
   observer.observe(document.documentElement, {
     attributes: true,
-    attributeFilter: [
-      "data-theme-preference",
-      "data-stock",
-      "data-variation",
-      "data-patina",
-    ],
+    attributeFilter: APPEARANCE_ATTRIBUTES,
   })
   // "system" re-resolves when the operating system switches between light and dark.
   const media = window.matchMedia("(prefers-color-scheme: dark)")

@@ -1,0 +1,58 @@
+---
+import Base from "@/site/layouts/base.astro"
+import { BlockPreview } from "@/site/docs/blocks/block-preview"
+import { BLOCKS } from "@/site/docs/blocks/blocks"
+---
+
+<Base
+  title="Blocks"
+  description="Whole pages built from Patina UI's parts, each running in a preview at desktop and phone width, with the command that installs it."
+>
+  <div class="mx-auto max-w-[76rem] px-snug pt-section sm:px-line">
+    <p class="label-mono m-0 text-ink-2">
+      <a href="/docs">Components</a> · {BLOCKS.length} blocks
+    </p>
+    <h1 class="mb-tight mt-tight text-title">Blocks</h1>
+    <p class="m-0 max-w-measure text-ink-2">
+      Whole pages built from Patina's parts. Install one into your app, then
+      make its copy and data yours.
+    </p>
+  </div>
+  <div class="mx-auto max-w-[76rem] px-snug pb-page sm:px-line">
+    {BLOCKS.map(({ name, title, description, variants }) => (
+      <section
+        id={name}
+        class="mt-page scroll-mt-20"
+        aria-labelledby={`block-${name}`}
+      >
+        <div class="flex flex-wrap items-baseline gap-x-snug gap-y-hair">
+          <h2 id={`block-${name}`} class="m-0 text-h2">
+            <a href={`#${name}`} class="text-ink no-underline">
+              {title}
+            </a>
+          </h2>
+          <span class="label-mono text-ink-3">{name}</span>
+        </div>
+        <p class="m-0 mt-hair max-w-measure text-ink-2">{description}</p>
+        <pre class="mt-snug w-fit max-w-full overflow-x-auto rounded-sheet bg-paper-2 px-snug py-tight font-label text-small"><code>npx shadcn add @patina/{name}</code></pre>
+        <div class="mt-snug">
+          <BlockPreview
+            name={name}
+            title={title}
+            variants={variants}
+            client:visible
+          />
+        </div>
+      </section>
+    ))}
+  </div>
+</Base>
+
+<script>
+  import { apply, readSaved, STORAGE_KEY } from "@/patina/theme/appearance"
+
+  // A preview frame that changes the appearance (the settings block) saves it; the page follows.
+  addEventListener("storage", (event) => {
+    if (event.key === STORAGE_KEY) apply(readSaved())
+  })
+</script>

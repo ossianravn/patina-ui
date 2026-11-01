@@ -237,7 +237,7 @@ function CalendarDayButton({
       data-range-end={modifiers.range_end}
       data-range-middle={modifiers.range_middle}
       className={cn(
-        "relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border-0 font-read text-ui leading-none font-normal tracking-normal normal-case lining-nums tabular-nums focus-visible:outline-offset-0 active:not-aria-[haspopup]:translate-y-0 disabled:line-through disabled:decoration-ink-faint group-data-outside/day:text-ink-faint data-[range-end=true]:text-paper data-[range-end=true]:before:hidden data-[range-start=true]:text-paper data-[range-start=true]:before:hidden data-[selected-single=true]:text-paper data-[selected-single=true]:before:hidden [&>span]:text-label [&>span]:opacity-70",
+        "relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border-0 font-ui text-ui leading-none font-normal tracking-normal normal-case lining-nums tabular-nums focus-visible:outline-offset-0 active:not-aria-[haspopup]:translate-y-0 disabled:line-through disabled:decoration-ink-faint group-data-outside/day:text-ink-faint data-[range-end=true]:text-paper data-[range-end=true]:before:hidden data-[range-start=true]:text-paper data-[range-start=true]:before:hidden data-[selected-single=true]:text-paper data-[selected-single=true]:before:hidden [&>span]:text-label [&>span]:opacity-70",
         defaultClassNames.day,
         className,
       )}

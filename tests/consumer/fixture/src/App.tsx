@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { SignIn01 } from "@/patina/blocks/sign-in-01"
 import { PatinaDefs } from "@/patina/defs/patina-defs"
 import { Circle } from "@/patina/marks/hand-marks"
 import { MarginNote } from "@/patina/marks/notes"
@@ -11,7 +12,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/patina/ui/card"
 import { Checkbox } from "@/patina/ui/checkbox"
 import { Input } from "@/patina/ui/input"
 
-// A newsletter sign-up: one sheet of printed matter beside a calm form, using the parts the install test adds.
+// A newsletter sign-up: one sheet of printed matter beside a calm form, using the parts the install test adds, and
+// the sign-in block below it.
 export function App() {
   const [digest, setDigest] = useState(true)
 
@@ -49,6 +51,7 @@ export function App() {
           </CardContent>
         </Card>
       </main>
+      <SignIn01 product="The quarterly letter" redirectTo="/" />
     </SeedScope>
   )
 }

@@ -1,25 +1,21 @@
 ---
+// Home: the language at its best, and installing within a minute. The hero is the Hero01 block; the rest render at
+// build time, with islands only where something moves or is chosen.
 import Base from "@/site/layouts/base.astro"
-import { AppearanceControls } from "@/site/components/appearance-controls"
-import Hero from "@/site/specimen/hero.astro"
-import PaperInks from "@/site/specimen/paper-inks.astro"
-import VoicesScale from "@/site/specimen/voices-scale.astro"
-import Marks from "@/site/specimen/marks.astro"
-import Prints from "@/site/specimen/prints.astro"
+import ComponentIndex from "@/site/home/component-index.astro"
+import { HomeHero } from "@/site/home/hero"
+import History from "@/site/home/history.astro"
+import InUse from "@/site/home/in-use.astro"
+import Install from "@/site/home/install.astro"
 ---
 
 <Base
   title="Patina UI"
-  description="A shadcn/ui component library in a printed-matter style. Phase 0 specimen: paper, inks, voices, marks and seeded prints."
+  description="A shadcn/ui component library in a printed-matter style: warm paper, riso inks, hand-drawn marks and seeded prints, installed from its own registry."
 >
-  <Hero />
-  <div class="mx-auto max-w-[76rem] px-snug sm:px-line">
-    <div class="rounded-sheet bg-paper-2 px-snug py-tight">
-      <AppearanceControls client:load />
-    </div>
-  </div>
-  <Prints />
-  <PaperInks />
-  <VoicesScale />
-  <Marks />
+  <HomeHero client:load />
+  <History />
+  <InUse />
+  <ComponentIndex />
+  <Install />
 </Base>

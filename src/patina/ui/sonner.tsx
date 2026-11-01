@@ -79,7 +79,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
             "sheet flex w-(--width) items-start gap-tight py-tight pr-tight pl-snug font-ui text-small leading-small text-ink data-[expanded=false]:data-[front=false]:*:opacity-0 [--tape-shift:var(--toaster-tape-shift)] [--tape-tilt:var(--toaster-tape-tilt)] even:[--tape-shift:calc(var(--toaster-tape-shift)*-1)] even:[--tape-tilt:calc(var(--toaster-tape-tilt)*-1)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-k-ink focus-visible:outline-dashed",
           icon: "relative mt-px flex size-5 shrink-0 items-center justify-center [&>span]:flex",
           content: "flex min-w-0 flex-1 flex-col gap-0.5 py-0.5 before:tape",
-          title: "font-read text-small leading-small font-semibold text-ink",
+          title: "font-ui text-small leading-small font-semibold text-ink",
           description: "text-small leading-small text-ink-2",
           actionButton: buttonVariants({ size: "xs", className: "shrink-0" }),
           cancelButton: buttonVariants({

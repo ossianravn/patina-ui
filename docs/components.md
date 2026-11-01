@@ -106,40 +106,52 @@ The 65 `registry:ui` items in shadcn 4.23.0 (checked 2026-11-01 with `npx shadcn
 
 ## Patina extras
 
-| Component         | What it is                                                          | Origin                                | Variation | Phase       |
-| ----------------- | ------------------------------------------------------------------- | ------------------------------------- | --------- | ----------- |
-| Print             | Seeded riso illustration                                            | Mental Models `Riso`                  | lively    | 1 · shipped |
-| SeedScope         | Seed context for a subtree                                          | new                                   | —         | 1 · shipped |
-| PatinaDefs        | The shared SVG filters                                              | Mental Models `Base.astro` defs       | —         | 0 · shipped |
-| Highlight         | Marker stroke behind text                                           | Mental Models `.hl`                   | lively    | 1 · shipped |
-| HandUnderline     | Two loose strokes under a heading or term                           | Mental Models `.u-hand`               | lively    | 1 · shipped |
-| Circle            | A drawn ring hugging a word or number                               | new                                   | lively    | 1 · shipped |
-| Strike            | A hand strike-through                                               | new                                   | lively    | 1 · shipped |
-| Bracket           | A drawn bracket grouping lines                                      | new                                   | lively    | 1 · shipped |
-| SketchFrame       | Doubled wobbly outline around a group                               | Mental Models `.sketch`               | lively    | 1 · shipped |
-| Wash              | Watercolour blob of accent behind content                           | Mental Models `.wash`                 | lively    | 1 · shipped |
-| Tape              | Washi tape strip                                                    | Mental Models `.tape`                 | lively    | 1 · shipped |
-| RoughRule         | Pen-line divider                                                    | Mental Models header rule             | calm      | 1 · shipped |
-| MarginNote        | Handwritten aside with a drawn arrow, in the gutter on wide screens | Mental Models `MarginNote`            | lively    | 1 · shipped |
-| Annotation        | Handwritten callout with a leader to a target element               | new                                   | lively    | 1 · shipped |
-| Stamp             | Rubber-stamp label with grain and misregistration                   | new                                   | lively    | 1 · shipped |
-| Glyph             | Seeded hand-drawn glyph set                                         | Mental Models `KindGlyph`             | lively    | 1 · shipped |
-| Paper             | A sheet with a seeded edge, dog-ear, tilt and wear                  | new                                   | lively    | 2 · shipped |
-| IndexCard         | Tilted, taped card with a print, kicker, title and hook             | Mental Models `ModelCard`             | lively    | 4           |
-| IndexRow          | Typeset index entry                                                 | Mental Models `ModelRow`              | calm      | 4           |
-| Ticket            | Perforated stub with mono fields                                    | new                                   | lively    | 4           |
-| Postmark          | Circular dated cancellation mark                                    | new                                   | lively    | 4           |
-| EditionNumber     | "No. 0012" mono numbering                                           | Mental Models                         | calm      | 4           |
-| Checklist         | Tickable list with drawn boxes and ticks                            | Mental Models `Sections`              | calm      | 4           |
-| Steps             | Ringed-number steps                                                 | Mental Models `Sections`              | calm      | 4           |
-| Scale             | Drawn scale with the current position circled                       | Mental Models `EvidenceScale`         | calm      | 4           |
-| ConceptMap        | Hand-drawn graph of typed connections, list on small screens        | Mental Models `ConnectionMap`         | lively    | 4           |
-| DecisionMap       | One question branching to options                                   | Mental Models `KindMap`               | lively    | 4           |
-| ReadingProgress   | Rough-edged progress bar at the top of an article                   | Mental Models                         | calm      | 4           |
-| PullQuote         | Large serif quote with a hand mark                                  | new                                   | lively    | 4           |
-| Sidenote          | Numbered note in the margin, inline on small screens                | new                                   | calm      | 4           |
-| AppearanceControl | Day/night, stock, ink set, variation and patina as settings rows    | Mental Models `ThemeToggle`, extended | calm      | 4           |
+| Component         | What it is                                                                               | Origin                                | Variation | Phase       |
+| ----------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- | --------- | ----------- |
+| Print             | Seeded riso illustration                                                                 | Mental Models `Riso`                  | lively    | 1 · shipped |
+| SeedScope         | Seed context for a subtree                                                               | new                                   | —         | 1 · shipped |
+| PatinaDefs        | The shared SVG filters                                                                   | Mental Models `Base.astro` defs       | —         | 0 · shipped |
+| Highlight         | Marker stroke behind text                                                                | Mental Models `.hl`                   | lively    | 1 · shipped |
+| HandUnderline     | Two loose strokes under a heading or term                                                | Mental Models `.u-hand`               | lively    | 1 · shipped |
+| Circle            | A drawn ring hugging a word or number                                                    | new                                   | lively    | 1 · shipped |
+| Strike            | A hand strike-through                                                                    | new                                   | lively    | 1 · shipped |
+| Bracket           | A drawn bracket grouping lines                                                           | new                                   | lively    | 1 · shipped |
+| SketchFrame       | Doubled wobbly outline around a group                                                    | Mental Models `.sketch`               | lively    | 1 · shipped |
+| Wash              | Watercolour blob of accent behind content                                                | Mental Models `.wash`                 | lively    | 1 · shipped |
+| Tape              | Washi tape strip                                                                         | Mental Models `.tape`                 | lively    | 1 · shipped |
+| RoughRule         | Pen-line divider                                                                         | Mental Models header rule             | calm      | 1 · shipped |
+| MarginNote        | Handwritten aside with a drawn arrow, in the gutter on wide screens                      | Mental Models `MarginNote`            | lively    | 1 · shipped |
+| Annotation        | Handwritten callout with a leader to a target element                                    | new                                   | lively    | 1 · shipped |
+| Stamp             | Rubber-stamp label with grain and misregistration                                        | new                                   | lively    | 1 · shipped |
+| Glyph             | Seeded hand-drawn glyph set                                                              | Mental Models `KindGlyph`             | lively    | 1 · shipped |
+| Paper             | A sheet with a seeded edge, dog-ear, tilt and wear                                       | new                                   | lively    | 2 · shipped |
+| IndexCard         | Tilted, taped card with a print, kicker, title and hook                                  | Mental Models `ModelCard`             | lively    | 4 · shipped |
+| IndexRow          | Typeset index entry                                                                      | Mental Models `ModelRow`              | calm      | 4 · shipped |
+| Ticket            | Perforated stub with mono fields                                                         | new                                   | lively    | 4 · shipped |
+| Postmark          | Circular dated cancellation mark                                                         | new                                   | lively    | 4 · shipped |
+| EditionNumber     | "No. 0012" mono numbering                                                                | Mental Models                         | calm      | 4 · shipped |
+| Checklist         | Tickable list with drawn boxes and ticks                                                 | Mental Models `Sections`              | calm      | 4 · shipped |
+| Steps             | Ringed-number steps                                                                      | Mental Models `Sections`              | calm      | 4 · shipped |
+| Scale             | Drawn scale with the current position circled                                            | Mental Models `EvidenceScale`         | calm      | 4 · shipped |
+| ConceptMap        | Hand-drawn graph of typed connections, list on small screens                             | Mental Models `ConnectionMap`         | lively    | 4 · shipped |
+| DecisionMap       | One question branching to options                                                        | Mental Models `KindMap`               | lively    | 4 · shipped |
+| ReadingProgress   | Rough-edged progress bar at the top of an article                                        | Mental Models                         | calm      | 4 · shipped |
+| PullQuote         | Large serif quote with a hand mark                                                       | new                                   | lively    | 4 · shipped |
+| Sidenote          | Numbered note in the margin, inline on small screens                                     | new                                   | calm      | 4 · shipped |
+| AppearanceControl | Theme, stock, ink set, accent drum, variation, patina, density and face as settings rows | Mental Models `ThemeToggle`, extended | calm      | 4 · shipped |
 
 ## Blocks
 
-Planned blocks, chosen by what the demo product and site need: sign-in, sign-up, settings, dashboard, pricing, article page, empty states, hero, sidebar shell, 404. shadcn ships 30 blocks; Patina adds a block when a workflow uses it.
+Blocks are whole pages a consumer installs and edits (`src/patina/blocks/`, previewed at [/docs/blocks](/docs/blocks)). They lay out by container queries, carry their own sample data, and import only from the kit. Fieldbook renders `sign-in-01`, `settings-01` and `dashboard-01` as its own screens, so each exists once.
+
+| Block          | What it is                                                                                          | Phase       |
+| -------------- | --------------------------------------------------------------------------------------------------- | ----------- |
+| `sign-in-01`   | A sign-in card on deckled paper: validation, a show-password toggle and a magic-link path           | 4 · shipped |
+| `settings-01`  | Settings in a narrow column: profile rows, AppearanceControl, notification switches, a danger zone  | 4 · shipped |
+| `dashboard-01` | Headline stats, two hand-drawn charts, a records ledger and a survey progress card (`data` prop)    | 4 · shipped |
+| `pricing-01`   | Monthly or yearly plans on aligned cards, the recommended plan taped and stamped, an FAQ accordion  | 4 · shipped |
+| `article-01`   | A long field note: reading progress, drop cap, sidenotes, a pull quote, a mounted print, a postmark | 4 · shipped |
+| `empty-01`     | Empty states for a first run, no results and offline (`variant` prop)                               | 4 · shipped |
+| `hero-01`      | A product hero: a rerollable print, a headline with one highlighted phrase, the install command     | 4 · shipped |
+
+Still planned when a workflow needs them: sign-up, a sidebar shell, 404.

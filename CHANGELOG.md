@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+Phase 4: Patina's own extras, the theme studio, blocks and the home page.
+
+- Extras: `index-card`, `index-row` (with `IndexList`), `ticket`, `postmark`, `edition-number`, `pull-quote`, `sidenote` (with `SidenoteRef` and `SidenoteLayout`), `checklist`, `steps`, `scale`, `concept-map`, `decision-map`, `reading-progress` and `appearance-control`.
+- `base`: the appearance runtime adds the ink set (`data-inks`), the accent drum (`data-accent`), density (`data-density`, a compact scale half a step down φ) and the interface face (`data-face`, Instrument Sans for interface text); the pre-paint script validates saved values. Tables, trace steps, calendar days and toast titles follow the interface face.
+- Blocks (`registry:block`, previewed at `/docs/blocks`): `sign-in-01`, `settings-01`, `dashboard-01`, `pricing-01`, `article-01`, `empty-01` and `hero-01`. The `patina` umbrella item installs everything except blocks.
+- Site: a new home page (a rerollable hero print, a stack of index cards with a calm/lively switch, three scenes of Fieldbook at work, an A–Z index of every component, install and theme); the theme studio at `/studio` with presets and CSS or `registry:theme` export; the specimen moved to `/specimen`. Fieldbook's sign-in, settings and overview render the blocks.
+- The consumer install test also installs and builds a block.
+
 Phase 3: the rest of shadcn parity, and Fieldbook's main screens.
 
 - Data and layout: `table` (a ledger with a sticky heading; the docs add a data table and a 200-row ledger), `pagination`, `breadcrumb`, `item`, `empty`, `aspect-ratio`, `scroll-area`, `resizable`, `accordion`, `collapsible` and `typography` (a prose container with a kicker and drop cap).

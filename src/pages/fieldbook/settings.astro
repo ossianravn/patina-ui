@@ -1,8 +1,11 @@
 ---
 import Fieldbook from "@/site/layouts/fieldbook.astro"
-import { Settings } from "@/site/fieldbook/settings"
+import { Settings01 } from "@/patina/blocks/settings-01"
 ---
 
 <Fieldbook title="Settings" section="settings">
-  <Settings client:load />
+  <Settings01
+    client:load
+    deleteNote="This demo keeps nothing, so nothing is deleted; a real account would be gone for good."
+  />
 </Fieldbook>

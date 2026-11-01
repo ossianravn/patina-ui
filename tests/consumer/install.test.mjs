@@ -21,7 +21,8 @@ const fixture = path.join(repo, "tests/consumer/fixture")
 const shadcn = path.join(repo, "node_modules/shadcn/dist/index.js")
 
 // The items whose parts fixture/src/App.tsx imports. base (PatinaDefs, SeedScope, the styles) arrives as their
-// item dependency, which exercises the --base dependency URLs.
+// item dependency, which exercises the --base dependency URLs; the sign-in block brings the parts it composes the
+// same way (field, label, input-group), so one block covers a registry:block installing and building.
 const items = [
   "print",
   "notes",
@@ -32,6 +33,7 @@ const items = [
   "input",
   "checkbox",
   "card",
+  "sign-in-01",
 ]
 
 // The environment for every command. Settings an outer `npm run` exports (npm_config_prefix, npm_package_*) would

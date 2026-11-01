@@ -1,0 +1,52 @@
+---
+// Install and theme: the registry steps, then where to make the kit your own (the theme studio) and what to build
+// from (the blocks).
+import { IndexList, IndexRow } from "@/patina/extras/index-row"
+import { Glyph } from "@/patina/marks/glyph"
+import SectionHead from "@/site/specimen/section-head.astro"
+import { InstallSteps } from "./install-steps"
+
+const registry = (
+  Astro.site?.origin ?? "https://patina.ossianravn.dev"
+).replace(/\/$/, "")
+const NEXT = [
+  {
+    title: "Theme studio",
+    hook: "Paper, inks, accent, variation and patina on real screens; export a theme.",
+    href: "/studio",
+  },
+  {
+    title: "Blocks",
+    hook: "Whole compositions to start from: hero, sign-in, settings, dashboard.",
+    href: "/docs/blocks",
+  },
+  {
+    title: "Components",
+    hook: "Every part with its states, install command and API.",
+    href: "/docs",
+  },
+] as const
+---
+
+<section
+  class="mx-auto max-w-[76rem] px-snug py-section sm:px-line"
+  aria-labelledby="install"
+>
+  <SectionHead n={4} id="install" title="Install and theme">
+    Patina installs with the shadcn CLI from its own registry, into your
+    project's src/patina, where it is yours to change.
+  </SectionHead>
+  <div class="grid gap-section lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+    <InstallSteps registry={registry} client:visible />
+    <div>
+      <h3 class="m-0 text-body leading-subhead">Make it yours</h3>
+      <IndexList className="mt-tight border-t border-dashed border-rule">
+        {NEXT.map(({ title, hook, href }) => (
+          <IndexRow title={title} hook={hook} href={href}>
+            <Glyph slot="media" name="arrow" seed={href} size={18} />
+          </IndexRow>
+        ))}
+      </IndexList>
+    </div>
+  </div>
+</section>

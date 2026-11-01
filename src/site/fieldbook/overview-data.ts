@@ -1,7 +1,8 @@
+import type { Dashboard01Data } from "@/patina/blocks/dashboard-01"
 import { OBSERVATIONS, PLACES } from "./data"
 
 // The overview's numbers, all computed from the same records the observations list shows, for the week of
-// Sun 8 – Sat 14 Nov 2026.
+// Sun 8 – Sat 14 Nov 2026, and shaped for the dashboard-01 block that renders them.
 
 const WEEK = [8, 9, 10, 11, 12, 13, 14]
 const NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -59,4 +60,48 @@ export const waderCount = {
     "Sea wall",
     "North hide",
   ],
+}
+
+/** The overview page's data, in the shape the dashboard block takes. */
+export const overview: Dashboard01Data = {
+  site: "Saltmarsh reserve",
+  week: "Sun 8 – Sat 14 Nov",
+  stats: [
+    {
+      label: "Observations",
+      value: totals.observations,
+      note: `Most on ${totals.busiest}`,
+    },
+    { label: "Species", value: totals.species, note: "One record each" },
+    { label: "Rare", value: totals.rare, note: "For the county report" },
+    {
+      label: "Birds counted",
+      value: totals.birds,
+      note: `${totals.topShare}% on the ${totals.topPlace.toLowerCase()}`,
+    },
+  ],
+  daily: perDay,
+  dailyNote: `Nothing on Sunday or Monday; the most on ${totals.busiest}.`,
+  places: perPlace,
+  placesNote: `The ${totals.topPlace.toLowerCase()} carry ${totals.topShare}% of the birds, most of them one goose flock.`,
+  records: {
+    title: "Biggest counts",
+    description: "This week, by birds counted",
+    rows: biggest.map((o) => ({
+      id: o.id,
+      species: o.species,
+      place: o.place,
+      status: o.status,
+      count: o.count,
+      href: `/fieldbook/observations/${o.id}`,
+    })),
+  },
+  survey: {
+    title: "Winter wader count",
+    description: "Today · led by Mira Okafor",
+    sectors: waderCount.sectors.map((name, i) => ({
+      name,
+      counted: i < waderCount.done,
+    })),
+  },
 }

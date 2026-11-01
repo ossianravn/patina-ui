@@ -16,6 +16,7 @@ export interface DemoMeta {
     | "Data display"
     | "Conversation"
     | "Charts"
+    | "Patina extras"
 }
 
 /** A titled group of examples on a docs page. */

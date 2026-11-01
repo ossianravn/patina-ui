@@ -36,10 +36,24 @@ const walk = (dir) =>
 const matches = (file, pattern) =>
   pattern.endsWith("/") ? file.startsWith(pattern) : file === pattern
 
+// A block is blocks/<name>-<number>.tsx, as shadcn names them (login-01); its helpers, blocks/<block>-<part>.tsx,
+// install with it.
+const blockOf = (file) =>
+  /^blocks\/([a-z0-9-]*?-\d+)(?:-[a-z0-9-]+)?\.tsx?$/u.exec(file)?.[1]
+
 const groupOf = (file) =>
   Object.entries(groups).find(([, patterns]) =>
     patterns.some((p) => matches(file, p)),
-  )?.[0] ?? path.posix.basename(file).replace(/\.(tsx?|css)$/u, "")
+  )?.[0] ??
+  blockOf(file) ??
+  path.posix.basename(file).replace(/\.(tsx?|css)$/u, "")
+
+const kindOf = (name, owned) =>
+  name === "base"
+    ? "registry:item"
+    : owned.every((file) => blockOf(file))
+      ? "registry:block"
+      : "registry:component"
 
 function specifiers(source, css) {
   // Statements only: a line that starts with import or export, so import-like text inside strings is not read.
@@ -134,7 +148,7 @@ export function buildRegistry({ base } = {}) {
     ].sort()
     return {
       name,
-      type: name === "base" ? "registry:item" : "registry:component",
+      type: kindOf(name, owned),
       title: title(name),
       description:
         descriptions[name] ?? `${title(name)}, in the Patina language.`,
@@ -160,12 +174,15 @@ export function buildRegistry({ base } = {}) {
         ? 1
         : a.name.localeCompare(b.name),
   )
+  // The umbrella is the kit; blocks are pages to start from, added one at a time.
   items.push({
     name: "patina",
     type: "registry:item",
     title: "Patina",
     description: descriptions.patina,
-    registryDependencies: items.map((item) => address(item.name)),
+    registryDependencies: items
+      .filter((item) => item.type !== "registry:block")
+      .map((item) => address(item.name)),
     files: [],
   })
   return {

@@ -74,7 +74,7 @@ Replace these shadcn tokens on sight: `bg-background` → `bg-paper` or `bg-card
 
 Each primitive has `src/site/docs/demos/<name>.tsx`: a default export rendering `DemoSection` and `StateRow` blocks (from `../demo-kit`) that show every variant and state (default, hover-able, focus-able, checked or selected, invalid, disabled, empty, loading where they apply), plus `export const meta: DemoMeta` with `title`, `description` (one sentence on what it is for) and `item` (its registry item). `/docs/components/<name>` renders it. Example content comes from Fieldbook, the demo product: observations, species, tides, expeditions. Set `group` in `meta` to the part's group in the [inventory](components.md), which orders the Components index. Helper modules for a demo go in a subfolder (`demos/table/`), since every `demos/*.tsx` becomes a page.
 
-Two dev-server habits: the server reads the demo list once, so restart it after adding a demo (until then the page renders "No demo yet" on the server); and Tailwind's watcher misses newly created files, so `touch` a new file if its classes do not appear.
+The file watcher reports a new file as added, which Tailwind's scanner and the server-side demo list ignore; a dev-only plugin in `astro.config.mjs` touches new files (and the demo host for a new demo) so both pick them up without a restart.
 
 ## Class merging
 
