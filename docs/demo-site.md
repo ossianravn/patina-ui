@@ -1,6 +1,6 @@
 # Demo site
 
-Status: proposed, 2026-11-01; Phase 0 built only a specimen page at `/`. The site documents the kit and proves it in use. It is built with Astro and React islands ([plan D3](plan.md#decisions)) and deployed as static files.
+Status: proposed, 2026-11-01. Built so far: the specimen at `/` (standing in for the home page), `/prints`, `/marks` and the Press at `/press`. The site documents the kit and proves it in use. It is built with Astro and React islands ([plan D3](plan.md#decisions)) and deployed as static files.
 
 ## Site map
 
@@ -10,9 +10,9 @@ Status: proposed, 2026-11-01; Phase 0 built only a specimen page at `/`. The sit
 | `/docs`               | Getting started        | Install, fonts, `<PatinaDefs>`, theme setup, first component                           |
 | `/docs/foundations/*` | Foundations            | Paper and stocks, inks, voices, marks, seeded variation, patina, motion, accessibility |
 | `/docs/components/*`  | One page per component | Preview, install, usage, states, API, accessibility, treatment notes                   |
-| `/docs/prints`        | Print gallery          | Every motif and format, with seeds                                                     |
+| `/prints`             | Print gallery (built)  | Every motif and format, with seeds                                                     |
 | `/docs/blocks/*`      | Blocks                 | Installable compositions                                                               |
-| `/press`              | The Press              | Generative print playground                                                            |
+| `/press`              | The Press (built)      | Generative print playground                                                            |
 | `/themes`             | Theme studio           | Stocks, inks, variation and patina on real screens; export                             |
 | `/fieldbook/*`        | Demo product           | The kit used end to end                                                                |
 | `/changelog`          | Changelog              | Rendered from `CHANGELOG.md`                                                           |

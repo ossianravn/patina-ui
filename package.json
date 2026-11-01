@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "description": "A shadcn/ui component library in a printed-matter style: paper, riso inks, hand-drawn marks and seeded generative prints.",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/ossianravn/patina-ui.git"
@@ -21,7 +22,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check:contrast": "node tools/check-contrast.mjs",
-    "build:textures": "node tools/paper/build-textures.mjs"
+    "build:textures": "node tools/paper/build-textures.mjs",
+    "registry": "node tools/registry/build.mjs",
+    "registry:check": "node tools/registry/build.mjs --check"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.2",

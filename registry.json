@@ -1,0 +1,365 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "patina",
+  "homepage": "https://github.com/ossianravn/patina-ui",
+  "items": [
+    {
+      "name": "base",
+      "type": "registry:item",
+      "title": "Base",
+      "description": "Tokens, paper stocks, ink sets, mark utilities, the appearance runtime, PatinaDefs, SeedScope and the core of the ink engine. Every other item builds on it; make src/patina/styles/patina.css your Tailwind entry.",
+      "dependencies": [
+        "cn@^0.5.1",
+        "roughjs@^4.6.6"
+      ],
+      "devDependencies": [
+        "@fontsource-variable/caveat@^5.3.0",
+        "@fontsource-variable/jetbrains-mono@^5.3.0",
+        "@fontsource-variable/source-serif-4@^5.3.1"
+      ],
+      "files": [
+        {
+          "path": "src/patina/defs/patina-defs.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/defs/patina-defs.tsx"
+        },
+        {
+          "path": "src/patina/ink/filters.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/filters.ts"
+        },
+        {
+          "path": "src/patina/ink/rough.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/rough.ts"
+        },
+        {
+          "path": "src/patina/ink/seed.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/seed.ts"
+        },
+        {
+          "path": "src/patina/lib/utils.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/lib/utils.ts"
+        },
+        {
+          "path": "src/patina/print/seed-scope.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/print/seed-scope.tsx"
+        },
+        {
+          "path": "src/patina/styles/base.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/base.css"
+        },
+        {
+          "path": "src/patina/styles/fonts.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/fonts.css"
+        },
+        {
+          "path": "src/patina/styles/inks.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/inks.css"
+        },
+        {
+          "path": "src/patina/styles/marks.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/marks.css"
+        },
+        {
+          "path": "src/patina/styles/patina.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/patina.css"
+        },
+        {
+          "path": "src/patina/styles/roles.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/roles.css"
+        },
+        {
+          "path": "src/patina/styles/stocks.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/stocks.css"
+        },
+        {
+          "path": "src/patina/styles/textures.generated.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/textures.generated.css"
+        },
+        {
+          "path": "src/patina/styles/tokens.css",
+          "type": "registry:file",
+          "target": "~/src/patina/styles/tokens.css"
+        },
+        {
+          "path": "src/patina/theme/appearance-script.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/theme/appearance-script.ts"
+        },
+        {
+          "path": "src/patina/theme/appearance.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/theme/appearance.ts"
+        },
+        {
+          "path": "src/patina/theme/index.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/theme/index.ts"
+        },
+        {
+          "path": "src/patina/theme/use-appearance.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/theme/use-appearance.ts"
+        }
+      ]
+    },
+    {
+      "name": "glyph",
+      "type": "registry:component",
+      "title": "Glyph",
+      "description": "Glyph: sixteen hand-drawn signs in currentColor.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ink/glyphs.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/glyphs.ts"
+        },
+        {
+          "path": "src/patina/marks/glyph.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/marks/glyph.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hand-marks",
+      "type": "registry:component",
+      "title": "Hand Marks",
+      "description": "Circle, Strike and Bracket: seeded drawings that hug their content, with no measuring.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/marks/hand-marks.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/marks/hand-marks.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hand-underline",
+      "type": "registry:component",
+      "title": "Hand Underline",
+      "description": "HandUnderline: two loose strokes under a heading or term.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/marks/hand-underline.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/marks/hand-underline.tsx"
+        }
+      ]
+    },
+    {
+      "name": "highlight",
+      "type": "registry:component",
+      "title": "Highlight",
+      "description": "Highlight: a marker stroke behind a phrase that matters.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/marks/highlight.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/marks/highlight.tsx"
+        }
+      ]
+    },
+    {
+      "name": "notes",
+      "type": "registry:component",
+      "title": "Notes",
+      "description": "MarginNote and Annotation: handwritten asides with drawn arrows.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/marks/notes.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/marks/notes.tsx"
+        }
+      ]
+    },
+    {
+      "name": "paper-marks",
+      "type": "registry:component",
+      "title": "Paper Marks",
+      "description": "SketchFrame, Wash, Tape and RoughRule: marks that sit on the paper, varied by their seed.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/marks/paper-marks.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/marks/paper-marks.tsx"
+        }
+      ]
+    },
+    {
+      "name": "print",
+      "type": "registry:component",
+      "title": "Print",
+      "description": "Print, a seeded riso illustration, with the print() function and all twelve motifs.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/ink/index.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/index.ts"
+        },
+        {
+          "path": "src/patina/ink/inks.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/inks.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/blocks.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/blocks.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/constellation.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/constellation.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/contours.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/contours.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/flow.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/flow.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/halftone.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/halftone.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/horizon.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/horizon.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/index.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/index.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/lens.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/lens.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/monogram.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/monogram.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/orbits.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/orbits.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/pens.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/pens.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/rings.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/rings.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/scatter.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/scatter.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/sprig.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/sprig.ts"
+        },
+        {
+          "path": "src/patina/ink/motifs/types.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/motifs/types.ts"
+        },
+        {
+          "path": "src/patina/ink/noise.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/noise.ts"
+        },
+        {
+          "path": "src/patina/ink/print-svg.ts",
+          "type": "registry:file",
+          "target": "~/src/patina/ink/print-svg.ts"
+        },
+        {
+          "path": "src/patina/print/print.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/print/print.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stamp",
+      "type": "registry:component",
+      "title": "Stamp",
+      "description": "Stamp: a rubber-stamp label, outline or solid.",
+      "registryDependencies": [
+        "@patina/base"
+      ],
+      "files": [
+        {
+          "path": "src/patina/marks/stamp.tsx",
+          "type": "registry:file",
+          "target": "~/src/patina/marks/stamp.tsx"
+        }
+      ]
+    },
+    {
+      "name": "patina",
+      "type": "registry:item",
+      "title": "Patina",
+      "description": "Everything in Patina UI.",
+      "registryDependencies": [
+        "@patina/base",
+        "@patina/glyph",
+        "@patina/hand-marks",
+        "@patina/hand-underline",
+        "@patina/highlight",
+        "@patina/notes",
+        "@patina/paper-marks",
+        "@patina/print",
+        "@patina/stamp"
+      ],
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "patina",
+  "title": "Patina",
+  "description": "Everything in Patina UI.",
+  "registryDependencies": [
+    "@patina/base",
+    "@patina/glyph",
+    "@patina/hand-marks",
+    "@patina/hand-underline",
+    "@patina/highlight",
+    "@patina/notes",
+    "@patina/paper-marks",
+    "@patina/print",
+    "@patina/stamp"
+  ],
+  "files": [],
+  "type": "registry:item"
+}

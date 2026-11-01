@@ -3,3 +3,5 @@ dist/
 node_modules/
 package-lock.json
 src/patina/styles/textures.generated.css
+public/r/
+registry.json

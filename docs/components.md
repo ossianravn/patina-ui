@@ -1,6 +1,6 @@
 # Component inventory
 
-Status: planned, 2026-11-01; Phase 0 shipped `PatinaDefs` and the mark utilities behind Highlight, HandUnderline, SketchFrame, Wash, Tape, MarginNote and RoughRule. This is the living index of what Patina ships: each row names a component, its Patina treatment, its default variation and its phase. Update a row's status when the component ships; add a row when a workflow needs a new reusable part. Treatments are starting points, refined against the rendered result.
+Status: planned, 2026-11-01. Shipped so far: `PatinaDefs` (Phase 0) and the marks and prints of Phase 1, marked `shipped` in the extras table; their files live in `src/patina/marks/` and `src/patina/print/` and install as the registry items in `registry.json`.
 
 Variation: **calm** components stay quiet at every variation level because people operate them; **lively** components carry seeded tilt, tape or art at the `lively` level. See [Seeded variation](seeded-variation.md#what-varies).
 
@@ -108,22 +108,22 @@ The 65 `registry:ui` items in shadcn 4.23.0 (checked 2026-11-01 with `npx shadcn
 
 | Component         | What it is                                                          | Origin                                | Variation | Phase       |
 | ----------------- | ------------------------------------------------------------------- | ------------------------------------- | --------- | ----------- |
-| Print             | Seeded riso illustration                                            | Mental Models `Riso`                  | lively    | 1           |
-| SeedScope         | Seed context for a subtree                                          | new                                   | —         | 1           |
+| Print             | Seeded riso illustration                                            | Mental Models `Riso`                  | lively    | 1 · shipped |
+| SeedScope         | Seed context for a subtree                                          | new                                   | —         | 1 · shipped |
 | PatinaDefs        | The shared SVG filters                                              | Mental Models `Base.astro` defs       | —         | 0 · shipped |
-| Highlight         | Marker stroke behind text                                           | Mental Models `.hl`                   | lively    | 1           |
-| HandUnderline     | Two loose strokes under a heading or term                           | Mental Models `.u-hand`               | lively    | 1           |
-| Circle            | A drawn ring hugging a word or number                               | new                                   | lively    | 1           |
-| Strike            | A hand strike-through                                               | new                                   | lively    | 1           |
-| Bracket           | A drawn bracket grouping lines                                      | new                                   | lively    | 1           |
-| SketchFrame       | Doubled wobbly outline around a group                               | Mental Models `.sketch`               | lively    | 1           |
-| Wash              | Watercolour blob of accent behind content                           | Mental Models `.wash`                 | lively    | 1           |
-| Tape              | Washi tape strip                                                    | Mental Models `.tape`                 | lively    | 1           |
-| RoughRule         | Pen-line divider                                                    | Mental Models header rule             | calm      | 1           |
-| MarginNote        | Handwritten aside with a drawn arrow, in the gutter on wide screens | Mental Models `MarginNote`            | lively    | 1           |
-| Annotation        | Handwritten callout with a leader to a target element               | new                                   | lively    | 1           |
-| Stamp             | Rubber-stamp label with grain and misregistration                   | new                                   | lively    | 1           |
-| Glyph             | Seeded hand-drawn glyph set                                         | Mental Models `KindGlyph`             | lively    | 1           |
+| Highlight         | Marker stroke behind text                                           | Mental Models `.hl`                   | lively    | 1 · shipped |
+| HandUnderline     | Two loose strokes under a heading or term                           | Mental Models `.u-hand`               | lively    | 1 · shipped |
+| Circle            | A drawn ring hugging a word or number                               | new                                   | lively    | 1 · shipped |
+| Strike            | A hand strike-through                                               | new                                   | lively    | 1 · shipped |
+| Bracket           | A drawn bracket grouping lines                                      | new                                   | lively    | 1 · shipped |
+| SketchFrame       | Doubled wobbly outline around a group                               | Mental Models `.sketch`               | lively    | 1 · shipped |
+| Wash              | Watercolour blob of accent behind content                           | Mental Models `.wash`                 | lively    | 1 · shipped |
+| Tape              | Washi tape strip                                                    | Mental Models `.tape`                 | lively    | 1 · shipped |
+| RoughRule         | Pen-line divider                                                    | Mental Models header rule             | calm      | 1 · shipped |
+| MarginNote        | Handwritten aside with a drawn arrow, in the gutter on wide screens | Mental Models `MarginNote`            | lively    | 1 · shipped |
+| Annotation        | Handwritten callout with a leader to a target element               | new                                   | lively    | 1 · shipped |
+| Stamp             | Rubber-stamp label with grain and misregistration                   | new                                   | lively    | 1 · shipped |
+| Glyph             | Seeded hand-drawn glyph set                                         | Mental Models `KindGlyph`             | lively    | 1 · shipped |
 | Paper             | A surface with a stock and a patina level                           | new                                   | lively    | 4           |
 | IndexCard         | Tilted, taped card with a print, kicker, title and hook             | Mental Models `ModelCard`             | lively    | 4           |
 | IndexRow          | Typeset index entry                                                 | Mental Models `ModelRow`              | calm      | 4           |

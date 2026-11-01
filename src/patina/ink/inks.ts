@@ -1,5 +1,5 @@
-// The drums a print can use. Colours are passed in: CSS variables on the page, plain hex for share images, which
-// render without a stylesheet.
+// The drums a print uses. On the page they are CSS variables, so an ink set (data-inks) or the theme re-inks every
+// print without re-rendering it; share images render without a stylesheet and pass plain colours instead.
 
 export interface PrintInks {
   /** The line drum: structure. */
@@ -15,3 +15,7 @@ export const CSS_INKS: PrintInks = {
   accent: "var(--print-accent)",
   detail: "var(--print-detail)",
 }
+
+/** Named ink sets, defined in styles/inks.css. */
+export const INK_SETS = ["field", "fluoro", "earth", "spot"] as const
+export type InkSet = (typeof INK_SETS)[number]

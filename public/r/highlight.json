@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "highlight",
+  "title": "Highlight",
+  "description": "Highlight: a marker stroke behind a phrase that matters.",
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/marks/highlight.tsx",
+      "content": "import type { ComponentProps } from \"react\"\nimport { cn } from \"@/patina/lib/utils\"\n\n/** A marker stroke behind a phrase that matters. Yellow by default; `accent` prints it in the region's drum. */\nexport function Highlight({\n  accent = false,\n  className,\n  ...props\n}: ComponentProps<\"mark\"> & { accent?: boolean }) {\n  return (\n    <mark\n      data-slot=\"highlight\"\n      className={cn(\n        \"highlight bg-transparent text-inherit\",\n        accent && \"highlight-accent\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:file",
+      "target": "~/src/patina/marks/highlight.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

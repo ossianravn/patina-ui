@@ -1,0 +1,21 @@
+---
+import Base from "@/site/layouts/base.astro"
+import { Press } from "@/site/press/press"
+---
+
+<Base
+  title="Press"
+  description="Make a seeded riso print: choose a motif, a seed and inks, reroll, and take the SVG or the code."
+>
+  <div class="mx-auto max-w-[76rem] px-snug pt-section sm:px-line">
+    <p class="label-mono m-0 text-ink-2">Patina UI · Press</p>
+    <h1 class="mb-tight mt-tight text-title">The Press</h1>
+    <p class="m-0 max-w-measure text-ink-2">
+      Pick a motif and a seed. Reroll until it's right, then take the seed, the
+      code or the SVG.
+    </p>
+  </div>
+  <div class="mx-auto mt-section max-w-[76rem] px-snug sm:px-line">
+    <Press client:load />
+  </div>
+</Base>

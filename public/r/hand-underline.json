@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hand-underline",
+  "title": "Hand Underline",
+  "description": "HandUnderline: two loose strokes under a heading or term.",
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/marks/hand-underline.tsx",
+      "content": "import type { ComponentProps } from \"react\"\nimport { cn } from \"@/patina/lib/utils\"\n\n/** Two loose strokes under a heading or term, in the region's drum. */\nexport function HandUnderline({ className, ...props }: ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"hand-underline\"\n      className={cn(\"hand-underline\", className)}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:file",
+      "target": "~/src/patina/marks/hand-underline.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

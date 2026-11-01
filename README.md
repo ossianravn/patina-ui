@@ -2,7 +2,7 @@
 
 A [shadcn/ui](https://ui.shadcn.com) component library that looks like printed matter that has been handled: warm paper, riso inks slightly out of register, a serif to read, a hand to annotate, a mono to label, and marks drawn with a pen. Every card, outline, avatar and illustration is drawn from a seed, so each one differs from its neighbours and looks the same on every render.
 
-**Status:** Phase 0 (foundations) is done: tokens, generated paper stocks, the ink engine, the appearance runtime and a specimen page. Components start in Phase 1; [the plan](docs/plan.md) lists the phases, decisions and open questions.
+**Status:** Phase 1 is done: tokens and generated paper, the ink engine with twelve print motifs and four ink sets, `<Print>`, eleven marks, the Press and a shadcn registry. The shadcn primitives start in Phase 2; [the plan](docs/plan.md) lists the phases, decisions and open questions.
 
 ## Run it
 
@@ -13,7 +13,21 @@ npm ci
 npm run dev
 ```
 
-Open `http://127.0.0.1:4321` for the specimen. `package.json` lists the checks (`typecheck`, `lint`, `build`, `check:contrast`); `npm run build:textures` regenerates the paper grain after a stock's layers change in `tools/paper/build-textures.mjs`.
+Open `http://127.0.0.1:4321`: the specimen, the print gallery (`/prints`), the marks (`/marks`) and the Press (`/press`). `package.json` lists the checks (`typecheck`, `lint`, `build`, `check:contrast`); `npm run build:textures` regenerates the paper grain after a stock's layers change in `tools/paper/build-textures.mjs`.
+
+## Use the kit
+
+The kit installs with the shadcn CLI from its registry (`public/r/`, served by the site). Until the site has a domain, serve it locally with `npm run dev` and point a project at it:
+
+```json
+{ "registries": { "@patina": "http://localhost:4321/r/{name}.json" } }
+```
+
+```sh
+npx shadcn add @patina/print @patina/notes
+```
+
+Items install into `src/patina/` (the project needs an `@/` alias for `src/`). Make `src/patina/styles/patina.css` your Tailwind entry, render `<PatinaDefs />` once inside `<body>`, and put `appearanceScript()` in an inline `<script>` in `<head>` to apply saved appearance before the first paint. `npm run registry` rebuilds the registry after a kit change.
 
 ## Documents
 
@@ -30,3 +44,7 @@ Open `http://127.0.0.1:4321` for the specimen. `package.json` lists the checks (
 | [AGENTS.md](AGENTS.md)                       | Working instructions for coding agents                        |
 
 The style comes from [Mental Models](https://mentalmodels.ossianravn.dev); the working method from [Groundwork](https://github.com/ossianravn/groundwork).
+
+## License
+
+Code, art and generated textures: [MIT](LICENSE). The fonts (Source Serif 4, JetBrains Mono, Caveat) are under the SIL Open Font License, shipped with their Fontsource packages.

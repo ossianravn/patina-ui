@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "paper-marks",
+  "title": "Paper Marks",
+  "description": "SketchFrame, Wash, Tape and RoughRule: marks that sit on the paper, varied by their seed.",
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/marks/paper-marks.tsx",
+      "content": "\"use client\"\n\n// Marks that sit on the paper: a sketched frame, a wash, washi tape and a pen-line rule, each varied by its seed.\nimport type { ComponentProps, CSSProperties } from \"react\"\nimport { stream } from \"@/patina/ink/seed\"\nimport { cn } from \"@/patina/lib/utils\"\nimport { roughVariant, useSeed } from \"@/patina/print/seed-scope\"\n\ntype Drum = \"blue\" | \"violet\" | \"pink\" | \"green\" | \"orange\" | \"yellow\" | \"red\"\ntype Seeded = { seed?: string | number }\n\n/** A doubled, wobbly outline drawn around a group. */\nexport function SketchFrame({\n  seed,\n  className,\n  style,\n  ...props\n}: ComponentProps<\"div\"> & Seeded) {\n  const s = useSeed(\"sketch-frame\", seed)\n  const vars = {\n    \"--sketch-a\": roughVariant(s),\n    \"--sketch-b\": roughVariant(s, 3),\n  } as CSSProperties\n  return (\n    <div\n      data-slot=\"sketch-frame\"\n      className={cn(\"sketch-frame\", className)}\n      style={{ ...vars, ...style }}\n      {...props}\n    />\n  )\n}\n\n/** A watercolour blob of the region's drum behind its content. */\nexport function Wash({\n  seed,\n  ink,\n  className,\n  style,\n  ...props\n}: ComponentProps<\"span\"> &\n  Seeded & { ink?: Exclude<Drum, \"yellow\" | \"red\"> }) {\n  const shape = stream(useSeed(\"wash\", seed), \"shape\")\n  const r = () => `${Math.round(shape.between(38, 60))}%`\n  const vars = {\n    \"--wash-shape\": `${r()} ${r()} ${r()} ${r()} / ${r()} ${r()} ${r()} ${r()}`,\n  } as CSSProperties\n  return (\n    <span\n      data-slot=\"wash\"\n      data-ink={ink}\n      className={cn(\"wash\", className)}\n      style={{ ...vars, ...style }}\n      {...props}\n    />\n  )\n}\n\n/** A strip of washi tape across the top edge of a positioned parent. Hidden at the calm variation level. */\nexport function Tape({\n  seed,\n  ink,\n  className,\n  style,\n  ...props\n}: ComponentProps<\"span\"> & Seeded & { ink?: Drum }) {\n  const place = stream(useSeed(\"tape\", seed), \"place\")\n  const vars = {\n    \"--tape-tilt\": `${(place.signed() * 4).toFixed(1)}deg`,\n    \"--tape-shift\": `${Math.round(place.signed() * 20)}%`,\n    ...(ink ? { \"--tape\": `var(--print-${ink})` } : {}),\n  } as CSSProperties\n  return (\n    <span\n      aria-hidden=\"true\"\n      data-slot=\"tape\"\n      className={cn(\"tape\", className)}\n      style={{ ...vars, ...style }}\n      {...props}\n    />\n  )\n}\n\n/** A pen-line divider. */\nexport function RoughRule({\n  seed,\n  className,\n  style,\n  ...props\n}: ComponentProps<\"hr\"> & Seeded) {\n  const s = useSeed(\"rough-rule\", seed)\n  return (\n    <hr\n      data-slot=\"rough-rule\"\n      className={cn(\"rough-rule m-0 w-full\", className)}\n      style={{ filter: roughVariant(s), ...style }}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:file",
+      "target": "~/src/patina/marks/paper-marks.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

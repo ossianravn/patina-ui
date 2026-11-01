@@ -1,0 +1,37 @@
+{
+  "groups": {
+    "base": [
+      "lib/",
+      "styles/",
+      "theme/",
+      "defs/",
+      "print/seed-scope.tsx",
+      "ink/seed.ts",
+      "ink/rough.ts",
+      "ink/filters.ts"
+    ],
+    "print": [
+      "print/print.tsx",
+      "ink/index.ts",
+      "ink/print-svg.ts",
+      "ink/inks.ts",
+      "ink/noise.ts",
+      "ink/motifs/"
+    ],
+    "glyph": ["marks/glyph.tsx", "ink/glyphs.ts"]
+  },
+  "descriptions": {
+    "base": "Tokens, paper stocks, ink sets, mark utilities, the appearance runtime, PatinaDefs, SeedScope and the core of the ink engine. Every other item builds on it; make src/patina/styles/patina.css your Tailwind entry.",
+    "print": "Print, a seeded riso illustration, with the print() function and all twelve motifs.",
+    "glyph": "Glyph: sixteen hand-drawn signs in currentColor.",
+    "highlight": "Highlight: a marker stroke behind a phrase that matters.",
+    "hand-underline": "HandUnderline: two loose strokes under a heading or term.",
+    "hand-marks": "Circle, Strike and Bracket: seeded drawings that hug their content, with no measuring.",
+    "paper-marks": "SketchFrame, Wash, Tape and RoughRule: marks that sit on the paper, varied by their seed.",
+    "notes": "MarginNote and Annotation: handwritten asides with drawn arrows.",
+    "stamp": "Stamp: a rubber-stamp label, outline or solid.",
+    "patina": "Everything in Patina UI."
+  },
+  "peers": {},
+  "devDependencies": {}
+}

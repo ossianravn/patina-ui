@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stamp",
+  "title": "Stamp",
+  "description": "Stamp: a rubber-stamp label, outline or solid.",
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/marks/stamp.tsx",
+      "content": "\"use client\"\n\nimport type { ComponentProps, CSSProperties } from \"react\"\nimport { stream } from \"@/patina/ink/seed\"\nimport { cn } from \"@/patina/lib/utils\"\nimport { roughVariant, textOf, useSeed } from \"@/patina/print/seed-scope\"\n\nexport interface StampProps extends ComponentProps<\"span\"> {\n  variant?: \"outline\" | \"solid\"\n  seed?: string | number\n}\n\n/** A rubber-stamp label in the region's text ink, turned a little by its seed. */\nexport function Stamp({\n  variant = \"outline\",\n  seed,\n  children,\n  className,\n  style,\n  ...props\n}: StampProps) {\n  const s = useSeed(\"stamp\", seed ?? textOf(children))\n  const vars = {\n    \"--stamp-turn\": stream(s, \"turn\").signed().toFixed(2),\n    \"--stamp-rough\": roughVariant(s),\n  } as CSSProperties\n  return (\n    <span\n      data-slot=\"stamp\"\n      data-variant={variant}\n      className={cn(\"stamp\", variant === \"solid\" && \"stamp-solid\", className)}\n      style={{ ...vars, ...style }}\n      {...props}\n    >\n      {children}\n    </span>\n  )\n}\n",
+      "type": "registry:file",
+      "target": "~/src/patina/marks/stamp.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

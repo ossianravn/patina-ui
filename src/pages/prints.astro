@@ -1,0 +1,74 @@
+---
+import Base from "@/site/layouts/base.astro"
+import { INK_SETS, MOTIFS, print } from "@/patina/ink"
+import { MOTIF_INFO, SAMPLE_NAMES, SAMPLE_SEEDS } from "@/site/data/motifs"
+
+const rows = MOTIFS.map((motif) => ({
+  motif,
+  ...MOTIF_INFO[motif],
+  prints: SAMPLE_SEEDS.map((seed, i) => {
+    const text = motif === "monogram" ? SAMPLE_NAMES[i] : undefined
+    return { seed, svg: print({ motif, seed, ...(text ? { text } : {}) }).svg }
+  }),
+}))
+const sets = INK_SETS.map((inks) => ({
+  inks,
+  svg: print({ motif: "orbits", seed: "quiet-heron", inks }).svg,
+}))
+---
+
+<Base
+  title="Prints"
+  description="Every Patina print motif, each drawn from three seeds, and the ink sets."
+>
+  <div class="mx-auto max-w-[76rem] px-snug pt-section sm:px-line">
+    <p class="label-mono m-0 text-ink-2">Patina UI · Prints</p>
+    <h1 class="mb-tight mt-tight text-title">Twelve motifs, endless prints</h1>
+    <p class="m-0 max-w-measure text-ink-2">
+      Each motif is a pure function of its seed. The same seed draws the same
+      print on the server, in the browser and in every build; a new seed draws a
+      new one. Open the <a href="/press">Press</a> to make your own.
+    </p>
+  </div>
+
+  <ol class="mx-auto mt-section max-w-[76rem] list-none px-snug sm:px-line">
+    {rows.map(({ motif, picture, suits, prints }) => (
+      <li class="grid gap-x-section gap-y-tight border-b border-dashed border-rule py-snug md:grid-cols-[14rem_minmax(0,1fr)] md:items-center">
+        <div>
+          <h2 class="label-mono m-0 text-ink">{motif}</h2>
+          <p class="m-0 mt-hair text-small leading-small">{picture}</p>
+          <p class="m-0 text-small leading-small text-ink-2">{suits}</p>
+        </div>
+        <ul class="grid list-none grid-cols-3 gap-snug p-0">
+          {prints.map(({ seed, svg }) => (
+            <li class="flex flex-col items-center gap-hair">
+              <span class="block w-full max-w-[11rem]" set:html={svg} />
+              <span class="label-mono text-ink-2">{seed}</span>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ol>
+
+  <section
+    class="mx-auto mt-section max-w-[76rem] px-snug sm:px-line"
+    aria-labelledby="ink-sets"
+  >
+    <h2 id="ink-sets" class="m-0 text-h2">
+      Ink sets
+    </h2>
+    <p class="m-0 mt-hair max-w-measure text-ink-2">
+      The same seed in each set. A set re-inks every print beneath it, with no
+      re-render.
+    </p>
+    <ul class="mt-line grid list-none grid-cols-2 gap-snug p-0 md:grid-cols-4">
+      {sets.map(({ inks, svg }) => (
+        <li class="flex flex-col items-center gap-hair">
+          <span class="block w-full max-w-[11rem]" set:html={svg} />
+          <span class="label-mono text-ink-2">{inks}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

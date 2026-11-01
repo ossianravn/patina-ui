@@ -1,0 +1,40 @@
+/* Ink sets: the three drums a print uses (data-inks on the print or any ancestor). Field is the default set from
+   tokens.css; the others approximate common riso inks. Night values are lighter so they screen onto dark paper. */
+
+[data-inks="field"] {
+  --print-line: var(--print-blue);
+  --print-accent: var(--print-pink);
+  --print-detail: var(--print-violet);
+}
+
+[data-inks="fluoro"] {
+  --print-line: #0078bf;
+  --print-accent: #ff48b0;
+  --print-detail: #3d5588;
+}
+
+[data-inks="earth"] {
+  --print-line: #00838a;
+  --print-accent: #f2a516;
+  --print-detail: #925f52;
+}
+
+[data-inks="spot"] {
+  --print-line: var(--ink);
+  --print-accent: var(--k);
+  --print-detail: var(--ink);
+}
+
+:root[data-theme="night"] [data-inks="fluoro"],
+:root[data-theme="night"][data-inks="fluoro"] {
+  --print-line: #4aa8e8;
+  --print-accent: #ff7cc6;
+  --print-detail: #9fb1e0;
+}
+
+:root[data-theme="night"] [data-inks="earth"],
+:root[data-theme="night"][data-inks="earth"] {
+  --print-line: #3fb7b0;
+  --print-accent: #ffc94d;
+  --print-detail: #d2a091;
+}

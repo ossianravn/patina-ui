@@ -78,9 +78,56 @@
     position: absolute;
     inset: -0.3rem -0.4rem;
     z-index: -1;
-    border-radius: 40% 55% 45% 50% / 55% 45% 55% 45%;
+    border-radius: var(--wash-shape, 40% 55% 45% 50% / 55% 45% 55% 45%);
     background: color-mix(in srgb, var(--k) var(--wash-alpha), transparent);
     filter: url(#patina-wash);
+  }
+}
+
+/* Rubber stamp: a doubled, wobbly frame around a mono label, turned by --stamp-turn (−1…1) times the tilt. */
+@utility stamp {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-hair);
+  padding: 0.3em 0.7em;
+  font-family: var(--face-label);
+  font-size: var(--type-label);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--k-ink);
+  rotate: calc(var(--stamp-turn, -0.6) * var(--tilt-max) * 4);
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border: 2px solid currentColor;
+    border-radius: 3px 5px 4px 3px;
+    filter: var(--stamp-rough, var(--rough-1));
+    pointer-events: none;
+  }
+  &::before {
+    inset: 0;
+  }
+  &::after {
+    inset: 3px;
+    border-width: 1px;
+    opacity: 0.6;
+  }
+}
+@utility stamp-solid {
+  color: var(--paper);
+  &::before {
+    background: var(--k-ink);
+    border-color: var(--k-ink);
+    filter: url(#patina-ink);
+  }
+  &::after {
+    border-color: var(--paper);
   }
 }
 

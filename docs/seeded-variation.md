@@ -1,6 +1,6 @@
 # Seeded variation
 
-Status: Phase 0 built the seed functions, the first motif (`orbits`), `print()`, CSS-driven misregistration, the variation and patina levels and the generated stocks, 2026-11-01; the rest is proposed. This document owns every random choice in Patina: where it comes from, how far it may go and what it promises.
+Status: Phase 1 built the seed functions, `SeedScope` and `useSeed`, twelve motifs, `print()` and `<Print>`, ink sets, CSS-driven misregistration, the variation and patina levels and the generated stocks, 2026-11-01. Formats other than `spot` and the five later motifs are proposed. This document owns every random choice in Patina: where it comes from, how far it may go and what it promises.
 
 **Every Patina surface is a little different, and always the same.** Two index cards side by side tilt differently, their tape sits differently, their outlines wobble differently, and each prints its own illustration. Reload the page, render it on the server, build it next month: each card looks exactly as before. That combination of variety and stability is the signature of the library.
 
@@ -53,14 +53,14 @@ A print is a seeded riso illustration: two or three drums of ink, each a layer o
 | `lens`          | A lens on crosshair guides, hatched accent                         | Tools, search, inspection          | Mental Models (tool)    |
 | `orbits`        | Two orbits, an accent body drifting round (can animate)            | Systems, cycles, sync              | Mental Models (pattern) |
 | `constellation` | Linked nodes, one ringed                                           | Concepts, networks, teams          | Mental Models (concept) |
-| `contours`      | Topographic lines round one to three peaks                         | Maps, places, depth                | new, Phase 1            |
-| `halftone`      | A dot field shaped by a seeded blob, second drum offset into moiré | Covers, heroes, backgrounds        | new, Phase 1            |
-| `flow`          | Streamlines through a seeded noise field, a few in accent          | Movement, data, weather            | new, Phase 1            |
-| `horizon`       | A disc over horizon bands                                          | Covers, landing heroes, onboarding | new, Phase 1            |
-| `sprig`         | A branching stem with leaves                                       | Growth, nature, notes              | new, Phase 1            |
-| `blocks`        | Stacked letterpress offcuts                                        | Products, storage, building        | new, Phase 1            |
-| `scatter`       | Poisson-spaced small shapes and ticks                              | Celebration, variety, empty states | new, Phase 1            |
-| `monogram`      | Initials in riso over a seeded blob                                | Avatars, workspaces, logos         | new, Phase 1            |
+| `contours`      | Topographic lines round one to three peaks                         | Maps, places, depth                | built (Phase 1)         |
+| `halftone`      | A dot field shaped by a seeded blob, second drum offset into moiré | Covers, heroes, backgrounds        | built (Phase 1)         |
+| `flow`          | Streamlines through a seeded noise field, a few in accent          | Movement, data, weather            | built (Phase 1)         |
+| `horizon`       | A disc over horizon bands                                          | Covers, landing heroes, onboarding | built (Phase 1)         |
+| `sprig`         | A branching stem with leaves                                       | Growth, nature, notes              | built (Phase 1)         |
+| `blocks`        | Stacked letterpress offcuts                                        | Products, storage, building        | built (Phase 1)         |
+| `scatter`       | Poisson-spaced small shapes and ticks                              | Celebration, variety, empty states | built (Phase 1)         |
+| `monogram`      | Initials in riso over a seeded blob                                | Avatars, workspaces, logos         | built (Phase 1)         |
 | `grid`          | Graph paper with a plotted path and a circled point                | Analytics, progress                | new, later              |
 | `waves`         | Stacked bands of wobbling waves                                    | Audio, sea, calm                   | new, later              |
 | `burst`         | Strokes radiating from an off-centre point                         | Announcements, launches            | new, later              |
@@ -131,7 +131,12 @@ Prints are decorative (`aria-hidden`) unless given a `title`, which makes them `
 
 Within a major version, `print()` with the same options returns the same SVG on every engine. Motifs are versioned (`orbits` is `orbits@1`); a change that alters output ships as a new version, and the old one stays until the next major. The first release adds the lasting test that guards this: a set of seeds per motif rendered through `print()` and compared with recorded output.
 
-**Cross-engine drift** is the known risk: JavaScript engines may differ in the last bits of `Math.sin`, `Math.cos` and `Math.atan2`, which rough.js uses. Coordinates are rounded to one decimal (Mental Models' `tidy`), which makes a differing digit rare but possible at a rounding boundary. Phase 1 checks 200 seeds per motif for identical output in Node, Chromium and WebKit; if any differ, the engine switches to its own polynomial trigonometry, which is exact under IEEE arithmetic.
+**Cross-engine drift** is the known risk: JavaScript engines may differ in the last bit of `Math.sin`, `Math.cos`, `Math.atan2` and `**`, and rough.js turns a last-bit difference in its input into a different random sequence, so the whole stroke changes, not just a digit. The Phase 1 check rendered 200 seeds of every motif in Node and in Chromium: 3 of 200 `sprig` prints differed, traced to `x ** 2`. Two rules fixed it, and the same 2,400 prints are now identical in both:
+
+- Motifs multiply instead of using `**` or `Math.pow`.
+- The `sketch` wrapper snaps every coordinate to hundredths before rough.js sees it, so last-bit noise from any maths function cannot reach the random sequence.
+
+WebKit (Safari) is not checked yet: the headless test browser is Chromium only.
 
 ## Performance
 
