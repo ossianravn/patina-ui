@@ -7,6 +7,15 @@ export interface DemoMeta {
   description: string
   /** Registry item that installs it. */
   item: string
+  /** Its group on the Components index, as in docs/components.md. */
+  group?:
+    | "Actions"
+    | "Forms"
+    | "Overlays"
+    | "Navigation"
+    | "Data display"
+    | "Conversation"
+    | "Charts"
 }
 
 /** A titled group of examples on a docs page. */
@@ -34,9 +43,11 @@ export function StateRow({
   children: ReactNode
 }) {
   return (
-    <div className="grid items-center gap-x-section gap-y-hair py-tight md:grid-cols-[9rem_minmax(0,1fr)]">
+    <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-x-section gap-y-hair py-tight md:grid-cols-[9rem_minmax(0,1fr)]">
       <span className="label-mono text-ink-3">{label}</span>
-      <div className="flex flex-wrap items-center gap-tight">{children}</div>
+      <div className="flex min-w-0 flex-wrap items-center gap-tight">
+        {children}
+      </div>
     </div>
   )
 }

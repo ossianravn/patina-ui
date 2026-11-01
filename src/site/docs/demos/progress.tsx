@@ -6,6 +6,7 @@ export const meta: DemoMeta = {
   description:
     "A pen-line track that fills with hatched ink as a task moves towards done.",
   item: "progress",
+  group: "Data display",
 }
 
 // A fixed locale keeps the formatted value the same on the server and in the browser, so hydration matches.

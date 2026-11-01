@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "title": "Collapsible",
+  "description": "Collapsible, in the Patina language.",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/collapsible.tsx",
+      "content": "\"use client\"\n\nimport { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\"\nimport { sketch } from \"@/patina/ink/rough\"\nimport { cn } from \"@/patina/lib/utils\"\n\n// A disclosure. The panel opens and closes by animating its height (200 ms), so it clips while it moves; give its\n// content a little padding when it holds focusable things. CollapsibleChevron is the drawn hook chevron: put it in\n// the trigger and it turns a quarter when the trigger is expanded.\n\nfunction Collapsible({ ...props }: CollapsiblePrimitive.Root.Props) {\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />\n}\n\nfunction CollapsibleTrigger({ ...props }: CollapsiblePrimitive.Trigger.Props) {\n  return (\n    <CollapsiblePrimitive.Trigger data-slot=\"collapsible-trigger\" {...props} />\n  )\n}\n\nfunction CollapsibleContent({\n  className,\n  ...props\n}: CollapsiblePrimitive.Panel.Props) {\n  return (\n    <CollapsiblePrimitive.Panel\n      data-slot=\"collapsible-content\"\n      className={cn(\n        \"h-(--collapsible-panel-height) overflow-hidden transition-[height] duration-200 ease-out data-ending-style:h-0 data-starting-style:h-0\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\n// A chevron drawn in one stroke whose tail curls back, the way a pen lifts off the paper.\nconst HOOK = sketch.path(\n  \"M 9 4.5 C 11.5 7 13.6 9.6 15.6 12 C 13.6 14.3 11.6 16.7 9.6 19.2 C 9 19.9 8.1 19.8 7.9 19\",\n  {\n    seed: 23,\n    stroke: \"currentColor\",\n    strokeWidth: 1.9,\n    roughness: 0.55,\n    bowing: 0.6,\n  },\n)\n\nfunction CollapsibleChevron({\n  className,\n  ...props\n}: React.ComponentProps<\"svg\">) {\n  return (\n    <svg\n      data-slot=\"collapsible-chevron\"\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      aria-hidden=\"true\"\n      className={cn(\n        \"size-4 shrink-0 overflow-visible transition-transform duration-200 ease-out in-aria-expanded:rotate-90 rtl:-scale-x-100 rtl:in-aria-expanded:-rotate-90\",\n        className,\n      )}\n      dangerouslySetInnerHTML={{ __html: HOOK }}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Collapsible,\n  CollapsibleTrigger,\n  CollapsibleContent,\n  CollapsibleChevron,\n}\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/collapsible.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

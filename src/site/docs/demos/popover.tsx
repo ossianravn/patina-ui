@@ -17,6 +17,7 @@ export const meta: DemoMeta = {
   description:
     "A small sheet that opens beside its trigger for a detail or a quick edit, without leaving the page.",
   item: "popover",
+  group: "Overlays",
 }
 
 export default function PopoverDemo() {

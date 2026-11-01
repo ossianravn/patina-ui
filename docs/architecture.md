@@ -92,7 +92,7 @@ Paper grain is generated: `tools/paper/build-textures.mjs` turns each stock's no
 
 ## Registry
 
-`npm run registry` generates `registry.json` and `public/r/*.json` from `src/patina/` (Groundwork's builder, adapted): membership is in `tools/registry/items.json`, and npm and item dependencies are read from each file's imports. Nobody edits the outputs by hand; `npm run registry:check` fails when they are stale.
+`npm run registry` generates `registry.json` and `public/r/*.json` from `src/patina/` (Groundwork's builder, adapted): membership is in `tools/registry/items.json`, and npm and item dependencies are read from each file's imports. A file outside every group is an item named after the file; a part split across files (chart, sidebar, combobox, questionnaire) needs a group, and groups match in order, so a specific path must not fall under an earlier folder pattern. `requires` adds an item a part works with but does not import (`code-block` and its highlighting hook). Nobody edits the outputs by hand; `npm run registry:check` fails when they are stale.
 
 | Item                                                                                  | Contents                                                                                                                                           |
 | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |

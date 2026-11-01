@@ -20,6 +20,7 @@ export const meta: DemoMeta = {
   description:
     "A calm sheet that asks for a decision before something that cannot be undone.",
   item: "alert-dialog",
+  group: "Overlays",
 }
 
 // The action button does the work and then closes the dialog itself, as a real handler would.

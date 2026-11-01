@@ -16,6 +16,7 @@ export const meta: DemoMeta = {
   description:
     "A calm field that opens a sheet of options, for choosing one value from a list too long for radios.",
   item: "select",
+  group: "Forms",
 }
 
 const WADERS = {

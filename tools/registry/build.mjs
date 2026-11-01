@@ -14,7 +14,7 @@ import { fileURLToPath } from "node:url"
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..")
 const kit = "src/patina"
-const { groups, descriptions, peers, devDependencies } = JSON.parse(
+const { groups, descriptions, requires, peers, devDependencies } = JSON.parse(
   fs.readFileSync(path.join(root, "tools/registry/items.json"), "utf8"),
 )
 const manifest = JSON.parse(
@@ -108,7 +108,11 @@ export function buildRegistry({ base } = {}) {
   const items = [...members].map(([name, owned]) => {
     const packages = new Set(peers[name] ?? [])
     const stylesheetPackages = new Set()
-    const needs = new Set(name === "base" ? [] : ["base"])
+    // requires: items a part is used with but does not import (CodeBlock and the hook that highlights for it).
+    const needs = new Set([
+      ...(name === "base" ? [] : ["base"]),
+      ...(requires[name] ?? []),
+    ])
     for (const file of owned) {
       const source = fs.readFileSync(path.join(root, kit, file), "utf8")
       for (const specifier of specifiers(source, file.endsWith(".css"))) {

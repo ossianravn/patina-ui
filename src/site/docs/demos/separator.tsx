@@ -6,6 +6,7 @@ export const meta: DemoMeta = {
   description:
     "A dashed rule that divides entries in a list or items in a row.",
   item: "separator",
+  group: "Data display",
 }
 
 const ENTRIES = [

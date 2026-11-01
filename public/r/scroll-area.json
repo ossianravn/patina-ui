@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area",
+  "title": "Scroll Area",
+  "description": "Scroll Area, in the Patina language.",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/scroll-area.tsx",
+      "content": "\"use client\"\n\nimport { ScrollArea as ScrollAreaPrimitive } from \"@base-ui/react/scroll-area\"\nimport { cn } from \"@/patina/lib/utils\"\n\n// A thin pencil scrollbar: a faint rule-ink track with a narrow graphite thumb that firms and thickens while hovered\n// or dragged. The bar keeps a 10px hit area; the marks inside it are pseudo-elements, so they never move layout.\n// The viewport takes the page's dashed focus ring when focused from the keyboard.\n\nfunction ScrollArea({\n  className,\n  children,\n  ...props\n}: ScrollAreaPrimitive.Root.Props) {\n  return (\n    <ScrollAreaPrimitive.Root\n      data-slot=\"scroll-area\"\n      className={cn(\"relative\", className)}\n      {...props}\n    >\n      <ScrollAreaPrimitive.Viewport\n        data-slot=\"scroll-area-viewport\"\n        className=\"size-full rounded-[inherit] focus-visible:outline-offset-[-2px]\"\n      >\n        {children}\n      </ScrollAreaPrimitive.Viewport>\n      <ScrollBar />\n      <ScrollAreaPrimitive.Corner />\n    </ScrollAreaPrimitive.Root>\n  )\n}\n\nfunction ScrollBar({\n  className,\n  orientation = \"vertical\",\n  ...props\n}: ScrollAreaPrimitive.Scrollbar.Props) {\n  return (\n    <ScrollAreaPrimitive.Scrollbar\n      data-slot=\"scroll-area-scrollbar\"\n      data-orientation={orientation}\n      orientation={orientation}\n      className={cn(\n        \"group/scrollbar relative flex touch-none p-px select-none before:pointer-events-none before:absolute before:bg-rule data-horizontal:h-2.5 data-horizontal:flex-col data-horizontal:before:inset-x-1 data-horizontal:before:top-1/2 data-horizontal:before:h-px data-vertical:h-full data-vertical:w-2.5 data-vertical:before:inset-y-1 data-vertical:before:left-1/2 data-vertical:before:w-px\",\n        className,\n      )}\n      {...props}\n    >\n      <ScrollAreaPrimitive.Thumb\n        data-slot=\"scroll-area-thumb\"\n        className=\"relative flex-1 before:absolute before:rounded-full before:bg-ink-3 before:opacity-70 before:transition-[opacity,width,height] before:duration-150 group-data-hovering/scrollbar:before:opacity-100 group-data-scrolling/scrollbar:before:opacity-100 data-horizontal:before:inset-x-0 data-horizontal:before:top-1/2 data-horizontal:before:h-0.5 data-horizontal:before:-translate-y-1/2 data-vertical:before:inset-y-0 data-vertical:before:left-1/2 data-vertical:before:w-0.5 data-vertical:before:-translate-x-1/2 hover:before:bg-ink data-horizontal:hover:before:h-1 data-vertical:hover:before:w-1 active:before:bg-ink\"\n      />\n    </ScrollAreaPrimitive.Scrollbar>\n  )\n}\n\nexport { ScrollArea, ScrollBar }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/scroll-area.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -6,6 +6,7 @@ export const meta: DemoMeta = {
   title: "Badge",
   description: "A small stamp that labels an entry's status or kind.",
   item: "badge",
+  group: "Data display",
 }
 
 const VARIANTS = [

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resizable",
+  "title": "Resizable",
+  "description": "Resizable, in the Patina language.",
+  "dependencies": [
+    "react-resizable-panels@^4.16.1"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/resizable.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/patina/lib/utils\"\nimport { sketch } from \"@/patina/ink/rough\"\nimport * as ResizablePrimitive from \"react-resizable-panels\"\n\n// Panels divided by a pen line. The line takes the region's drum while hovered or dragged, and its hit area is wider\n// than the line. withHandle adds a card-stock grip with six inked dots, drawn by hand, the same dots every time; in a\n// vertical group the grip turns on its side. Focus is the page's dashed ring. The group fills its parent\n// (react-resizable-panels sets height: 100% inline), so size the parent rather than the group.\nconst DOTS = (\n  [\n    [4, 5],\n    [10, 5],\n    [4, 12],\n    [10, 12],\n    [4, 19],\n    [10, 19],\n  ] as const\n)\n  .map(([x, y], i) =>\n    sketch.circle(x, y, 2.6, {\n      seed: 60 + i,\n      stroke: \"currentColor\",\n      strokeWidth: 0.8,\n      fill: \"currentColor\",\n      fillStyle: \"solid\",\n      roughness: 0.7,\n    }),\n  )\n  .join(\"\")\n\nfunction ResizablePanelGroup({\n  className,\n  ...props\n}: ResizablePrimitive.GroupProps) {\n  return (\n    <ResizablePrimitive.Group\n      data-slot=\"resizable-panel-group\"\n      className={cn(\n        \"flex h-full w-full aria-[orientation=vertical]:flex-col\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction ResizablePanel({ ...props }: ResizablePrimitive.PanelProps) {\n  return <ResizablePrimitive.Panel data-slot=\"resizable-panel\" {...props} />\n}\n\nfunction ResizableHandle({\n  withHandle,\n  className,\n  ...props\n}: ResizablePrimitive.SeparatorProps & {\n  withHandle?: boolean\n}) {\n  return (\n    <ResizablePrimitive.Separator\n      data-slot=\"resizable-handle\"\n      className={cn(\n        \"relative flex w-[1.5px] items-center justify-center bg-line/70 transition-colors after:absolute after:inset-y-0 after:left-1/2 after:w-3 after:-translate-x-1/2 data-[separator=active]:bg-k data-[separator=focus]:bg-k data-[separator=hover]:bg-k aria-[orientation=horizontal]:h-[1.5px] aria-[orientation=horizontal]:w-full aria-[orientation=horizontal]:after:left-0 aria-[orientation=horizontal]:after:h-3 aria-[orientation=horizontal]:after:w-full aria-[orientation=horizontal]:after:translate-x-0 aria-[orientation=horizontal]:after:-translate-y-1/2 [&[aria-orientation=horizontal]>div]:rotate-90\",\n        className,\n      )}\n      {...props}\n    >\n      {withHandle && (\n        <div className=\"z-10 flex h-7 w-4 shrink-0 items-center justify-center rounded-sheet border-[1.5px] border-line bg-card text-ink-2\">\n          <svg\n            aria-hidden=\"true\"\n            viewBox=\"0 0 14 24\"\n            className=\"h-[1.1rem] w-[0.65rem] overflow-visible\"\n            dangerouslySetInnerHTML={{ __html: DOTS }}\n          />\n        </div>\n      )}\n    </ResizablePrimitive.Separator>\n  )\n}\n\nexport { ResizableHandle, ResizablePanel, ResizablePanelGroup }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/resizable.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

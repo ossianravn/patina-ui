@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sonner",
+  "title": "Sonner",
+  "description": "Sonner, in the Patina language.",
+  "dependencies": [
+    "sonner@^2.0.8"
+  ],
+  "registryDependencies": [
+    "@patina/base",
+    "@patina/button",
+    "@patina/glyph",
+    "@patina/spinner"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/sonner.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport { Toaster as Sonner, type ToasterProps } from \"sonner\"\nimport { stream } from \"@/patina/ink/seed\"\nimport { sketch } from \"@/patina/ink/rough\"\nimport { Glyph } from \"@/patina/marks/glyph\"\nimport { useSeed } from \"@/patina/print/seed-scope\"\nimport { useAppearance } from \"@/patina/theme\"\nimport { buttonVariants } from \"@/patina/ui/button\"\nimport { Spinner } from \"@/patina/ui/spinner\"\n\n// A slip of card stock taped to the page. The tape is seeded once per Toaster and leans the other way on every second\n// slip; it hides at the calm level like all tape. It hangs off the content block's ::before (positioned by the slip),\n// because sonner claims the slip's own pseudo-elements for its swipe and hover areas. A hand-drawn glyph names the\n// kind: a tick for success, a bang for an error or warning, an \"i\" for information, a turning arc while loading.\n// Actions are mono stamped buttons. The theme follows Patina's day or night paper instead of next-themes.\nconst INFO = [\n  sketch.circle(12, 12, 20, { seed: 91 }),\n  sketch.circle(12, 7.4, 2.6, {\n    seed: 92,\n    fill: \"currentColor\",\n    fillStyle: \"solid\",\n    roughness: 0.5,\n  }),\n  sketch.line(12, 11, 12, 17.5, { seed: 93, strokeWidth: 2.2, roughness: 0.6 }),\n].join(\"\")\n\nconst THEME = { system: \"system\", day: \"light\", night: \"dark\" } as const\n\nconst glyph = (node: React.ReactNode, className: string) => (\n  <span className={className}>{node}</span>\n)\n\nconst Toaster = ({ ...props }: ToasterProps) => {\n  const [{ theme }] = useAppearance()\n  const place = stream(useSeed(\"toaster\"), \"tape\")\n\n  return (\n    <Sonner\n      theme={THEME[theme]}\n      className=\"toaster group\"\n      icons={{\n        success: glyph(\n          <Glyph name=\"check\" seed=\"toast-success\" size={20} />,\n          \"text-k\",\n        ),\n        info: glyph(\n          <svg\n            viewBox=\"0 0 24 24\"\n            width={20}\n            height={20}\n            aria-hidden=\"true\"\n            dangerouslySetInnerHTML={{ __html: INFO }}\n          />,\n          \"text-k-ink\",\n        ),\n        warning: glyph(\n          <Glyph name=\"bang\" seed=\"toast-warning\" size={20} />,\n          \"text-ink-orange\",\n        ),\n        error: glyph(\n          <Glyph name=\"bang\" seed=\"toast-error\" size={20} />,\n          \"text-ink-red\",\n        ),\n        loading: glyph(<Spinner className=\"size-[1.125rem]\" />, \"text-ink-2\"),\n      }}\n      style={\n        {\n          \"--width\": \"22rem\",\n          \"--toaster-tape-tilt\": `${(place.signed() * 4).toFixed(1)}deg`,\n          \"--toaster-tape-shift\": `${Math.round(place.signed() * 20)}%`,\n        } as React.CSSProperties\n      }\n      toastOptions={{\n        unstyled: true,\n        classNames: {\n          toast:\n            \"sheet flex w-(--width) items-start gap-tight py-tight pr-tight pl-snug font-ui text-small leading-small text-ink data-[expanded=false]:data-[front=false]:*:opacity-0 [--tape-shift:var(--toaster-tape-shift)] [--tape-tilt:var(--toaster-tape-tilt)] even:[--tape-shift:calc(var(--toaster-tape-shift)*-1)] even:[--tape-tilt:calc(var(--toaster-tape-tilt)*-1)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-k-ink focus-visible:outline-dashed\",\n          icon: \"relative mt-px flex size-5 shrink-0 items-center justify-center [&>span]:flex\",\n          content: \"flex min-w-0 flex-1 flex-col gap-0.5 py-0.5 before:tape\",\n          title: \"font-read text-small leading-small font-semibold text-ink\",\n          description: \"text-small leading-small text-ink-2\",\n          actionButton: buttonVariants({ size: \"xs\", className: \"shrink-0\" }),\n          cancelButton: buttonVariants({\n            variant: \"ghost\",\n            size: \"xs\",\n            className: \"shrink-0\",\n          }),\n          closeButton: buttonVariants({\n            variant: \"ghost\",\n            size: \"icon-xs\",\n            className:\n              \"absolute -top-2 -left-2 size-6 rounded-sheet border-[1.5px] border-line bg-card\",\n          }),\n        },\n      }}\n      {...props}\n    />\n  )\n}\n\nexport { Toaster }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/sonner.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

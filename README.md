@@ -2,7 +2,7 @@
 
 A [shadcn/ui](https://ui.shadcn.com) component library that looks like printed matter that has been handled: warm paper, riso inks slightly out of register, a serif to read, a hand to annotate, a mono to label, and marks drawn with a pen. Every card, outline, avatar and illustration is drawn from a seed, so each one differs from its neighbours and looks the same on every render.
 
-**Status:** Phase 2 done; Phase 3 (data, navigation and the rest of shadcn parity) is next. Patina has its own palette, layered paper that ages with use, cut-paper sheets, fifteen print motifs, the marks, the core shadcn primitives on Base UI, component docs and Fieldbook, the demo product. [The plan](docs/plan.md) lists the phases, decisions and open questions.
+**Status:** Phase 3 done: all of shadcn parity ships. Phase 4 (Patina's extras, blocks and the home page) is next. Patina has its own palette, layered paper that ages with use, cut-paper sheets, fifteen print motifs, the marks, every shadcn part on Base UI, a hand-drawn chart, component docs and Fieldbook, the demo product. [The plan](docs/plan.md) lists the phases, decisions and open questions.
 
 ## Run it
 

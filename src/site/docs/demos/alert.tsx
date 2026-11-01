@@ -13,6 +13,7 @@ export const meta: DemoMeta = {
   description:
     "A wash of colour with a drawn glyph that tells the reader something about the page they are on.",
   item: "alert",
+  group: "Data display",
 }
 
 export default function AlertDemo() {

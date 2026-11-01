@@ -21,15 +21,19 @@ const BADGE = {
 /** One observation as a typeset row: its print, the species, where and when, the count, its status and actions. */
 export function ObservationRow({
   item,
+  href,
   fresh,
   onDuplicate,
   onDelete,
 }: {
   item: Observation
+  /** Its page, when it has one; records added in the demo do not. */
+  href?: string
   fresh: boolean
   onDuplicate: () => void
   onDelete: () => void
 }) {
+  const name = fresh ? <Highlight>{item.species}</Highlight> : item.species
   const status = (
     <Badge variant={BADGE[item.status]}>{STATUS_LABEL[item.status]}</Badge>
   )
@@ -42,7 +46,13 @@ export function ObservationRow({
       />
       <div className="min-w-0">
         <p className="m-0 line-clamp-2 font-semibold leading-subhead">
-          {fresh ? <Highlight>{item.species}</Highlight> : item.species}
+          {href ? (
+            <a href={href} className="no-underline hover:underline">
+              {name}
+            </a>
+          ) : (
+            name
+          )}
         </p>
         {item.latin && (
           <p

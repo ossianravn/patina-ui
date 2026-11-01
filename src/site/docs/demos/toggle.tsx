@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "A stamped button that stays pressed, for one option that is on or off within a toolbar.",
   item: "toggle",
+  group: "Actions",
 }
 
 const VARIANTS = ["default", "outline"] as const

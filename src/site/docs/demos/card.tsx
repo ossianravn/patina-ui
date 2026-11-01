@@ -15,6 +15,7 @@ export const meta: DemoMeta = {
   description:
     "A sheet of card stock that groups one subject: a header, its content and its actions.",
   item: "card",
+  group: "Data display",
 }
 
 export default function CardDemo() {

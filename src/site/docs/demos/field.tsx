@@ -22,6 +22,7 @@ export const meta: DemoMeta = {
   description:
     "Label, control, description and error kept together in one readable column, for building forms.",
   item: "field",
+  group: "Forms",
 }
 
 const WEATHER = [

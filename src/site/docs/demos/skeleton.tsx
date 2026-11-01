@@ -6,6 +6,7 @@ export const meta: DemoMeta = {
   title: "Skeleton",
   description: "Toned paper in the shape of content that is still loading.",
   item: "skeleton",
+  group: "Data display",
 }
 
 export default function SkeletonDemo() {

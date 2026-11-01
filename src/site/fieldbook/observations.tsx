@@ -32,6 +32,8 @@ const FILTERS: [Filter, string][] = [
   ["all", "All"],
   ...(Object.entries(STATUS_LABEL) as [Status, string][]),
 ]
+/** Records with their own page: the static demo data. */
+const PAGES = new Set(OBSERVATIONS.map((o) => o.id))
 /** Rows rendered at a time; "Show more" adds another page. */
 const PAGE = 50
 
@@ -144,6 +146,11 @@ export function Observations({
               <ObservationRow
                 key={item.id}
                 item={item}
+                href={
+                  PAGES.has(item.id)
+                    ? `/fieldbook/observations/${item.id}`
+                    : undefined
+                }
                 fresh={item.id === fresh}
                 onDuplicate={() => duplicate(item)}
                 onDelete={() => setDoomed(item)}

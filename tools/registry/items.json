@@ -1,7 +1,7 @@
 {
   "groups": {
     "base": [
-      "lib/",
+      "lib/utils.ts",
       "styles/",
       "theme/",
       "defs/",
@@ -19,11 +19,30 @@
       "ink/motifs/"
     ],
     "glyph": ["marks/glyph.tsx", "ink/glyphs.ts"],
-    "paper": ["paper/paper.tsx", "ink/paper-shapes.ts"]
+    "paper": ["paper/paper.tsx", "ink/paper-shapes.ts"],
+    "chart": [
+      "ui/chart.tsx",
+      "ui/chart-context.ts",
+      "ui/chart-hatch.tsx",
+      "ui/chart-drawn.tsx",
+      "ui/chart-tooltip.tsx"
+    ],
+    "sidebar": [
+      "ui/sidebar.tsx",
+      "ui/sidebar-provider.tsx",
+      "ui/sidebar-sections.tsx",
+      "ui/sidebar-menu.tsx"
+    ],
+    "combobox": ["ui/combobox.tsx", "ui/combobox-chips.tsx"],
+    "questionnaire": ["ui/questionnaire.tsx", "ui/questionnaire-choice.tsx"],
+    "use-highlighted-code": [
+      "hooks/use-highlighted-code.ts",
+      "lib/highlighter.tsx"
+    ]
   },
   "descriptions": {
     "base": "Tokens, paper stocks, ink sets, mark utilities, the appearance runtime, PatinaDefs, SeedScope and the core of the ink engine. Every other item builds on it; make src/patina/styles/patina.css your Tailwind entry.",
-    "print": "Print, a seeded riso illustration, with the print() function and all twelve motifs.",
+    "print": "Print, a seeded riso illustration, with the print() function and all fifteen motifs.",
     "glyph": "Glyph: sixteen hand-drawn signs in currentColor.",
     "highlight": "Highlight: a marker stroke behind a phrase that matters.",
     "hand-underline": "HandUnderline: two loose strokes under a heading or term.",
@@ -32,7 +51,13 @@
     "notes": "MarginNote and Annotation: handwritten asides with drawn arrows.",
     "stamp": "Stamp: a rubber-stamp label, outline or solid.",
     "patina": "Everything in Patina UI.",
-    "paper": "Paper: a sheet with a seeded edge (deckle, torn, perforated, pinked), dog-ear, tilt and wear that follows the patina level."
+    "paper": "Paper: a sheet with a seeded edge (deckle, torn, perforated, pinked), dog-ear, tilt and wear that follows the patina level.",
+    "chart": "Chart: shadcn's Recharts chart with series in the ink set's drums, hatch fills per series, and drawn bars, curves and slices that keep every data point exact.",
+    "use-highlighted-code": "useHighlightedCode: lazy Shiki highlighting with a theme drawn from Patina's text inks, for CodeBlock.",
+    "typography": "Typography: a prose container for long-form text, with a kicker and an optional drop cap."
+  },
+  "requires": {
+    "code-block": ["use-highlighted-code"]
   },
   "peers": {},
   "devDependencies": {}

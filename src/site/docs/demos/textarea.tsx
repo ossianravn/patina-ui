@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "A calm pen-line field for a few lines of notes that grows with what is written.",
   item: "textarea",
+  group: "Forms",
 }
 
 const NOTE =

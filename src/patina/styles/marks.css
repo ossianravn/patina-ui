@@ -177,6 +177,9 @@
   line-height: var(--lh-hand);
   color: var(--k-hand);
   rotate: calc(var(--tilt-max) * -3);
+  &:dir(rtl) {
+    rotate: calc(var(--tilt-max) * 3);
+  }
 }
 
 /* A pen-line divider. The element is taller than the line so the wobble has room to move. */

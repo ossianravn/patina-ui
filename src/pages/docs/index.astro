@@ -2,6 +2,20 @@
 import Base from "@/site/layouts/base.astro"
 import type { DemoMeta } from "@/site/docs/demo-kit"
 
+type Group = NonNullable<DemoMeta["group"]>
+
+// The inventory's order (docs/components.md); a demo without a group lands in "Other".
+const ORDER: (Group | "Other")[] = [
+  "Actions",
+  "Forms",
+  "Overlays",
+  "Navigation",
+  "Data display",
+  "Charts",
+  "Conversation",
+  "Other",
+]
+
 const modules = import.meta.glob<{ meta: DemoMeta }>(
   "../../site/docs/demos/*.tsx",
   { eager: true },
@@ -12,6 +26,10 @@ const entries = Object.entries(modules)
     ...mod.meta,
   }))
   .sort((a, b) => a.title.localeCompare(b.title))
+const groups = ORDER.map((group) => ({
+  group,
+  items: entries.filter((e) => (e.group ?? "Other") === group),
+})).filter((g) => g.items.length > 0)
 ---
 
 <Base
@@ -19,24 +37,37 @@ const entries = Object.entries(modules)
   description="Every Patina UI component, with its states and the command that installs it."
 >
   <div class="mx-auto max-w-[76rem] px-snug pt-section sm:px-line">
-    <p class="label-mono m-0 text-ink-2">Patina UI · Components</p>
+    <p class="label-mono m-0 text-ink-2">
+      Patina UI · {entries.length} components
+    </p>
     <h1 class="mb-tight mt-tight text-title">Components</h1>
     <p class="m-0 max-w-measure text-ink-2">
       shadcn/ui's parts with shadcn's names, props and data-slots, built on Base
       UI and printed in Patina.
     </p>
   </div>
-  <ol class="mx-auto mt-section max-w-[76rem] list-none px-snug sm:px-line">
-    {entries.map(({ name, title, description }) => (
-      <li class="border-b border-dashed border-rule">
-        <a
-          href={`/docs/components/${name}`}
-          class="grid gap-x-section gap-y-hair py-tight no-underline md:grid-cols-[14rem_minmax(0,1fr)] md:items-baseline"
-        >
-          <span class="font-semibold">{title}</span>
-          <span class="text-small leading-small text-ink-2">{description}</span>
-        </a>
-      </li>
+  <div class="mx-auto max-w-[76rem] px-snug pb-page sm:px-line">
+    {groups.map(({ group, items }) => (
+      <section class="mt-section" aria-labelledby={`group-${group}`}>
+        <h2 id={`group-${group}`} class="label-mono m-0 mb-tight text-ink-2">
+          {group}
+        </h2>
+        <ol class="m-0 list-none border-t border-dashed border-rule p-0">
+          {items.map(({ name, title, description }) => (
+            <li class="border-b border-dashed border-rule">
+              <a
+                href={`/docs/components/${name}`}
+                class="grid gap-x-section gap-y-hair py-tight no-underline md:grid-cols-[14rem_minmax(0,1fr)] md:items-baseline"
+              >
+                <span class="font-semibold">{title}</span>
+                <span class="max-w-measure text-small leading-small text-ink-2">
+                  {description}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </section>
     ))}
-  </ol>
+  </div>
 </Base>

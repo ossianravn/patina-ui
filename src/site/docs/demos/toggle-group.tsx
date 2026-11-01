@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "A row of stamped toggles: a segmented control for two to four views, or a set of filters that switch on and off.",
   item: "toggle-group",
+  group: "Actions",
 }
 
 export default function ToggleGroupDemo() {

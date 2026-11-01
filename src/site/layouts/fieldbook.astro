@@ -1,22 +1,16 @@
 ---
-// Fieldbook's own frame: a product, not the docs. Its mark, its navigation, its user; a quiet link back to Patina.
+// Fieldbook's own frame: a product, not the docs. Its sections in a sidebar, its user, a quiet link back to Patina.
 import "@/patina/styles/patina.css"
 import { PatinaDefs } from "@/patina/defs/patina-defs"
 import { appearanceScript } from "@/patina/theme/appearance-script"
-import { print } from "@/patina/ink"
+import { FieldbookShell, type Section } from "@/site/fieldbook/shell"
 
 interface Props {
   title: string
-  /** Sign-in has no navigation. */
-  bare?: boolean
+  /** The sidebar entry this page belongs to. Sign-in has none, and no sidebar. */
+  section?: Section
 }
-const { title, bare = false } = Astro.props
-const path = Astro.url.pathname.replace(/\/$/, "")
-const NAV = [
-  { href: "/fieldbook", label: "Observations" },
-  { href: "/fieldbook/settings", label: "Settings" },
-]
-const mark = print({ motif: "sprig", seed: "fieldbook" }).svg
+const { title, section } = Astro.props
 ---
 
 <!doctype html>
@@ -39,37 +33,14 @@ const mark = print({ motif: "sprig", seed: "fieldbook" }).svg
     >
       Skip to content
     </a>
-    {!bare && (
-      <header class="border-b border-dashed border-rule">
-        <div class="mx-auto flex h-16 max-w-[72rem] items-center gap-tight px-snug min-[24rem]:gap-snug sm:gap-section sm:px-line">
-          <a href="/fieldbook" class="flex items-center gap-hair no-underline">
-            <span class="block w-9" set:html={mark} />
-            <span class="font-hand text-h2 leading-none font-bold max-[23rem]:sr-only">
-              Fieldbook
-            </span>
-          </a>
-          <nav
-            aria-label="Fieldbook"
-            class="flex items-center gap-tight sm:gap-snug"
-          >
-            {NAV.map(({ href, label }) => (
-              <a
-                href={href}
-                aria-current={path === href ? "page" : undefined}
-                class="label-mono text-ink-2 no-underline hover:text-ink aria-[current=page]:hand-underline aria-[current=page]:text-ink"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-          <a href="/" class="label-mono ml-auto text-ink-3 max-sm:hidden">
-            Demo · Patina UI
-          </a>
-        </div>
-      </header>
+    {section ? (
+      <FieldbookShell current={section} client:load>
+        <slot />
+      </FieldbookShell>
+    ) : (
+      <main id="main">
+        <slot />
+      </main>
     )}
-    <main id="main">
-      <slot />
-    </main>
   </body>
 </html>

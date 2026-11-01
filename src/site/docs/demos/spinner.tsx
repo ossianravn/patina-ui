@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "A hand-drawn arc that turns while something of unknown length is happening.",
   item: "spinner",
+  group: "Data display",
 }
 
 export default function SpinnerDemo() {

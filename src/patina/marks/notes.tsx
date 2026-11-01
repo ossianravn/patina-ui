@@ -55,7 +55,10 @@ export function MarginNote({
           width="44"
           height="22"
           viewBox="0 0 44 22"
-          className={cn("mt-hair shrink-0", gutter && "max-[82rem]:hidden")}
+          className={cn(
+            "mt-hair shrink-0 rtl:-scale-x-100",
+            gutter && "max-[82rem]:hidden",
+          )}
           dangerouslySetInnerHTML={{ __html: lead }}
         />
       )}

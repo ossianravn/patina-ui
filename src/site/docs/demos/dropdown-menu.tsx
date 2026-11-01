@@ -31,6 +31,7 @@ export const meta: DemoMeta = {
   description:
     "A list of actions or view options that opens from a button and closes once one is chosen.",
   item: "dropdown-menu",
+  group: "Overlays",
 }
 
 const EXPEDITIONS = ["Saltmarsh walk", "Lichen survey", "Night moths"]

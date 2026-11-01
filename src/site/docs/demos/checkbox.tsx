@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "A pen-drawn box that takes a hand tick, for choices that are on or off.",
   item: "checkbox",
+  group: "Forms",
 }
 
 export default function CheckboxDemo() {

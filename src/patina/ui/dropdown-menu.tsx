@@ -26,7 +26,7 @@ const DOT = sketch.circle(12, 12, 11, {
 })
 
 const item =
-  "relative isolate flex cursor-default items-center gap-tight rounded-sheet px-tight py-1.5 text-small leading-small text-ink outline-none select-none before:pointer-events-none before:absolute before:inset-x-1 before:inset-y-0 before:-z-10 data-highlighted:before:highlight data-inset:pl-10 data-disabled:pointer-events-none data-disabled:text-ink-faint [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+  "relative isolate flex cursor-default items-center gap-tight rounded-sheet px-tight py-1.5 text-small leading-small text-ink outline-none select-none before:pointer-events-none before:absolute before:inset-x-1 before:inset-y-0 before:-z-10 data-highlighted:before:highlight data-inset:ps-10 data-disabled:pointer-events-none data-disabled:text-ink-faint [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
 
 function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
   return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />
@@ -90,7 +90,7 @@ function DropdownMenuLabel({
       data-slot="dropdown-menu-label"
       data-inset={inset}
       className={cn(
-        "label-mono px-tight pt-1.5 pb-1 text-ink-3 data-inset:pl-10",
+        "label-mono px-tight pt-1.5 pb-1 text-ink-3 data-inset:ps-10",
         className,
       )}
       {...props}
@@ -143,7 +143,7 @@ function DropdownMenuSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto text-ink-3" />
+      <ChevronRightIcon className="ms-auto text-ink-3 rtl:rotate-180" />
     </MenuPrimitive.SubmenuTrigger>
   )
 }
@@ -179,7 +179,7 @@ const mark = (svg: string) => (
   />
 )
 const markSlot =
-  "pointer-events-none absolute right-tight flex items-center justify-center"
+  "pointer-events-none absolute end-tight flex items-center justify-center"
 
 function DropdownMenuCheckboxItem({
   className,
@@ -194,7 +194,7 @@ function DropdownMenuCheckboxItem({
     <MenuPrimitive.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
       data-inset={inset}
-      className={cn(item, "pr-9", className)}
+      className={cn(item, "pe-9", className)}
       checked={checked}
       {...props}
     >
@@ -232,7 +232,7 @@ function DropdownMenuRadioItem({
     <MenuPrimitive.RadioItem
       data-slot="dropdown-menu-radio-item"
       data-inset={inset}
-      className={cn(item, "pr-9", className)}
+      className={cn(item, "pe-9", className)}
       {...props}
     >
       <span className={markSlot} data-slot="dropdown-menu-radio-item-indicator">
@@ -269,7 +269,7 @@ function DropdownMenuShortcut({
     <span
       data-slot="dropdown-menu-shortcut"
       className={cn(
-        "ml-auto pl-snug font-label text-label tracking-[0.06em] text-ink-3",
+        "ms-auto ps-snug font-label text-label tracking-[0.06em] text-ink-3",
         className,
       )}
       {...props}

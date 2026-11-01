@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "A calm pen-line field for a short value, as wide as the value it holds.",
   item: "input",
+  group: "Forms",
 }
 
 export default function InputDemo() {

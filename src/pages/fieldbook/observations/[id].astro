@@ -1,0 +1,18 @@
+---
+import Fieldbook from "@/site/layouts/fieldbook.astro"
+import { ObservationDetail } from "@/site/fieldbook/detail"
+import { OBSERVATIONS, type Observation } from "@/site/fieldbook/data"
+
+export function getStaticPaths() {
+  return OBSERVATIONS.map((item) => ({
+    params: { id: item.id },
+    props: { item },
+  }))
+}
+
+const { item } = Astro.props as { item: Observation }
+---
+
+<Fieldbook title={item.species} section="observations">
+  <ObservationDetail item={item} client:load />
+</Fieldbook>

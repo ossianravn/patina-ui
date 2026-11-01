@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "title": "Button Group",
+  "description": "Button Group, in the Patina language.",
+  "dependencies": [
+    "@base-ui/react@^1.9.0",
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "@patina/base",
+    "@patina/separator"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/button-group.tsx",
+      "content": "import { mergeProps } from \"@base-ui/react/merge-props\"\nimport { useRender } from \"@base-ui/react/use-render\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/patina/lib/utils\"\n\nimport { Separator } from \"@/patina/ui/separator\"\n\n// Buttons, selects and inputs joined into one frame: neighbours share a single pen line as their divider and only\n// the outer corners keep the sheet's irregular radius. A focused member rises above its neighbours so the page's\n// dashed ring is never covered. ButtonGroupText is a mono label cell in the same frame.\nconst buttonGroupVariants = cva(\n  \"flex w-fit items-stretch *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-tight [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1\",\n  {\n    variants: {\n      orientation: {\n        horizontal:\n          \"[&>[data-slot]:has(~[data-slot])]:rounded-r-none [&>[data-slot]~[data-slot]]:rounded-l-none [&>[data-slot]~[data-slot]:not([data-slot=button-group-separator])]:border-l-0\",\n        vertical:\n          \"flex-col [&>[data-slot]:has(~[data-slot])]:rounded-b-none [&>[data-slot]~[data-slot]]:rounded-t-none [&>[data-slot]~[data-slot]:not([data-slot=button-group-separator])]:border-t-0\",\n      },\n    },\n    defaultVariants: {\n      orientation: \"horizontal\",\n    },\n  },\n)\n\nfunction ButtonGroup({\n  className,\n  orientation,\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof buttonGroupVariants>) {\n  return (\n    <div\n      role=\"group\"\n      data-slot=\"button-group\"\n      data-orientation={orientation}\n      className={cn(buttonGroupVariants({ orientation }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction ButtonGroupText({\n  className,\n  render,\n  ...props\n}: useRender.ComponentProps<\"div\">) {\n  return useRender({\n    defaultTagName: \"div\",\n    props: mergeProps<\"div\">(\n      {\n        className: cn(\n          \"flex items-center gap-hair rounded-sheet border-[1.5px] border-line bg-paper-2 px-tight font-label text-small leading-small text-ink-2 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4\",\n          className,\n        ),\n      },\n      props,\n    ),\n    render,\n    state: {\n      slot: \"button-group-text\",\n    },\n  })\n}\n\nfunction ButtonGroupSeparator({\n  className,\n  orientation = \"vertical\",\n  ...props\n}: React.ComponentProps<typeof Separator>) {\n  return (\n    <Separator\n      data-slot=\"button-group-separator\"\n      orientation={orientation}\n      className={cn(\n        \"relative self-stretch border-solid border-line/50 data-[orientation=horizontal]:w-auto data-[orientation=vertical]:h-auto\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  ButtonGroup,\n  ButtonGroupSeparator,\n  ButtonGroupText,\n  buttonGroupVariants,\n}\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/button-group.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

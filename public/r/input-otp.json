@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp",
+  "title": "Input Otp",
+  "description": "Input Otp, in the Patina language.",
+  "dependencies": [
+    "input-otp@^1.5.0"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/input-otp.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cn } from \"@/patina/lib/utils\"\nimport { sketch } from \"@/patina/ink/rough\"\nimport { OTPInput, OTPInputContext } from \"input-otp\"\n\n// One pen-drawn box per digit, square at control height, with the digit in the mono voice. The box that takes the\n// next keystroke carries the page's dashed focus ring (at a shorter offset, so it clears its neighbours); invalid\n// boxes take the red line and underline, disabled ones the dashed line. The separator is a short pen dash.\nconst DASH = sketch.line(2, 6.5, 14, 5.5, {\n  seed: 61,\n  strokeWidth: 1.8,\n  roughness: 0.9,\n})\n\nfunction InputOTP({\n  className,\n  containerClassName,\n  ...props\n}: React.ComponentProps<typeof OTPInput> & {\n  containerClassName?: string\n}) {\n  return (\n    <OTPInput\n      data-slot=\"input-otp\"\n      containerClassName={cn(\n        \"group/input-otp flex items-center gap-tight has-disabled:cursor-not-allowed\",\n        containerClassName,\n      )}\n      spellCheck={false}\n      className={cn(\"disabled:cursor-not-allowed\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction InputOTPGroup({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"input-otp-group\"\n      className={cn(\"flex items-center gap-hair\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction InputOTPSlot({\n  index,\n  className,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  index: number\n}) {\n  const inputOTPContext = React.useContext(OTPInputContext)\n  const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {}\n\n  return (\n    <div\n      data-slot=\"input-otp-slot\"\n      data-active={isActive}\n      className={cn(\n        \"relative flex size-control items-center justify-center rounded-sheet border-[1.5px] border-line bg-card font-label text-lead leading-none font-medium text-ink tabular-nums transition-colors\",\n        \"data-[active=true]:z-10 data-[active=true]:border-ink data-[active=true]:outline-2 data-[active=true]:outline-offset-2 data-[active=true]:outline-k-ink data-[active=true]:outline-dashed\",\n        \"aria-invalid:border-ink-red aria-invalid:shadow-[inset_0_-2px_0_var(--ink-red)] group-has-[input[aria-invalid=true]]/input-otp:border-ink-red group-has-[input[aria-invalid=true]]/input-otp:shadow-[inset_0_-2px_0_var(--ink-red)]\",\n        \"group-has-disabled/input-otp:border-dashed group-has-disabled/input-otp:bg-transparent group-has-disabled/input-otp:text-ink-faint\",\n        className,\n      )}\n      {...props}\n    >\n      {char}\n      {hasFakeCaret && (\n        <div className=\"pointer-events-none absolute inset-0 flex items-center justify-center\">\n          <div className=\"h-[1.1em] w-[1.5px] animate-caret-blink bg-ink duration-1000\" />\n        </div>\n      )}\n    </div>\n  )\n}\n\nfunction InputOTPSeparator({ ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"input-otp-separator\"\n      className=\"flex items-center text-ink-3 group-has-disabled/input-otp:text-ink-faint\"\n      role=\"separator\"\n      {...props}\n    >\n      <svg\n        viewBox=\"0 0 16 12\"\n        aria-hidden=\"true\"\n        className=\"h-3 w-4 overflow-visible\"\n        dangerouslySetInnerHTML={{ __html: DASH }}\n      />\n    </div>\n  )\n}\n\nexport { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/input-otp.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

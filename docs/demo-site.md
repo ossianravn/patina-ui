@@ -75,6 +75,8 @@ The product that proves the kit, chosen on 2026-11-01: **Fieldbook**, a notebook
 | Team and comments           | Avatars, message scroller, marker, sonner                                                                                           |
 | Settings                    | Settings rows in a narrow column, appearance control, switch, select, alert dialog                                                  |
 
+Built so far (Phase 3): sign-in, Observations, Observation, Expeditions, Overview and Settings, inside a sidebar shell (`src/site/fieldbook/shell.tsx`). Observation pages exist for the static records only; records added in the demo have none.
+
 Alternatives considered: a **small-press shop** (riso zines: storefront, cart, order admin; the most literal fit, but checkout dominates) or a **reading log** (books and highlights; strong for typography, thin on data views, and close to Mental Models).
 
 Demo data comes from static fixtures with seeded ids, so every observation keeps its print and avatar across reloads. Mutations reset on reload; appearance preferences persist locally.

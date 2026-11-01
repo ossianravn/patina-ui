@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "A pill track for a setting that is on or off and takes effect at once.",
   item: "switch",
+  group: "Forms",
 }
 
 const SETTINGS = [

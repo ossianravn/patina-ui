@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "A stamped label that starts an action: solid ink for the main one, a pen-line frame or less for the rest.",
   item: "button",
+  group: "Actions",
 }
 
 const VARIANTS = [

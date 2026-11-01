@@ -18,6 +18,7 @@ export const meta: DemoMeta = {
   description:
     "A sheet pinned over the dimmed page for a task that needs full attention before returning to it.",
   item: "dialog",
+  group: "Overlays",
 }
 
 export default function DialogDemo() {

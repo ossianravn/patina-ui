@@ -11,6 +11,7 @@ export const meta: DemoMeta = {
   description:
     "The platform's own select in Patina's field, for long lists on phones and forms that must work before scripts load.",
   item: "native-select",
+  group: "Forms",
 }
 
 function Stations() {

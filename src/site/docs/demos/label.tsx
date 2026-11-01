@@ -8,6 +8,7 @@ export const meta: DemoMeta = {
   description:
     "The name of a control, set in the reading voice beside or above what it names.",
   item: "label",
+  group: "Forms",
 }
 
 export default function LabelDemo() {

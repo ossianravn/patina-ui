@@ -9,6 +9,7 @@ export const meta: DemoMeta = {
   description:
     "A label-maker strip that names a control when it is hovered or focused.",
   item: "tooltip",
+  group: "Overlays",
 }
 
 const SIDES = [

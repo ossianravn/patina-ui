@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   title: "Kbd",
   description: "A mono keycap that names a key or a shortcut.",
   item: "kbd",
+  group: "Actions",
 }
 
 export default function KbdDemo() {

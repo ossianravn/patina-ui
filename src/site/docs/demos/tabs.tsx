@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "Mono labels on a dashed rule that switch between views of one record, the active one underlined by hand.",
   item: "tabs",
+  group: "Navigation",
 }
 
 function Panel({ children }: { children: ReactNode }) {

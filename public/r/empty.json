@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty",
+  "title": "Empty",
+  "description": "Empty, in the Patina language.",
+  "dependencies": [
+    "class-variance-authority@^0.7.1"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/empty.tsx",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/patina/lib/utils\"\n\n// A quiet page for when there is nothing to show: a print (a `spot` Print in EmptyMedia suits it), a serif heading,\n// one line of description and one action, centred in a reading column. Add `border` for a dashed rule-ink frame. The\n// media tilts a little at the lively variation level and sits straight at calm. The icon variant sets a Lucide icon\n// on a pressed paper tile instead of a print.\n\nfunction Empty({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty\"\n      className={cn(\n        \"flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-snug rounded-sheet border-dashed border-rule p-line text-center text-balance\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction EmptyHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-header\"\n      className={cn(\n        \"flex max-w-[28rem] flex-col items-center gap-hair\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nconst emptyMediaVariants = cva(\n  \"mb-hair flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n  {\n    variants: {\n      variant: {\n        default: \"rotate-[calc(var(--tilt-max)*-2)] bg-transparent\",\n        icon: \"size-10 rounded-sheet bg-paper-3 text-ink [&_svg:not([class*='size-'])]:size-5\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  },\n)\n\nfunction EmptyMedia({\n  className,\n  variant = \"default\",\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof emptyMediaVariants>) {\n  return (\n    <div\n      data-slot=\"empty-icon\"\n      data-variant={variant}\n      className={cn(emptyMediaVariants({ variant, className }))}\n      {...props}\n    />\n  )\n}\n\nfunction EmptyTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-title\"\n      className={cn(\n        \"font-read text-lead leading-subhead font-semibold text-ink\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction EmptyDescription({ className, ...props }: React.ComponentProps<\"p\">) {\n  return (\n    <div\n      data-slot=\"empty-description\"\n      className={cn(\n        \"text-ui leading-small text-ink-2 [&>a]:underline [&>a]:decoration-k-ink/55 [&>a]:underline-offset-[0.2em] [&>a:hover]:decoration-k-ink\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction EmptyContent({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-content\"\n      className={cn(\n        \"flex w-full max-w-[28rem] min-w-0 flex-col items-center gap-tight text-small leading-small text-balance\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Empty,\n  EmptyHeader,\n  EmptyTitle,\n  EmptyDescription,\n  EmptyContent,\n  EmptyMedia,\n}\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/empty.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+Phase 3: the rest of shadcn parity, and Fieldbook's main screens.
+
+- Data and layout: `table` (a ledger with a sticky heading; the docs add a data table and a 200-row ledger), `pagination`, `breadcrumb`, `item`, `empty`, `aspect-ratio`, `scroll-area`, `resizable`, `accordion`, `collapsible` and `typography` (a prose container with a kicker and drop cap).
+- Overlays and navigation: `sheet` (a deckled edge), `drawer`, `hover-card`, `context-menu`, `menubar`, `navigation-menu`, `sidebar` with `use-mobile`, and `direction`.
+- Forms: `input-group`, `input-otp`, `button-group`, `command`, `combobox`, `calendar` (with date and range pickers in the docs), `carousel`, `sonner` (following Patina's day and night paper instead of next-themes) and `questionnaire`. `form` is served by `field` and `toast` by `sonner`, as in base-nova.
+- `chart`: shadcn's Recharts chart in the ink set's drums, a hatch fill per series (`fill="var(--hatch-<key>)"`), and `drawnBar`, `drawnCurve` and `drawnSector`, which draw strokes by hand through the exact data points. `--chart-1…5` now follow the ink set.
+- Conversation: `message`, `bubble`, `message-scroller`, `marker`, `trace`, `attachment`, and `code-block` with `use-highlighted-code` (Shiki, coloured with Patina's text inks).
+- Fixes: `checkbox` draws a dash when partly checked; `dropdown-menu` (and so `context-menu` and `menubar`) uses logical properties for right-to-left text; `margin-note` mirrors in right-to-left text.
+- Registry: 77 items. A part split across files installs as one item, and `code-block` brings its hook.
+- Site: the Components index is grouped as in the inventory. Fieldbook moves into a sidebar shell and gains an observation page (journal, attachments, reviewers' notes, conditions), Expeditions (with a planning sheet that uses the date picker and combobox) and an Overview (headline numbers, two hand-drawn charts, the week's biggest counts and today's survey).
+
 Phase 2: Patina's own look, and the core primitives.
 
 - Identity: a new default palette (verdigris, copper, indigo, plum, rose, ochre, oxblood), the Archive stock (ivory; bronze at night) as the default, Field kept as a stock and an ink set, a new mark, and site copy drawn from Fieldbook rather than Mental Models.

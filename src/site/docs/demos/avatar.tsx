@@ -14,6 +14,7 @@ export const meta: DemoMeta = {
   description:
     "A person's picture in a pen circle, or a monogram print seeded by their name when there is none.",
   item: "avatar",
+  group: "Data display",
 }
 
 // A stand-in photo: a horizon print rendered as a self-contained image, so the demo needs no network.

@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "A pen-line track with a card-stock thumb, for setting a value or a range by feel within known bounds.",
   item: "slider",
+  group: "Forms",
 }
 
 const first = (v: number | readonly number[]) =>

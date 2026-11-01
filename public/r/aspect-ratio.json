@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio",
+  "title": "Aspect Ratio",
+  "description": "Aspect Ratio, in the Patina language.",
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/aspect-ratio.tsx",
+      "content": "import { cn } from \"@/patina/lib/utils\"\n\n// A frame of fixed proportion on a recessed paper well. Its children stack to fill it, in order, so a Print placed\n// before an image holds the frame until the image paints over it, with no script. A Print covers the frame whatever\n// the ratio (it is square, so it crops at the long edge); images and video cover it too.\n\nfunction AspectRatio({\n  ratio,\n  className,\n  ...props\n}: React.ComponentProps<\"div\"> & { ratio: number }) {\n  return (\n    <div\n      data-slot=\"aspect-ratio\"\n      style={\n        {\n          \"--ratio\": ratio,\n        } as React.CSSProperties\n      }\n      className={cn(\n        \"relative aspect-(--ratio) overflow-hidden rounded-sheet bg-paper-2 [container-type:size] *:absolute *:inset-0 *:size-full *:[img,video]:object-cover *:data-[slot=print]:inset-auto *:data-[slot=print]:top-1/2 *:data-[slot=print]:left-1/2 *:data-[slot=print]:size-auto *:data-[slot=print]:w-[max(100cqw,100cqh)] *:data-[slot=print]:-translate-1/2\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { AspectRatio }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/aspect-ratio.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

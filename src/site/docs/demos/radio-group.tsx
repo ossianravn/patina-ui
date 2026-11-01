@@ -7,6 +7,7 @@ export const meta: DemoMeta = {
   description:
     "A set of pen-drawn circles for picking exactly one of a few options; the chosen one takes an inked dot.",
   item: "radio-group",
+  group: "Forms",
 }
 
 const CONFIDENCE = [

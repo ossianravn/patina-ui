@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "title": "Accordion",
+  "description": "Accordion, in the Patina language.",
+  "dependencies": [
+    "@base-ui/react@^1.9.0"
+  ],
+  "registryDependencies": [
+    "@patina/base"
+  ],
+  "files": [
+    {
+      "path": "src/patina/ui/accordion.tsx",
+      "content": "\"use client\"\n\nimport { Accordion as AccordionPrimitive } from \"@base-ui/react/accordion\"\nimport { cn } from \"@/patina/lib/utils\"\nimport { sketch } from \"@/patina/ink/rough\"\n\n// Rows on dashed rules. The trigger is a serif heading with a plus drawn by hand at its end; opening the row turns the\n// plus's upright stroke down onto the crossbar, leaving a minus. The panel's height eases open and shut; its text sits\n// in the second ink at a reading measure. Focus is the page's dashed ring; a disabled row fades to the faint ink.\nconst PEN = {\n  stroke: \"currentColor\",\n  strokeWidth: 1.7,\n  roughness: 0.9,\n} as const\nconst BAR = sketch.curve(\n  [\n    [3, 10.5],\n    [10, 9.6],\n    [17, 10.1],\n  ],\n  { ...PEN, seed: 51 },\n)\nconst UPRIGHT = sketch.curve(\n  [\n    [10.4, 3],\n    [9.6, 10],\n    [10.1, 17],\n  ],\n  { ...PEN, seed: 52 },\n)\n\nfunction Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {\n  return (\n    <AccordionPrimitive.Root\n      data-slot=\"accordion\"\n      className={cn(\"flex w-full flex-col\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {\n  return (\n    <AccordionPrimitive.Item\n      data-slot=\"accordion-item\"\n      className={cn(\"border-dashed border-rule not-last:border-b\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction AccordionTrigger({\n  className,\n  children,\n  ...props\n}: AccordionPrimitive.Trigger.Props) {\n  return (\n    <AccordionPrimitive.Header className=\"m-0 flex\">\n      <AccordionPrimitive.Trigger\n        data-slot=\"accordion-trigger\"\n        className={cn(\n          \"group/accordion-trigger relative flex flex-1 cursor-pointer items-start justify-between gap-snug py-tight text-left font-read text-body leading-subhead font-semibold text-ink decoration-k-ink/55 decoration-[1.5px] underline-offset-[0.25em] transition-colors hover:underline aria-disabled:pointer-events-none aria-disabled:text-ink-faint data-disabled:pointer-events-none data-disabled:text-ink-faint **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5 **:data-[slot=accordion-trigger-icon]:text-ink-2 aria-disabled:**:data-[slot=accordion-trigger-icon]:text-ink-faint data-disabled:**:data-[slot=accordion-trigger-icon]:text-ink-faint\",\n          className,\n        )}\n        {...props}\n      >\n        {children}\n        <svg\n          data-slot=\"accordion-trigger-icon\"\n          aria-hidden=\"true\"\n          viewBox=\"0 0 20 20\"\n          className=\"pointer-events-none mt-px shrink-0 overflow-visible\"\n        >\n          <g dangerouslySetInnerHTML={{ __html: BAR }} />\n          <g\n            className=\"origin-center transition-transform duration-200 ease-out [transform-box:view-box] group-aria-expanded/accordion-trigger:rotate-90\"\n            dangerouslySetInnerHTML={{ __html: UPRIGHT }}\n          />\n        </svg>\n      </AccordionPrimitive.Trigger>\n    </AccordionPrimitive.Header>\n  )\n}\n\nfunction AccordionContent({\n  className,\n  children,\n  ...props\n}: AccordionPrimitive.Panel.Props) {\n  return (\n    <AccordionPrimitive.Panel\n      data-slot=\"accordion-content\"\n      className=\"h-(--accordion-panel-height) overflow-hidden text-body leading-body text-ink-2 transition-[height] duration-200 ease-out data-ending-style:h-0 data-starting-style:h-0\"\n      {...props}\n    >\n      <div\n        className={cn(\n          \"max-w-measure pb-snug [&_a]:underline [&_a]:decoration-k-ink/55 [&_a]:underline-offset-[0.2em] [&_a]:hover:decoration-k-ink [&_p]:m-0 [&_p:not(:last-child)]:mb-tight\",\n          className,\n        )}\n      >\n        {children}\n      </div>\n    </AccordionPrimitive.Panel>\n  )\n}\n\nexport { Accordion, AccordionItem, AccordionTrigger, AccordionContent }\n",
+      "type": "registry:file",
+      "target": "~/src/patina/ui/accordion.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

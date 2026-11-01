@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "print",
   "title": "Print",
-  "description": "Print, a seeded riso illustration, with the print() function and all twelve motifs.",
+  "description": "Print, a seeded riso illustration, with the print() function and all fifteen motifs.",
   "registryDependencies": [
     "@patina/base"
   ],
