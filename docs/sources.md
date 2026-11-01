@@ -1,0 +1,15 @@
+# Sources
+
+What Patina takes from each reference, under which license, and what stays out. Checked 2026-11-01.
+
+| Source | License | What Patina takes | Limits |
+| --- | --- | --- | --- |
+| [Mental Models](https://mentalmodels.ossianravn.dev) (`C:\CodexApp\mental-models`), the maintainer's project | Code MIT; content CC BY-SA 4.0 | The design language: tokens and night paper (`src/styles/global.css`), the seed, PRNG and rough.js wrapper (`src/lib/sketch.ts`), riso drawing and grain filter (`src/lib/riso.ts`), shared SVG filters (`src/layouts/Base.astro`), marks and components (`MarginNote`, `EvidenceScale`, `KindGlyph`, `ModelCard`, `ModelRow`, `Sections`, `ConnectionMap`, `KindMap`), share-image pipeline (`src/lib/og.ts`) | Content stays in Mental Models. `public/paper.avif` is a scan with no recorded provenance; it is reused only if the maintainer confirms the rights ([open question 4](plan.md#open-questions-for-the-maintainer)) |
+| [Groundwork](https://github.com/ossianravn/groundwork) (`C:\CodexApp\awesome-web-template`), the maintainer's project | MIT | AGENTS.md structure and working method; the kit/demo split; registry build and release flow; the pre-paint theme script; token ownership tiers; the quality contract and verification tools; Base UI and shadcn CLI notes (`docs/sources.md`) | Groundwork's neutral visual style; Patina replaces it |
+| [Looseleaf](https://github.com/kevintngo/looseleaf) by Kevin Ngo | MIT | Lessons: keep shadcn's API and `data-slot` names; derive the registry from the source tree; test installation into fresh consumer apps; calm density; forced colors, reduced motion and 24 px targets | Prior art, not a code source. Its pen engine, art, mascot and Kevin Sans stay out; Patina builds its own engine. Copying any of its code requires its MIT notice |
+| [Stageshow](https://github.com/benjitaylor/skills/tree/main/stageshow) by Benji Taylor | MIT, except bundled app icons | Method for faux product scenes on the home page: restraint, framing, poster frame, compact design, rehearsal | Its app icons (from app bundles) are not MIT and stay out |
+| [shadcn/ui](https://ui.shadcn.com) 4.23.0 | MIT | Component inventory (65 `registry:ui` items, 30 blocks), APIs, `base-nova` source through the CLI, registry format | MCP named lookups return Radix code; use the project-aware CLI for Base UI source (Groundwork's finding, 2026-09-26) |
+| [Base UI](https://base-ui.com) 1.9.0 | MIT | Primitive behavior and accessibility | |
+| [rough.js](https://roughjs.com) 4.6.6 | MIT | Hand-drawn strokes and fills | Uses `Math.sin` and `Math.cos`; see [cross-engine drift](seeded-variation.md#the-determinism-promise) |
+| Source Serif 4, Caveat, JetBrains Mono, Instrument Sans | SIL OFL 1.1 | The type voices | Ship each license with the font items |
+| [WCAG 2.2](https://www.w3.org/TR/WCAG22/) | W3C | Accessibility target | |
