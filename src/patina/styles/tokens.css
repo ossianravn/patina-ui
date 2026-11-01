@@ -1,0 +1,215 @@
+/* Patina tokens: the one file that defines raw values (paper stocks other than Field live in stocks.css).
+   Origin: Mental Models' "field notes" palette. Type and spacing: Golden Ratio Typography from an 18px body at a
+   37.5rem measure (docs/design-language.md#type-and-spacing). */
+
+:root {
+  color-scheme: light;
+
+  /* Paper: Field stock, day */
+  --paper: #d9d4c9;
+  --paper-2: #d0c9bc;
+  --paper-3: #c5bdae;
+  --card: #e6e2d9;
+  --rule: #b5ac9c;
+  --line: #36312a;
+
+  /* Reading inks. Textured paper leaves no room for a faint text grey: --ink-3 still reads at 4.5:1, and the faint
+     grey of Mental Models survives as --ink-faint, for disabled text and decorative markers only. */
+  --ink: #26231e;
+  --ink-2: #4f4940;
+  --ink-3: #565147;
+  --ink-faint: #7b7366;
+
+  /* Print inks: the riso drums, for marks, fills and art */
+  --print-blue: #2c6db3;
+  --print-violet: #2f2a74;
+  --print-pink: #e0508f;
+  --print-green: #2b8a5d;
+  --print-orange: #e06a2e;
+  --print-yellow: #f2cf3c;
+  --print-red: #d7442e;
+
+  /* Text inks: each drum mixed toward --ink until it reads at 4.6:1 on the worst textured surface
+     (npm run check:contrast) */
+  --ink-blue: #2a517a;
+  --ink-violet: #2f2a74;
+  --ink-pink: #7c3853;
+  --ink-green: #29583e;
+  --ink-orange: #754125;
+  --ink-red: #863527;
+
+  /* Hand inks: handwriting is set large and bold (700, 22.9px), which WCAG counts as large text, so it needs
+     3:1 and keeps more of the drum's colour */
+  --hand-blue: #2c6aad;
+  --hand-violet: #2f2a74;
+  --hand-pink: #ab436f;
+  --hand-green: #2a7550;
+  --hand-orange: #a25229;
+  --hand-red: #b83e2b;
+
+  /* Context accent: one drum per region (data-ink="…" re-inks a subtree) */
+  --k: var(--print-blue);
+  --k-ink: var(--ink-blue);
+  --k-hand: var(--hand-blue);
+  --print-line: var(--print-blue);
+  --print-accent: var(--print-pink);
+  --print-detail: var(--print-violet);
+
+  /* Mark strength */
+  --hl-alpha: 48%;
+  --wash-alpha: 26%;
+
+  /* Variation (lively by default; data-variation="calm" quietens it) */
+  --misregister: 2.2px;
+  --tilt-max: 0.8deg;
+  --rough-1: url(#patina-rough-1);
+  --rough-2: url(#patina-rough-2);
+  --rough-3: url(#patina-rough-3);
+  --rough-4: url(#patina-rough-4);
+  --rough-5: url(#patina-rough-5);
+  --rough-6: url(#patina-rough-6);
+
+  /* Type faces: read, label, annotate */
+  --face-read: "Source Serif 4 Variable", "Iowan Old Style", Georgia, serif;
+  --face-label:
+    "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --face-hand: "Caveat Variable", "Segoe Print", "Bradley Hand", cursive;
+  --face-ui: var(--face-read);
+
+  /* Type scale: 18px × φ^(n/2) */
+  --type-label: 0.695rem; /* n −2, 11.1px: mono labels */
+  --type-small: 0.884rem; /* n −1, 14.2px: compact text, metadata */
+  --type-ui: 1rem; /* exception: 16px controls, the size below which iOS zooms inputs */
+  --type-body: 1.125rem; /* n 0, 18px */
+  --type-lead: 1.431rem; /* n 1, 22.9px: h3, lead paragraphs, handwriting */
+  --type-h2: 1.82rem; /* n 2, 29.1px */
+  --type-h1: 2.315rem; /* n 3, 37.1px */
+  --type-title: 2.945rem; /* n 4, 47.1px */
+  --type-display: clamp(2.315rem, 1.6rem + 3vw, 3.746rem); /* n 3 → n 5 */
+
+  /* Line heights: tuned for the measure (x-mode linear); headings set tight by design */
+  --lh-body: 1.76;
+  --lh-lead: 1.55;
+  --lh-small: 1.5;
+  --lh-ui: 1.4;
+  --lh-heading: 1.15;
+  --lh-display: 1.06;
+  --lh-hand: 1.08;
+  --measure: 37.5rem; /* about 75 characters of body text */
+
+  /* Spacing: primary line height (31.7px) × φ^n, n = −3…2 */
+  --space-hair: 0.469rem; /* 7.5px */
+  --space-tight: 0.75rem; /* 12px */
+  --space-snug: 1.219rem; /* 19.5px */
+  --space-line: 1.969rem; /* 31.5px */
+  --space-section: 3.219rem; /* 51.5px */
+  --space-page: 5.188rem; /* 83px */
+
+  /* Controls (exception to the scale: touch target and shadcn convention) */
+  --control-height: 2.75rem;
+  --control-height-compact: 2.25rem;
+
+  /* Surfaces */
+  --sheet-radius: 3px 5px 4px 3px;
+  --sheet-shadow:
+    0 1px 1px rgb(60 40 10 / 0.08), 0 14px 28px -18px rgb(60 40 10 / 0.4);
+  --lift-shadow:
+    0 1px 1px rgb(60 40 10 / 0.08), 0 22px 36px -20px rgb(60 40 10 / 0.45);
+  --duration-lift: 220ms;
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --lh-body: 1.66; /* the narrower phone measure wants less leading */
+  }
+}
+
+:root[data-theme="night"] {
+  color-scheme: dark;
+
+  --paper: #1f1c17;
+  --paper-2: #27231d;
+  --paper-3: #312c24;
+  --card: #25211b;
+  --rule: #4a4235;
+  --line: #d9ccb2;
+
+  --ink: #ece3cf;
+  --ink-2: #bdb19b;
+  --ink-3: #9b907d;
+  --ink-faint: #7d7362;
+
+  --print-blue: #74a9e6;
+  --print-violet: #a9a2f0;
+  --print-pink: #f283b6;
+  --print-green: #6cc596;
+  --print-orange: #f29a62;
+  --print-yellow: #d9b73d;
+  --print-red: #f2806a;
+
+  --ink-blue: var(--print-blue);
+  --ink-violet: var(--print-violet);
+  --ink-pink: var(--print-pink);
+  --ink-green: var(--print-green);
+  --ink-orange: var(--print-orange);
+  --ink-red: var(--print-red);
+
+  --hand-blue: var(--print-blue);
+  --hand-violet: var(--print-violet);
+  --hand-pink: var(--print-pink);
+  --hand-green: var(--print-green);
+  --hand-orange: var(--print-orange);
+  --hand-red: var(--print-red);
+
+  --hl-alpha: 30%;
+  --wash-alpha: 18%;
+
+  --sheet-shadow:
+    0 1px 1px rgb(0 0 0 / 0.3), 0 14px 28px -18px rgb(0 0 0 / 0.7);
+  --lift-shadow:
+    0 1px 1px rgb(0 0 0 / 0.3), 0 22px 36px -20px rgb(0 0 0 / 0.75);
+}
+
+:root[data-variation="calm"],
+[data-variation="calm"] {
+  --misregister: 0.6px;
+  --tilt-max: 0deg;
+  --rough-1: url(#patina-rough-calm-1);
+  --rough-2: url(#patina-rough-calm-2);
+  --rough-3: url(#patina-rough-calm-3);
+  --rough-4: url(#patina-rough-calm-4);
+  --rough-5: url(#patina-rough-calm-5);
+  --rough-6: url(#patina-rough-calm-6);
+}
+
+/* Re-ink a region in one drum. Blue regions print their accent in pink, since their lines are already blue. */
+[data-ink="blue"] {
+  --k: var(--print-blue);
+  --k-ink: var(--ink-blue);
+  --k-hand: var(--hand-blue);
+  --print-accent: var(--print-pink);
+}
+[data-ink="pink"] {
+  --k: var(--print-pink);
+  --k-ink: var(--ink-pink);
+  --k-hand: var(--hand-pink);
+  --print-accent: var(--print-pink);
+}
+[data-ink="green"] {
+  --k: var(--print-green);
+  --k-ink: var(--ink-green);
+  --k-hand: var(--hand-green);
+  --print-accent: var(--print-green);
+}
+[data-ink="orange"] {
+  --k: var(--print-orange);
+  --k-ink: var(--ink-orange);
+  --k-hand: var(--hand-orange);
+  --print-accent: var(--print-orange);
+}
+[data-ink="violet"] {
+  --k: var(--print-violet);
+  --k-ink: var(--ink-violet);
+  --k-hand: var(--hand-violet);
+  --print-accent: var(--print-violet);
+}

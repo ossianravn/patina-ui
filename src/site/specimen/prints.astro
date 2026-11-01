@@ -1,0 +1,81 @@
+---
+import { print, seedOf, stream } from "@/patina/ink"
+import SectionHead from "./section-head.astro"
+
+const CARDS = [
+  {
+    seed: "sunk-cost",
+    ink: "pink",
+    kicker: "Trap",
+    title: "Sunk cost",
+    hook: "You keep going because you've already paid, not because it's still worth it.",
+  },
+  {
+    seed: "pre-mortem",
+    ink: "green",
+    kicker: "Tool",
+    title: "Pre-mortem",
+    hook: "Imagine the plan failed, then ask why, while you can still change it.",
+  },
+  {
+    seed: "goodharts-law",
+    ink: "blue",
+    kicker: "Pattern",
+    title: "Goodhart's law",
+    hook: "Once a number becomes the goal, people start hitting the number instead.",
+  },
+]
+
+const cards = CARDS.map((card) => {
+  const n = seedOf(card.seed)
+  const tilt = stream(n, "tilt").signed()
+  const tape = stream(n, "tape")
+  const style = `rotate: calc(var(--tilt-max) * ${tilt.toFixed(2)}); --tape-tilt: ${(tape.signed() * 4).toFixed(1)}deg; --tape-shift: ${(tape.signed() * 20).toFixed(0)}%`
+  return {
+    ...card,
+    style,
+    art: print({ motif: "orbits", seed: card.seed }).svg,
+  }
+})
+---
+
+<section
+  class="mx-auto max-w-[76rem] px-snug py-section sm:px-line"
+  aria-labelledby="prints"
+>
+  <SectionHead n={1} id="prints" title="Seeded prints">
+    Each card draws its tilt, its tape and its print from one seed. Reload,
+    rebuild, render on the server: they stay exactly as they are. Switch to Calm
+    and the tilt and tape step back.
+  </SectionHead>
+  <ul class="m-0 grid list-none gap-section p-0 pt-snug sm:grid-cols-2 lg:grid-cols-3">
+    {cards.map(({ ink, kicker, title, hook, style, art, seed }) => (
+      <li class="index-card" data-ink={ink} style={style}>
+        <span class="tape" style="--tape: var(--k)" aria-hidden="true" />
+        <span class="mx-auto mb-snug mt-hair block w-[62%]" set:html={art} />
+        <span class="label-mono text-k-ink">
+          {kicker} · seed {seed}
+        </span>
+        <span class="mt-hair block text-lead font-semibold leading-heading">
+          {title}
+        </span>
+        <span class="mt-hair block text-small leading-small text-ink-2">
+          {hook}
+        </span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .index-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-snug) var(--space-snug) var(--space-line);
+    background-color: var(--card);
+    background-image: var(--paper-texture);
+    box-shadow: var(--sheet-shadow);
+    border-radius: var(--sheet-radius);
+  }
+</style>

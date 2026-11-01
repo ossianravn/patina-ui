@@ -1,6 +1,6 @@
 # Seeded variation
 
-Status: proposed, 2026-11-01. This document owns every random choice in Patina: where it comes from, how far it may go and what it promises.
+Status: Phase 0 built the seed functions, the first motif (`orbits`), `print()`, CSS-driven misregistration, the variation and patina levels and the generated stocks, 2026-11-01; the rest is proposed. This document owns every random choice in Patina: where it comes from, how far it may go and what it promises.
 
 **Every Patina surface is a little different, and always the same.** Two index cards side by side tilt differently, their tape sits differently, their outlines wobble differently, and each prints its own illustration. Reload the page, render it on the server, build it next month: each card looks exactly as before. That combination of variety and stability is the signature of the library.
 
@@ -22,20 +22,20 @@ In order of precedence:
 2. Content the component already has: an `id`, `name` or `title` prop, or a string child (a highlight seeds from its text).
 3. The nearest `<SeedScope seed="…">` combined with the component's own label and `useId()`. `useId` agrees between server and client for the same tree, so output is stable across renders, though it may change when the surrounding code is edited. Docs and demos always pass explicit or content seeds.
 
-`seedOf(text)` is FNV-1a over UTF-16 code units, reduced to 31 bits; `prng(seed)` is the small mulberry-style generator from Mental Models' `sketch.ts`; `fork(seed, label)` is `seedOf(\`${seed}:${label}\`)`.
+`seedOf(text)` is FNV-1a over UTF-16 code units, reduced to 31 bits; `prng(seed)` is the small mulberry-style generator from Mental Models' `sketch.ts`; `fork(seed, label)` is `seedOf(\`${seed}:${label}\`)`; `stream(seed, label)`wraps a forked PRNG with`between`, `signed`and`pick` helpers (`src/patina/ink/seed.ts`).
 
 ## What varies
 
-| Variable | Used by | Calm | Lively |
-| --- | --- | --- | --- |
-| Tilt | Index card, note, stamp, print frame | 0° | up to ±0.8° (cards), ±2.5° (notes, stamps) |
-| Outline wobble | Sketch frames, card and dialog edges | displacement 1.5 | displacement 4.5, one of six filter variants |
-| Stroke roughness | Marks, glyphs, chart strokes | 0.5 | 1.2 |
-| Misregistration | Prints, avatars, stamps | up to 0.5 px per drum | up to 2 px per drum |
-| Grain | Prints, washes, stamps | light speckle | full speckle, seeded per print |
-| Tape | Index cards, pinned objects | none | angle ±4°, offset ±20 %, ink from the set |
-| Motif parameters | Prints | motif-defined | motif-defined |
-| Age marks | Paper surfaces | none | by patina level |
+| Variable         | Used by                              | Calm                  | Lively                                       |
+| ---------------- | ------------------------------------ | --------------------- | -------------------------------------------- |
+| Tilt             | Index card, note, stamp, print frame | 0°                    | up to ±0.8° (cards), ±2.5° (notes, stamps)   |
+| Outline wobble   | Sketch frames, card and dialog edges | displacement 1.5      | displacement 4.5, one of six filter variants |
+| Stroke roughness | Marks, glyphs, chart strokes         | 0.5                   | 1.2                                          |
+| Misregistration  | Prints, avatars, stamps              | up to 0.5 px per drum | up to 2 px per drum                          |
+| Grain            | Prints, washes, stamps               | light speckle         | full speckle, seeded per print               |
+| Tape             | Index cards, pinned objects          | none                  | angle ±4°, offset ±20 %, ink from the set    |
+| Motif parameters | Prints                               | motif-defined         | motif-defined                                |
+| Age marks        | Paper surfaces                       | none                  | by patina level                              |
 
 The **variation level** is a theme setting (`data-variation="calm" | "lively"`) that any subtree can override. Operated controls (inputs, selects, menus, table cells) stay calm at every level. `prefers-reduced-motion` stops animated variation; `forced-colors` removes textures, grain and misregistration and restores plain borders.
 
@@ -43,29 +43,29 @@ The **variation level** is a theme setting (`data-variation="calm" | "lively"`) 
 
 A print is a seeded riso illustration: two or three drums of ink, each a layer of rough.js strokes and fills, overprinted, grained and slightly out of register.
 
-**Anatomy.** A *line drum* draws the structure (Mental Models: blue, 4.2 px strokes, roughness 0.9). An *accent drum* adds the point of interest in the accent ink. An optional *third drum* adds a small dark detail (violet dots). Each drum renders inside its own grain filter (fractal-noise displacement for rough edges plus a speckle mask for starved ink, seeded per print) and blends with `multiply` on day paper and `screen` on night paper. Misregistration offsets each drum by a seeded fraction of a pixel or two; where drums overlap, the overprint makes a third colour, as real riso does.
+**Anatomy.** A _line drum_ draws the structure (Mental Models: blue, 4.2 px strokes, roughness 0.9). An _accent drum_ adds the point of interest in the accent ink. An optional _third drum_ adds a small dark detail (violet dots). Each drum renders inside its own grain filter (fractal-noise displacement for rough edges plus a speckle mask for starved ink, seeded per print) and blends with `multiply` on day paper and `screen` on night paper. Misregistration offsets each drum by a seeded fraction of a pixel or two; where drums overlap, the overprint makes a third colour, as real riso does.
 
 **Motifs.** Each motif is a pure function of seed, size and inks.
 
-| Motif | Picture | Good for | Origin |
-| --- | --- | --- | --- |
-| `rings` | Concentric rings narrowing to a pit | Warnings, traps, focus | Mental Models (trap) |
-| `lens` | A lens on crosshair guides, hatched accent | Tools, search, inspection | Mental Models (tool) |
-| `orbits` | Two orbits, an accent body drifting round (can animate) | Systems, cycles, sync | Mental Models (pattern) |
-| `constellation` | Linked nodes, one ringed | Concepts, networks, teams | Mental Models (concept) |
-| `contours` | Topographic lines round one to three peaks | Maps, places, depth | new, Phase 1 |
-| `halftone` | A dot field shaped by a seeded blob, second drum offset into moiré | Covers, heroes, backgrounds | new, Phase 1 |
-| `flow` | Streamlines through a seeded noise field, a few in accent | Movement, data, weather | new, Phase 1 |
-| `horizon` | A disc over horizon bands | Covers, landing heroes, onboarding | new, Phase 1 |
-| `sprig` | A branching stem with leaves | Growth, nature, notes | new, Phase 1 |
-| `blocks` | Stacked letterpress offcuts | Products, storage, building | new, Phase 1 |
-| `scatter` | Poisson-spaced small shapes and ticks | Celebration, variety, empty states | new, Phase 1 |
-| `monogram` | Initials in riso over a seeded blob | Avatars, workspaces, logos | new, Phase 1 |
-| `grid` | Graph paper with a plotted path and a circled point | Analytics, progress | new, later |
-| `waves` | Stacked bands of wobbling waves | Audio, sea, calm | new, later |
-| `burst` | Strokes radiating from an off-centre point | Announcements, launches | new, later |
-| `path` | A meandering trail with waypoints | Journeys, steps, history | new, later |
-| `spiral` | A hand spiral with an accent marker | Loading, focus, recursion | new, later |
+| Motif           | Picture                                                            | Good for                           | Origin                  |
+| --------------- | ------------------------------------------------------------------ | ---------------------------------- | ----------------------- |
+| `rings`         | Concentric rings narrowing to a pit                                | Warnings, traps, focus             | Mental Models (trap)    |
+| `lens`          | A lens on crosshair guides, hatched accent                         | Tools, search, inspection          | Mental Models (tool)    |
+| `orbits`        | Two orbits, an accent body drifting round (can animate)            | Systems, cycles, sync              | Mental Models (pattern) |
+| `constellation` | Linked nodes, one ringed                                           | Concepts, networks, teams          | Mental Models (concept) |
+| `contours`      | Topographic lines round one to three peaks                         | Maps, places, depth                | new, Phase 1            |
+| `halftone`      | A dot field shaped by a seeded blob, second drum offset into moiré | Covers, heroes, backgrounds        | new, Phase 1            |
+| `flow`          | Streamlines through a seeded noise field, a few in accent          | Movement, data, weather            | new, Phase 1            |
+| `horizon`       | A disc over horizon bands                                          | Covers, landing heroes, onboarding | new, Phase 1            |
+| `sprig`         | A branching stem with leaves                                       | Growth, nature, notes              | new, Phase 1            |
+| `blocks`        | Stacked letterpress offcuts                                        | Products, storage, building        | new, Phase 1            |
+| `scatter`       | Poisson-spaced small shapes and ticks                              | Celebration, variety, empty states | new, Phase 1            |
+| `monogram`      | Initials in riso over a seeded blob                                | Avatars, workspaces, logos         | new, Phase 1            |
+| `grid`          | Graph paper with a plotted path and a circled point                | Analytics, progress                | new, later              |
+| `waves`         | Stacked bands of wobbling waves                                    | Audio, sea, calm                   | new, later              |
+| `burst`         | Strokes radiating from an off-centre point                         | Announcements, launches            | new, later              |
+| `path`          | A meandering trail with waypoints                                  | Journeys, steps, history           | new, later              |
+| `spiral`        | A hand spiral with an accent marker                                | Loading, focus, recursion          | new, later              |
 
 **Formats.** The same motif renders in several formats: `spot` (square, transparent, for cards and empty states), `cover` (wide, composed on the thirds, on a paper ground), `avatar` (circular crop), `pattern` (a seamless tile for backgrounds) and `rule` (a long thin strip for dividers).
 
@@ -73,50 +73,51 @@ A print is a seeded riso illustration: two or three drums of ink, each a layer o
 
 ## Generative art in components
 
-| Component | Generative part |
-| --- | --- |
-| Avatar | Fallback is a `monogram` print seeded by the user's id: a stable personal colour and blob |
-| Card, index card | Optional `cover` or `spot` print; seeded tilt and tape |
-| Empty | A `spot` print in place of a stock illustration |
-| Chart | Hand-drawn strokes at exact data positions; per-series hatch or dot fills with seeded angles, so series differ by pattern as well as ink |
-| Separator, rule | Optional `rule` print or a seeded rough line |
-| Skeleton | Calm: no art, a quiet paper shimmer in the content's own geometry |
-| Image placeholder | A `cover` print at the image's aspect ratio until the image loads |
-| Share images, favicons | Build-time prints (satori and resvg, as in Mental Models' `og.ts`) |
+| Component              | Generative part                                                                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Avatar                 | Fallback is a `monogram` print seeded by the user's id: a stable personal colour and blob                                                |
+| Card, index card       | Optional `cover` or `spot` print; seeded tilt and tape                                                                                   |
+| Empty                  | A `spot` print in place of a stock illustration                                                                                          |
+| Chart                  | Hand-drawn strokes at exact data positions; per-series hatch or dot fills with seeded angles, so series differ by pattern as well as ink |
+| Separator, rule        | Optional `rule` print or a seeded rough line                                                                                             |
+| Skeleton               | Calm: no art, a quiet paper shimmer in the content's own geometry                                                                        |
+| Image placeholder      | A `cover` print at the image's aspect ratio until the image loads                                                                        |
+| Share images, favicons | Build-time prints (satori and resvg, as in Mental Models' `og.ts`)                                                                       |
 
 ## Paper stocks and patina
 
-**Stocks** are generated, not scanned: a script bakes seeded fractal noise, fibres and mottling into one AVIF tile per stock (target under 200 KB), with a matching veil and token set. Seeded generation means a stock can be regenerated, tuned and relicensed freely.
+**Stocks** are generated, not scanned: `tools/paper/build-textures.mjs` describes each stock as seeded fractal-noise layers (mottling, grain, specks, fibres) and writes them as 480 px seamless SVG tiles into `textures.generated.css`, about 1 KB each. SVG text rather than a baked image, because shadcn registry items carry only text files; seeded generation means a stock can be regenerated, tuned and relicensed freely. `npm run check:contrast` renders every tile over paper and card and measures every ink against it.
 
 **Patina** is the age of a surface, a theme setting (`data-patina="clean" | "handled" | "worn"`) applied to page and card surfaces only:
 
-| Level | Marks |
-| --- | --- |
-| `clean` | None |
-| `handled` | Softened corners, a faint smudge or two, slightly uneven veil |
-| `worn` | Adds a coffee ring, a fold crease, foxing specks, pin holes and corner wear |
+| Level     | Marks                                                                                                                                                                    |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `clean`   | Flat paper colour, no grain                                                                                                                                              |
+| `handled` | The stock's grain (built)                                                                                                                                                |
+| `worn`    | Adds stains, light fibres and extra specks over the grain (built); a coffee ring, a fold crease, pin holes and corner wear placed per surface come with Paper in Phase 4 |
 
-Placement is seeded per surface and keeps clear of text blocks and controls: marks sit in margins and corners, at alphas low enough that every text pair keeps its measured contrast. Forced colors and `prefers-contrast: more` render `clean`.
+Placed marks will be seeded per surface and keeps clear of text blocks and controls: marks sit in margins and corners, at alphas low enough that every text pair keeps its measured contrast. Forced colors and `prefers-contrast: more` render `clean`.
 
 ## Interface
 
 The ink engine (framework-free):
 
 ```ts
-seedOf(text: string): number
+seedOf(text: string | number): number
 prng(seed: number): () => number
 fork(seed: number, label: string): number
+stream(seed: number, label: string): { next; between; signed; pick }
 print(options: {
-  motif: Motif
+  motif: MotifName // built: "orbits"
   seed: string | number
-  inks?: InkSet
-  format?: "spot" | "cover" | "avatar" | "pattern" | "rule"
-  size?: number
-  variation?: "calm" | "lively"
+  inks?: PrintInks // default: the --print-line, --print-accent and --print-detail variables
+  registration?: "css" | number // "css" scales by --misregister; a number bakes it (share images)
+  title?: string // makes the print role="img"
+  format?: "spot" | "cover" | "avatar" | "pattern" | "rule" // planned
 }): { svg: string; seed: number }
 ```
 
-React:
+React (planned for Phase 1):
 
 ```tsx
 <Print motif="orbits" seed="sunk-cost" format="spot" className="w-40" />

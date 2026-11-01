@@ -1,0 +1,39 @@
+---
+// A specimen section heading: a hand-ringed number beside the title, one line on what the section shows below it.
+import { sketch } from "@/patina/ink"
+
+interface Props {
+  n: number
+  id: string
+  title: string
+}
+const { n, id, title } = Astro.props
+const ring = sketch.circle(17, 17, 28, {
+  seed: 40 + n,
+  stroke: "var(--k)",
+  strokeWidth: 1.6,
+  roughness: 1.1,
+})
+---
+
+<header class="mb-line grid grid-cols-[34px_minmax(0,1fr)] items-center gap-x-tight gap-y-hair">
+  <span
+    class="relative inline-grid size-[34px] place-items-center"
+    aria-hidden="true"
+  >
+    <svg
+      class="absolute inset-0"
+      viewBox="0 0 34 34"
+      width="34"
+      height="34"
+      set:html={ring}
+    />
+    <b class="label-mono relative text-ink">{String(n).padStart(2, "0")}</b>
+  </span>
+  <h2 id={id} class="m-0 text-h2">
+    {title}
+  </h2>
+  <p class="col-span-2 m-0 max-w-measure text-ink-2 sm:col-span-1 sm:col-start-2">
+    <slot />
+  </p>
+</header>

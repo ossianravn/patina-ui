@@ -1,0 +1,99 @@
+---
+import { sketch } from "@/patina/ink"
+import SectionHead from "./section-head.astro"
+
+const PAPER = [
+  { token: "paper", role: "Page" },
+  { token: "paper-2", role: "Wells" },
+  { token: "paper-3", role: "Pressed, selected" },
+  { token: "card", role: "Raised sheet" },
+]
+const DRUMS = ["blue", "violet", "pink", "green", "orange", "yellow", "red"]
+const TEXT = ["blue", "violet", "pink", "green", "orange", "red"]
+const swatch = (drum: string, i: number) =>
+  sketch.circle(22, 22, 34, {
+    seed: 70 + i,
+    stroke: `var(--print-${drum})`,
+    fill: `var(--print-${drum})`,
+    fillStyle: "solid",
+    strokeWidth: 1,
+    roughness: 0.7,
+  })
+---
+
+<section
+  class="mx-auto max-w-[76rem] px-snug py-section sm:px-line"
+  aria-labelledby="paper"
+>
+  <SectionHead n={2} id="paper" title="Paper">
+    Warm stock with grain, generated from seeded noise. Cards are a lighter
+    sheet of the same stock.
+  </SectionHead>
+  <ul class="m-0 grid list-none grid-cols-2 gap-snug p-0 md:grid-cols-4">
+    {PAPER.map(({ token, role }) => (
+      <li class="flex flex-col gap-hair">
+        <span
+          class="block h-24 rounded-sheet shadow-sheet"
+          style={`background-color: var(--${token}); background-image: var(--paper-texture)`}
+        />
+        <span class="label-mono text-ink">--{token}</span>
+        <span class="text-small leading-ui text-ink-2">{role}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<section
+  class="mx-auto max-w-[76rem] px-snug py-section sm:px-line"
+  aria-labelledby="inks"
+>
+  <SectionHead n={3} id="inks" title="Inks">
+    Bright drums print marks and art. Text prints in deeper inks that read at
+    4.5:1 on every stock; handwriting, set large and bold, keeps more of the
+    drum.
+  </SectionHead>
+  <div class="grid gap-line lg:grid-cols-3">
+    <div>
+      <h3 class="label-mono m-0 mb-tight text-ink-2">Print inks</h3>
+      <ul class="m-0 flex list-none flex-wrap gap-tight p-0">
+        {DRUMS.map((drum, i) => (
+          <li class="flex w-14 flex-col items-center gap-hair">
+            <svg
+              viewBox="0 0 44 44"
+              width="44"
+              height="44"
+              aria-hidden="true"
+              class="patina-drum"
+              style="filter: url(#patina-ink)"
+              set:html={swatch(drum, i)}
+            />
+            <span class="label-mono text-ink-2">{drum}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h3 class="label-mono m-0 mb-tight text-ink-2">Text inks</h3>
+      <ul class="m-0 grid list-none grid-cols-2 gap-x-snug gap-y-hair p-0">
+        {TEXT.map((drum) => (
+          <li style={`color: var(--ink-${drum})`}>
+            {drum[0]?.toUpperCase() + drum.slice(1)} ink
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h3 class="label-mono m-0 mb-tight text-ink-2">Hand inks</h3>
+      <ul class="m-0 grid list-none grid-cols-2 gap-x-snug p-0">
+        {TEXT.map((drum) => (
+          <li
+            class="margin-note"
+            style={`color: var(--hand-${drum}); rotate: 0deg`}
+          >
+            {drum}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

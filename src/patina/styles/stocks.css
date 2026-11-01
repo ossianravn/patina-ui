@@ -1,0 +1,28 @@
+/* Paper stocks besides Field (whose values are the defaults in tokens.css). Each stock sets its paper and reading
+   inks per theme; its grain lives in textures.generated.css. Drums stay the same across stocks. */
+
+:root[data-stock="newsprint"] {
+  --paper: #d6d6cf;
+  --paper-2: #cdcdc5;
+  --paper-3: #c1c1b8;
+  --card: #e3e3dd;
+  --rule: #adada4;
+  --line: #2c2c2a;
+  --ink: #1e1e1d;
+  --ink-2: #464643;
+  --ink-3: #4f4f4b;
+  --ink-faint: #75756f;
+}
+
+:root[data-stock="newsprint"][data-theme="night"] {
+  --paper: #1b1c1d;
+  --paper-2: #222325;
+  --paper-3: #2b2d2f;
+  --card: #212224;
+  --rule: #45474a;
+  --line: #d2d3d0;
+  --ink: #e6e6e1;
+  --ink-2: #b6b7b2;
+  --ink-3: #94958f;
+  --ink-faint: #74756f;
+}

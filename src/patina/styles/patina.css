@@ -1,0 +1,117 @@
+/* Patina UI: the Tailwind entry. Import this file once; it brings Tailwind, the tokens and the marks. */
+@import "tailwindcss";
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./stocks.css";
+@import "./textures.generated.css";
+@import "./roles.css";
+@import "./base.css";
+@import "./marks.css";
+
+@custom-variant night (&:where([data-theme="night"], [data-theme="night"] *));
+@custom-variant dark (&:where([data-theme="night"], [data-theme="night"] *));
+@custom-variant calm (&:where([data-variation="calm"], [data-variation="calm"] *));
+
+@theme inline {
+  --default-font-family: var(--face-ui);
+  --font-read: var(--face-read);
+  --font-label: var(--face-label);
+  --font-hand: var(--face-hand);
+  --font-ui: var(--face-ui);
+  --font-serif: var(--face-read);
+  --font-mono: var(--face-label);
+
+  --text-label: var(--type-label);
+  --text-small: var(--type-small);
+  --text-ui: var(--type-ui);
+  --text-body: var(--type-body);
+  --text-lead: var(--type-lead);
+  --text-h2: var(--type-h2);
+  --text-h1: var(--type-h1);
+  --text-title: var(--type-title);
+  --text-display: var(--type-display);
+
+  --leading-body: var(--lh-body);
+  --leading-lead: var(--lh-lead);
+  --leading-small: var(--lh-small);
+  --leading-ui: var(--lh-ui);
+  --leading-heading: var(--lh-heading);
+  --leading-display: var(--lh-display);
+
+  --spacing-hair: var(--space-hair);
+  --spacing-tight: var(--space-tight);
+  --spacing-snug: var(--space-snug);
+  --spacing-line: var(--space-line);
+  --spacing-section: var(--space-section);
+  --spacing-page: var(--space-page);
+  --spacing-control: var(--control-height);
+  --container-measure: var(--measure);
+
+  --radius-sheet: var(--sheet-radius);
+  --shadow-sheet: var(--sheet-shadow);
+  --shadow-lift: var(--lift-shadow);
+
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-rule: var(--rule);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-faint: var(--ink-faint);
+  --color-ink-blue: var(--ink-blue);
+  --color-ink-violet: var(--ink-violet);
+  --color-ink-pink: var(--ink-pink);
+  --color-ink-green: var(--ink-green);
+  --color-ink-orange: var(--ink-orange);
+  --color-ink-red: var(--ink-red);
+  --color-print-blue: var(--print-blue);
+  --color-print-violet: var(--print-violet);
+  --color-print-pink: var(--print-pink);
+  --color-print-green: var(--print-green);
+  --color-print-orange: var(--print-orange);
+  --color-print-yellow: var(--print-yellow);
+  --color-print-red: var(--print-red);
+  --color-k: var(--k);
+  --color-k-ink: var(--k-ink);
+  --color-k-hand: var(--k-hand);
+  --color-hand-blue: var(--hand-blue);
+  --color-hand-violet: var(--hand-violet);
+  --color-hand-pink: var(--hand-pink);
+  --color-hand-green: var(--hand-green);
+  --color-hand-orange: var(--hand-orange);
+  --color-hand-red: var(--hand-red);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}

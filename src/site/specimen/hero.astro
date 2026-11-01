@@ -1,0 +1,49 @@
+---
+import { print, sketch } from "@/patina/ink"
+
+const seed = "quiet-heron"
+const art = print({
+  motif: "orbits",
+  seed,
+  title: "An orbits print from the seed quiet-heron",
+})
+const arrow = sketch.arrow(
+  6,
+  34,
+  30,
+  4,
+  { seed: 101, stroke: "currentColor", strokeWidth: 1.6 },
+  -0.35,
+  7,
+)
+---
+
+<section class="mx-auto grid max-w-[76rem] items-center gap-line px-snug pb-section pt-section sm:px-line md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
+  <div>
+    <p class="label-mono m-0 text-ink-2">Patina UI · Specimen No. 0</p>
+    <h1 class="mb-snug mt-tight text-display leading-display">
+      shadcn/ui, with <span class="highlight highlight-accent">a patina.</span>
+    </h1>
+    <p class="m-0 max-w-measure text-lead leading-lead text-ink-2">
+      A component library that looks like printed matter that has been handled:
+      warm paper, riso inks slightly out of register, a serif to read, a hand to
+      annotate and a mono to label.
+    </p>
+  </div>
+  <figure class="relative m-0 mx-auto w-full max-w-[17rem] md:max-w-[22rem]">
+    <div class="px-line" set:html={art.svg} />
+    <figcaption class="mt-tight flex flex-wrap items-end justify-between gap-tight">
+      <span class="label-mono text-ink-2">Seed · {seed}</span>
+      <span class="margin-note flex items-end gap-hair">
+        <svg
+          width="36"
+          height="38"
+          viewBox="0 0 36 38"
+          aria-hidden="true"
+          set:html={arrow}
+        />
+        same seed, same print
+      </span>
+    </figcaption>
+  </figure>
+</section>

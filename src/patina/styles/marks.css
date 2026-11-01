@@ -1,0 +1,167 @@
+/* Marks: what the hand adds to the page. Ported from Mental Models' global.css; each is a Tailwind utility so it
+   takes variants (hover:highlight). Filters come from <PatinaDefs>. */
+
+/* Highlighter: a slanted marker stroke behind the text, cloned across line breaks. */
+@utility highlight {
+  --hl: color-mix(
+    in srgb,
+    var(--hl-ink, var(--print-yellow)) var(--hl-alpha),
+    transparent
+  );
+  background: linear-gradient(
+      100deg,
+      transparent 0.25em,
+      var(--hl) 0.45em,
+      var(--hl) calc(100% - 0.45em),
+      transparent calc(100% - 0.2em)
+    )
+    no-repeat 0 72% / 100% 0.62em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding-inline: 0.15em;
+  margin-inline: -0.15em;
+}
+@utility highlight-accent {
+  --hl-ink: var(--k);
+}
+
+/* Two loose strokes under a heading or term. */
+@utility hand-underline {
+  position: relative;
+  display: inline-block;
+  &::after {
+    content: "";
+    position: absolute;
+    left: -0.1em;
+    right: -0.1em;
+    bottom: -0.32em;
+    height: 0.42em;
+    background: var(--k);
+    opacity: 0.9;
+    --stroke: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 40 3, 80 5, 120 6 S 180 4, 198 5' fill='none' stroke='black' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M6 10 C 60 7, 110 9, 190 7' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E");
+    -webkit-mask: var(--stroke) no-repeat center / 100% 100%;
+    mask: var(--stroke) no-repeat center / 100% 100%;
+  }
+}
+
+/* Pencil frame: a doubled, wobbly outline drawn through two displacement filters. --sketch-a and --sketch-b pick
+   seeded variants. */
+@utility sketch-frame {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border: 1.5px solid var(--line);
+    border-radius: 4px 7px 5px 6px;
+  }
+  &::before {
+    inset: 0;
+    filter: var(--sketch-a, var(--rough-1));
+    opacity: 0.85;
+  }
+  &::after {
+    inset: 2px -2px -1px 1px;
+    border-width: 1px;
+    filter: var(--sketch-b, var(--rough-2));
+    opacity: 0.35;
+  }
+}
+
+/* Watercolour wash of the accent behind an element. */
+@utility wash {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -0.3rem -0.4rem;
+    z-index: -1;
+    border-radius: 40% 55% 45% 50% / 55% 45% 55% 45%;
+    background: color-mix(in srgb, var(--k) var(--wash-alpha), transparent);
+    filter: url(#patina-wash);
+  }
+}
+
+/* Washi tape across the top edge. --tape picks the ink, --tape-tilt and --tape-shift come from a seed. */
+@utility tape {
+  position: absolute;
+  width: 5.5rem;
+  height: 1.5rem;
+  top: -0.7rem;
+  left: calc(50% + var(--tape-shift, 0%));
+  translate: -50% 0;
+  rotate: var(--tape-tilt, -3deg);
+  background: color-mix(
+    in srgb,
+    var(--tape, var(--print-yellow)) 45%,
+    transparent
+  );
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent 0 2px,
+    #000 2px calc(100% - 2px),
+    transparent 0
+  );
+  mask: linear-gradient(
+    90deg,
+    transparent 0 2px,
+    #000 2px calc(100% - 2px),
+    transparent 0
+  );
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  :root[data-theme="night"] & {
+    mix-blend-mode: normal;
+    opacity: 0.6;
+  }
+  [data-variation="calm"] & {
+    display: none;
+  }
+}
+
+/* A handwritten aside, tilted with the variation level. Large and bold enough to count as large text, so it
+   prints in the brighter hand ink. */
+@utility margin-note {
+  font-family: var(--face-hand);
+  font-size: var(--type-lead);
+  font-weight: 700;
+  line-height: var(--lh-hand);
+  color: var(--k-hand);
+  rotate: calc(var(--tilt-max) * -3);
+}
+
+/* A pen-line divider. The element is taller than the line so the wobble has room to move. */
+@utility rough-rule {
+  height: 0.6rem;
+  border: 0;
+  background: linear-gradient(var(--line), var(--line)) center / 100% 1.5px
+    no-repeat;
+  opacity: 0.7;
+  filter: var(--rough-1);
+}
+
+/* Labels: the mono voice for metadata, kickers and stamped buttons. */
+@utility label-mono {
+  font-family: var(--face-label);
+  font-size: var(--type-label);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Prints: drums overprint like riso ink, multiplied on day paper and screened on night paper. */
+.patina-print {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.patina-drum {
+  mix-blend-mode: multiply;
+}
+:root[data-theme="night"] .patina-drum {
+  mix-blend-mode: screen;
+}

@@ -1,0 +1,101 @@
+/* Page-level defaults: the paper, the reading voice, links, focus and the accessibility fallbacks. */
+
+/* Patina level: how handled the paper looks. "worn" adds stains and fibres over the grain; "clean" is flat. */
+:root {
+  --paper-texture: var(--paper-grain);
+}
+:root[data-patina="worn"] {
+  --paper-texture: var(--paper-wear), var(--paper-grain);
+}
+:root[data-patina="clean"] {
+  --paper-texture: none;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image: var(--paper-texture);
+    font-family: var(--face-ui);
+    font-size: var(--type-body);
+    line-height: var(--lh-body);
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--face-read);
+    font-weight: 600;
+    line-height: var(--lh-heading);
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in srgb, var(--k-ink) 55%, transparent);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+  }
+  a:hover {
+    text-decoration-color: var(--k-ink);
+  }
+
+  :focus-visible {
+    outline: 2px dashed var(--k-ink);
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--print-yellow) 55%, transparent);
+  }
+
+  svg {
+    flex: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* More contrast asked for: flat paper, no wobble. */
+@media (prefers-contrast: more) {
+  :root {
+    --paper-texture: none;
+    --misregister: 0px;
+  }
+}
+
+/* Forced colours: textures and printed effects give way to system colours and plain borders. Decorative prints
+   step aside; a print with a title stays, since it carries meaning. */
+@media (forced-colors: active) {
+  :root {
+    --paper-texture: none;
+  }
+  .patina-print[aria-hidden="true"] {
+    display: none;
+  }
+}

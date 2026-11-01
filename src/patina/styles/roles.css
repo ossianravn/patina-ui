@@ -1,0 +1,35 @@
+/* shadcn's semantic roles, mapped from Patina's raw tokens so shadcn-shaped code works unchanged. */
+
+:root {
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card-foreground: var(--ink);
+  --popover: var(--card);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-3);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-2);
+  --muted-foreground: var(--ink-2);
+  --accent: var(--paper-3);
+  --accent-foreground: var(--ink);
+  --destructive: var(--ink-red);
+  --border: var(--rule);
+  --input: var(--line);
+  --ring: var(--k-ink);
+  --chart-1: var(--print-blue);
+  --chart-2: var(--print-pink);
+  --chart-3: var(--print-green);
+  --chart-4: var(--print-orange);
+  --chart-5: var(--print-violet);
+  --sidebar: var(--paper-2);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--paper-3);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--rule);
+  --sidebar-ring: var(--k-ink);
+  --radius: 4px;
+}

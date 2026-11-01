@@ -1,0 +1,73 @@
+---
+import SectionHead from "./section-head.astro"
+
+const STEPS = [
+  { token: "display", size: "2.3–3.7rem", note: "n 3→5" },
+  { token: "title", size: "2.945rem · 47px", note: "n 4" },
+  { token: "h1", size: "2.315rem · 37px", note: "n 3" },
+  { token: "h2", size: "1.82rem · 29px", note: "n 2" },
+  { token: "lead", size: "1.431rem · 23px", note: "n 1" },
+  { token: "body", size: "1.125rem · 18px", note: "n 0" },
+  { token: "ui", size: "1rem · 16px", note: "controls" },
+  { token: "small", size: "0.884rem · 14px", note: "n −1" },
+]
+---
+
+<section
+  class="mx-auto max-w-[76rem] px-snug py-section sm:px-line"
+  aria-labelledby="voices"
+>
+  <SectionHead n={4} id="voices" title="Three voices">
+    A serif to read, a mono to label, a hand to annotate. Each voice has one
+    job.
+  </SectionHead>
+  <div class="grid gap-line md:grid-cols-3">
+    <div>
+      <h3 class="label-mono m-0 mb-tight text-ink-2">Read · Source Serif 4</h3>
+      <p class="m-0">
+        You keep going because you've already paid, not because it's still worth
+        it. The serif carries every sentence meant to be read.
+      </p>
+    </div>
+    <div>
+      <h3 class="label-mono m-0 mb-tight text-ink-2">Label · JetBrains Mono</h3>
+      <ul class="m-0 flex list-none flex-col gap-hair p-0">
+        <li class="label-mono text-ink">No. 0012 · Field note</li>
+        <li class="label-mono text-ink">Updated 1 Nov 2026</li>
+        <li class="label-mono text-ink-blue">Open the index →</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="label-mono m-0 mb-tight text-ink-2">Annotate · Caveat</h3>
+      <p class="margin-note m-0">
+        tick what rings true, then read the case on the next page
+      </p>
+    </div>
+  </div>
+</section>
+
+<section
+  class="mx-auto max-w-[76rem] px-snug py-section sm:px-line"
+  aria-labelledby="scale"
+>
+  <SectionHead n={5} id="scale" title="Type scale">
+    Eighteen pixels times the golden ratio's square root, step by step, with
+    leading tuned to a 37.5rem measure.
+  </SectionHead>
+  <ol class="m-0 list-none p-0">
+    {STEPS.map(({ token, size, note }) => (
+      <li class="grid grid-cols-1 items-baseline gap-x-snug border-b border-dashed border-rule py-tight md:grid-cols-[6rem_12rem_minmax(0,1fr)]">
+        <span class="label-mono text-ink">{token}</span>
+        <span class="label-mono text-ink-2">
+          {size} · {note}
+        </span>
+        <span
+          class="truncate leading-heading"
+          style={`font-size: var(--type-${token})`}
+        >
+          Field notes, handled
+        </span>
+      </li>
+    ))}
+  </ol>
+</section>

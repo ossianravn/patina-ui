@@ -1,0 +1,121 @@
+---
+// The site's page frame: pre-paint appearance, shared filters, header and footer.
+import "@/patina/styles/patina.css"
+import { PatinaDefs } from "@/patina/defs/patina-defs"
+import { appearanceScript } from "@/patina/theme/appearance-script"
+import { sketch } from "@/patina/ink"
+
+interface Props {
+  title: string
+  description: string
+}
+const { title, description } = Astro.props
+const fullTitle = title === "Patina UI" ? title : `${title} · Patina UI`
+
+const logo =
+  sketch.circle(16, 16, 26, {
+    seed: 4,
+    stroke: "var(--print-blue)",
+    strokeWidth: 2.2,
+    roughness: 0.8,
+  }) +
+  sketch.circle(17.2, 15, 8, {
+    seed: 5,
+    stroke: "var(--print-pink)",
+    fill: "var(--print-pink)",
+    fillStyle: "solid",
+    strokeWidth: 1,
+    roughness: 0.5,
+  }) +
+  sketch.circle(16, 16, 7.5, {
+    seed: 6,
+    stroke: "var(--print-violet)",
+    fill: "var(--print-violet)",
+    fillStyle: "solid",
+    strokeWidth: 1,
+    roughness: 0.5,
+  })
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <script is:inline set:html={appearanceScript()} />
+  </head>
+  <body>
+    <PatinaDefs />
+    <a
+      class="label-mono absolute -left-[999px] top-2 z-30 bg-ink px-tight py-hair text-paper focus:left-2"
+      href="#main"
+    >
+      Skip to content
+    </a>
+    <header class="site-header sticky top-0 z-20">
+      <div class="mx-auto flex h-16 max-w-[76rem] items-center justify-between gap-snug px-snug sm:px-line">
+        <a
+          class="flex items-center gap-tight whitespace-nowrap no-underline"
+          href="/"
+        >
+          <svg
+            viewBox="0 0 32 32"
+            width="30"
+            height="30"
+            aria-hidden="true"
+            set:html={logo}
+          />
+          <span class="text-[1.1rem] font-semibold tracking-[-0.01em]">
+            Patina UI
+          </span>
+        </a>
+        <p class="label-mono m-0 text-ink-2">Specimen · Phase 0</p>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer mt-page">
+      <div class="mx-auto flex max-w-[76rem] flex-wrap justify-between gap-x-line gap-y-hair px-snug pb-section pt-line sm:px-line">
+        <p class="label-mono m-0 text-ink-2">
+          Patina UI · shadcn/ui, with a patina
+        </p>
+        <p class="label-mono m-0 text-ink-2">
+          Style from{" "}
+          <a href="https://mentalmodels.ossianravn.dev">Mental Models</a> ·
+          <a href="https://github.com/ossianravn/patina-ui">Source</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    background-color: var(--paper);
+    background-image: var(--paper-texture);
+  }
+  .site-header::after,
+  .site-footer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0.6rem;
+    background: linear-gradient(var(--line), var(--line)) center / 100% 1.5px
+      no-repeat;
+    opacity: 0.7;
+    filter: var(--rough-1);
+  }
+  .site-header::after {
+    bottom: -0.3rem;
+  }
+  .site-footer {
+    position: relative;
+  }
+  .site-footer::before {
+    top: -0.3rem;
+  }
+</style>
