@@ -168,7 +168,7 @@ function CodeBlockContent({
       tabIndex={0}
       style={{ counterReset: `line ${startLine - 1}`, ...style }}
       className={cn(
-        "m-0 min-h-0 min-w-0 overflow-auto px-tight py-tight text-start font-label leading-[1.7] font-normal [scrollbar-color:var(--rule)_transparent] [scrollbar-width:thin] focus-visible:outline-none group-has-data-[slot=code-block-footer]/code-block:pb-hair group-has-data-[slot=code-block-header]/code-block:pt-hair group-data-[size=sm]/code-block:px-2.5 group-data-[size=sm]/code-block:py-2 data-wrap:wrap-break-word data-wrap:whitespace-pre-wrap",
+        "m-0 min-h-0 min-w-0 overflow-auto px-tight py-tight text-start font-label leading-[1.7] font-normal focus-visible:outline-none group-has-data-[slot=code-block-footer]/code-block:pb-hair group-has-data-[slot=code-block-header]/code-block:pt-hair group-data-[size=sm]/code-block:px-2.5 group-data-[size=sm]/code-block:py-2 data-wrap:wrap-break-word data-wrap:whitespace-pre-wrap",
         className,
       )}
       {...props}

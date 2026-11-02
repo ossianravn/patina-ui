@@ -57,6 +57,10 @@ The playground for prints. Controls sit in a narrow column of settings rows (abo
 
 Below the print, a contact sheet of 24 neighbouring seeds lets people pick by eye. Actions: copy seed, copy JSX, download SVG, download PNG. The current settings live in the URL so a print can be shared.
 
+## Site appearance
+
+The site starts on day Newsprint with Patina's inks, an oxblood accent, calm, clean and compact (`src/site/appearance.ts`) until a visitor chooses otherwise. The layouts' pre-paint script and every island that renders appearance on the server use it. The kit's own defaults ([architecture](architecture.md#theme-runtime)) stay what an install starts from, and the theme studio exports against those.
+
 ## Theme studio
 
 Stock, ink set, accent drum, variation, patina level, density and the optional interface sans, previewed on real Fieldbook screens and component specimens at once. Export as CSS or as a shadcn `registry:theme` item that `npx shadcn add ./theme.json` installs (Groundwork's flow).

@@ -174,6 +174,8 @@ Planned marks: circle-around (hugs a word or number), strike, bracket, asterisk,
 
 - Focus: 2 px dashed outline, 4 px offset, in `--k-ink` (4.6:1 or better).
 - Hover on links and rows: a highlighter stroke or an underline that firms up from 55 % to full accent.
+- A term with a definition: a dotted underline (`term`) that firms up while its tooltip shows.
+- Scrollbars: a pencil thumb (`--ink-3` at 70 %, full on hover) on no track, with no arrow buttons, in every native scroller and the page; `--scrollbar-thumb` recolours or hides one.
 - Pressed: a 1 px sink. Selected: solid ink with paper text (segmented controls) or a `--paper-3` fill plus a drawn mark (tick, ring or underline), never colour alone.
 - Disabled: dashed pencil outline and `--ink-faint` text.
 - Invalid: a red text-ink message under the field plus a drawn underline on the field.

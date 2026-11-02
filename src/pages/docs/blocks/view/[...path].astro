@@ -4,6 +4,7 @@
 import "@/patina/styles/patina.css"
 import { PatinaDefs } from "@/patina/defs/patina-defs"
 import { appearanceScript } from "@/patina/theme/appearance-script"
+import { siteAppearance } from "@/site/appearance"
 import { BlockHost } from "@/site/docs/blocks/block-host"
 import { BLOCKS } from "@/site/docs/blocks/blocks"
 
@@ -32,7 +33,7 @@ const { name, title, variant } = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>{title} · Blocks · Patina UI</title>
-    <script is:inline set:html={appearanceScript()} />
+    <script is:inline set:html={appearanceScript(siteAppearance)} />
   </head>
   <body>
     <PatinaDefs />

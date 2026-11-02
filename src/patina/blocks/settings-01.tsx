@@ -3,6 +3,7 @@
 import { useId, useState, type ReactNode } from "react"
 import { AppearanceControl } from "@/patina/extras/appearance-control"
 import { cn } from "@/patina/lib/utils"
+import type { Appearance } from "@/patina/theme"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -94,6 +95,8 @@ export interface Settings01Props {
   deleteNote?: string
   onSaveProfile?: (profile: { name: string; email: string }) => void
   onDeleteAccount?: () => void
+  /** The defaults the page's appearanceScript uses, so the appearance rows render the right choices on the server. */
+  appearanceDefaults?: Appearance
   className?: string
 }
 
@@ -105,6 +108,7 @@ export function Settings01({
   deleteNote = "Your notebook and every observation in it will be deleted. This can't be undone.",
   onSaveProfile,
   onDeleteAccount,
+  appearanceDefaults,
   className,
 }: Settings01Props) {
   const [name, setName] = useState(initialName)
@@ -189,7 +193,7 @@ export function Settings01({
         </SettingsSection>
 
         <SettingsSection title="Appearance">
-          <AppearanceControl hints />
+          <AppearanceControl hints defaults={appearanceDefaults} />
         </SettingsSection>
 
         <SettingsSection title="Notifications">

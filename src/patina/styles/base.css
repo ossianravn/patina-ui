@@ -89,6 +89,40 @@
     background: color-mix(in srgb, var(--print-yellow) 55%, transparent);
   }
 
+  /* Scrollbars in pencil, like ScrollArea's: a narrow graphite thumb on no track that firms while hovered, with no
+     arrow buttons, the page's own included. --scrollbar-thumb recolours or hides one scroller's thumb. Chromium and
+     Safari draw them from the ::-webkit-scrollbar parts, Firefox from the standard properties. */
+  @supports not selector(::-webkit-scrollbar) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(
+          --scrollbar-thumb,
+          color-mix(in srgb, var(--ink-3) 70%, transparent)
+        )
+        transparent;
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background: var(
+        --scrollbar-thumb,
+        color-mix(in srgb, var(--ink-3) 70%, transparent)
+      )
+      padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb, var(--ink-3));
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
   svg {
     flex: none;
   }

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { AppearanceControl } from "@/patina/extras/appearance-control"
 import { useAppearance } from "@/patina/theme"
+import { siteAppearance } from "@/site/appearance"
 import { ExportPanel } from "./export-panel"
 import { PresetPicker } from "./preset-picker"
 import { matchPreset } from "./presets"
@@ -13,7 +14,7 @@ import { Specimens } from "./specimens"
  * persist, like the appearance control anywhere else.
  */
 export function Studio() {
-  const [appearance, update] = useAppearance()
+  const [appearance, update] = useAppearance(siteAppearance)
   const preset = matchPreset(appearance)
   const [customName, setCustomName] = useState<string | null>(null)
   const name = customName ?? preset?.name ?? "Custom"
@@ -25,7 +26,7 @@ export function Studio() {
       <div className="grid grid-cols-[minmax(0,1fr)] gap-x-section gap-y-line xl:grid-cols-[24rem_minmax(0,1fr)]">
         <aside
           aria-label="Theme settings"
-          className="grid max-w-[42rem] content-start gap-x-section gap-y-line lg:max-xl:max-w-none lg:max-xl:grid-cols-2 xl:sticky xl:top-20 xl:-mx-2 xl:max-h-[calc(100dvh-6rem)] xl:self-start xl:overflow-y-auto xl:px-2 xl:pb-tight"
+          className="grid max-w-[42rem] content-start gap-x-section gap-y-line lg:max-xl:max-w-none lg:max-xl:grid-cols-2 xl:sticky xl:top-20 xl:-mx-2 xl:max-h-[calc(100dvh-6rem)] xl:self-start xl:overflow-x-hidden xl:overflow-y-auto xl:px-2 xl:pb-tight"
         >
           <PresetPicker
             current={preset}
@@ -38,7 +39,10 @@ export function Studio() {
             <h2 id="studio-settings" className="label-mono m-0 text-ink-2">
               Settings
             </h2>
-            <AppearanceControl className="mt-hair [&>[data-slot=appearance-control-row]]:py-hair" />
+            <AppearanceControl
+              defaults={siteAppearance}
+              className="mt-hair [&>[data-slot=appearance-control-row]]:py-hair"
+            />
             <a href="#export" className="label-mono mt-snug inline-block">
               Export {name}
             </a>

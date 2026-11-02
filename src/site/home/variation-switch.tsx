@@ -1,5 +1,6 @@
 import { useId } from "react"
 import { useAppearance, type Variation } from "@/patina/theme"
+import { siteAppearance } from "@/site/appearance"
 import { ToggleGroup, ToggleGroupItem } from "@/patina/ui/toggle-group"
 
 // Calm or Lively for the home page's index cards. It is the real variation setting, the one the theme studio and
@@ -11,7 +12,7 @@ const OPTIONS: { value: Variation; label: string }[] = [
 ]
 
 export function VariationSwitch() {
-  const [appearance, update] = useAppearance()
+  const [appearance, update] = useAppearance(siteAppearance)
   const id = useId()
   return (
     <div className="flex items-center gap-tight">

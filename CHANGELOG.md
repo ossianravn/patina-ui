@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+Site defaults and scrollbars.
+
+- `base`: scrollbars in pencil everywhere, the page included: a narrow `--ink-3` thumb on no track that firms while hovered, with no arrow buttons (`::-webkit-scrollbar` parts in Chromium and Safari, `scrollbar-width` and `scrollbar-color` in Firefox). `--scrollbar-thumb` recolours or hides one scroller's thumb; `code-block` and `message-scroller` now take theirs from `base`.
+- `settings-01`: `appearanceDefaults`, passed to its appearance rows, so a page that starts from other defaults renders the right choices on the server.
+- Site: day Newsprint, Patina inks, an oxblood accent, calm, clean and compact are where the site starts until a visitor chooses; the kit's defaults are unchanged. The theme studio's settings column no longer scrolls sideways.
+
 Fixes from review.
 
 - `progress`: the track clips its fill on both axes, so Chromium no longer draws scrollbar arrows at the end of the bar.

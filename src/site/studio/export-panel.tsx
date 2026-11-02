@@ -3,6 +3,7 @@ import { DownloadIcon } from "lucide-react"
 import { useHighlightedCode } from "@/patina/hooks/use-highlighted-code"
 import { cn } from "@/patina/lib/utils"
 import { useAppearance } from "@/patina/theme"
+import { siteAppearance } from "@/site/appearance"
 import { Button } from "@/patina/ui/button"
 import {
   CodeBlock,
@@ -86,7 +87,7 @@ export function ExportPanel({
   onName: (name: string) => void
   className?: string
 }) {
-  const [appearance] = useAppearance()
+  const [appearance] = useAppearance(siteAppearance)
   const choices = useMemo(() => choicesOf(appearance), [appearance])
   // The values come from the page's stylesheets, so they are read once the page has hydrated in the browser.
   const hydrated = useSyncExternalStore(

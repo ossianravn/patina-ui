@@ -3,6 +3,7 @@
 import "@/patina/styles/patina.css"
 import { PatinaDefs } from "@/patina/defs/patina-defs"
 import { appearanceScript } from "@/patina/theme/appearance-script"
+import { siteAppearance } from "@/site/appearance"
 import { sketch } from "@/patina/ink"
 
 interface Props {
@@ -49,7 +50,7 @@ const logo =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <script is:inline set:html={appearanceScript()} />
+    <script is:inline set:html={appearanceScript(siteAppearance)} />
   </head>
   <body>
     <PatinaDefs />
