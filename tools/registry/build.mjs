@@ -188,7 +188,7 @@ export function buildRegistry({ base } = {}) {
   return {
     $schema: "https://ui.shadcn.com/schema/registry.json",
     name: "patina",
-    homepage: "https://github.com/ossianravn/patina-ui",
+    homepage: "https://patinaui.com",
     items,
   }
 }
