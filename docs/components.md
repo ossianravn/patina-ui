@@ -125,7 +125,7 @@ The 65 `registry:ui` items in shadcn 4.23.0 (checked 2026-11-01 with `npx shadcn
 | Stamp             | Rubber-stamp label with grain and misregistration                                                                | new                                   | lively    | 1 · shipped |
 | Glyph             | Seeded hand-drawn glyph set                                                                                      | Mental Models `KindGlyph`             | lively    | 1 · shipped |
 | Paper             | A sheet with a seeded edge, dog-ear, tilt and wear                                                               | new                                   | lively    | 2 · shipped |
-| IndexCard         | Tilted, taped card with a print, kicker, title and hook                                                          | Mental Models `ModelCard`             | lively    | 4 · shipped |
+| IndexCard         | Tilted, taped card with a print (or a cover of your own), kicker, title and hook                                 | Mental Models `ModelCard`             | lively    | 4 · shipped |
 | IndexRow          | Typeset index entry                                                                                              | Mental Models `ModelRow`              | calm      | 4 · shipped |
 | Ticket            | Perforated stub with mono fields                                                                                 | new                                   | lively    | 4 · shipped |
 | Postmark          | Circular dated cancellation mark                                                                                 | new                                   | lively    | 4 · shipped |

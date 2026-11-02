@@ -28,6 +28,10 @@ Status: proposed, 2026-11-01. Built so far: the specimen at `/` (standing in for
 
 Built in Phase 4 (`src/site/home/`): the hero is the `hero-01` block; the calm/lively switch sets the visitor's real variation setting; the paper-stock scene re-scopes the stock rules to the scene at build time, because stocks apply only on `:root`; the index reads every demo's `meta`. The former specimen sections live at `/specimen`.
 
+## Components index
+
+`/docs` lists every component as an index card grouped as in the [inventory](components.md), with a filter and links to the groups. Each card's cover is a live preview rendered on the server from the component's demo, its first example row without labels; where that row cannot show the part (an overlay, which opens in a portal; a chart or scroller that draws only in the browser) a preview in `src/site/docs/gallery/previews-*.tsx` stands in. A small script scales each preview to fit its plate, down to half size, and crops below that.
+
 ## Component pages
 
 Each page follows one anatomy:

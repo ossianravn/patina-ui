@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+A visual Components index.
+
+- `index-card`: `cover`, a cover of your own (a picture, a live preview) in place of the print.
+- Site: the Components index (`/docs`) shows every component as an index card with a live preview of it, grouped as in the inventory, with a filter and links to each group.
+
 Deployment.
 
 - Site: lives at patinaui.com, where the registry is `https://patinaui.com/r/{name}.json`. The `Dockerfile` builds it into an nginx image (`deploy/nginx.conf`), and a 404 page answers missing addresses.

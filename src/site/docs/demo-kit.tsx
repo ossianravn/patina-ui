@@ -1,4 +1,4 @@
-import type { ReactNode } from "react"
+import { createContext, useContext, type ReactNode } from "react"
 
 /** What a component's docs page needs from its demo file, besides the default export. */
 export interface DemoMeta {
@@ -19,6 +19,20 @@ export interface DemoMeta {
     | "Patina extras"
 }
 
+type Claim = (part: "section" | "row") => boolean
+
+/**
+ * Preview mode, for the Components index: a demo shows its first example row alone, without section titles or
+ * state labels. Each preview gets its own `previewClaim()`, which answers true once per part; it relies on rendering
+ * in order, as the server renderer does.
+ */
+export const DemoPreview = createContext<Claim | null>(null)
+
+export function previewClaim(): Claim {
+  const taken = new Set<string>()
+  return (part) => !taken.has(part) && Boolean(taken.add(part))
+}
+
 /** A titled group of examples on a docs page. */
 export function DemoSection({
   title,
@@ -27,6 +41,8 @@ export function DemoSection({
   title: string
   children: ReactNode
 }) {
+  const preview = useContext(DemoPreview)
+  if (preview) return preview("section") ? children : null
   return (
     <section className="border-t border-dashed border-rule py-snug first:border-t-0 first:pt-0">
       <h2 className="label-mono m-0 mb-snug text-ink-2">{title}</h2>
@@ -43,6 +59,13 @@ export function StateRow({
   label: string
   children: ReactNode
 }) {
+  const preview = useContext(DemoPreview)
+  if (preview)
+    return preview("row") ? (
+      <div className="flex min-w-0 flex-wrap items-center justify-center gap-tight">
+        {children}
+      </div>
+    ) : null
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-x-section gap-y-hair py-tight md:grid-cols-[9rem_minmax(0,1fr)]">
       <span className="label-mono text-ink-3">{label}</span>

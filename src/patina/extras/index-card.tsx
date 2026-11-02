@@ -40,6 +40,8 @@ export interface IndexCardProps extends Omit<ComponentProps<"div">, "title"> {
   hook?: ReactNode
   /** The cover print's motif; the seed picks one when left out, and false leaves the card without a print. */
   motif?: MotifName | false
+  /** A cover of your own in place of the print, such as a picture or a live preview. */
+  cover?: ReactNode
   inks?: InkSet
   /** Makes the whole card a link to this address. */
   href?: string
@@ -55,6 +57,7 @@ export function IndexCard({
   kicker,
   hook,
   motif,
+  cover,
   inks,
   href,
   seed,
@@ -67,7 +70,7 @@ export function IndexCard({
   const source = seed ?? textOf(title)
   const s = useSeed("index-card", source)
   const pick = stream(s, "motif").pick(COVERS)
-  const cover = motif === false ? null : (motif ?? pick)
+  const coverMotif = motif === false ? null : (motif ?? pick)
   const vars = {
     "--card-turn": stream(s, "tilt").signed().toFixed(2),
   } as CSSProperties
@@ -88,14 +91,15 @@ export function IndexCard({
       {...props}
     >
       {tape && <Tape seed={source} />}
-      {cover && (
-        <Print
-          motif={cover}
-          seed={source}
-          inks={inks}
-          className="mx-auto mb-tight w-[62%] max-w-44"
-        />
-      )}
+      {cover ??
+        (coverMotif && (
+          <Print
+            motif={coverMotif}
+            seed={source}
+            inks={inks}
+            className="mx-auto mb-tight w-[62%] max-w-44"
+          />
+        ))}
       {kicker && (
         <div data-slot="index-card-kicker" className="label-mono text-k-ink">
           {kicker}

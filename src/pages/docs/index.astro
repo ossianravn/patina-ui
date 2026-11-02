@@ -1,6 +1,7 @@
 ---
 import Base from "@/site/layouts/base.astro"
 import type { DemoMeta } from "@/site/docs/demo-kit"
+import { GalleryCard } from "@/site/docs/gallery/gallery-card"
 
 type Group = NonNullable<DemoMeta["group"]>
 
@@ -31,6 +32,7 @@ const groups = ORDER.map((group) => ({
   group,
   items: entries.filter((e) => (e.group ?? "Other") === group),
 })).filter((g) => g.items.length > 0)
+const slug = (group: string) => group.toLowerCase().replace(/[^a-z]+/g, "-")
 ---
 
 <Base
@@ -50,27 +52,120 @@ const groups = ORDER.map((group) => ({
     </p>
   </div>
   <div class="mx-auto max-w-[76rem] px-snug pb-page sm:px-line">
-    {groups.map(({ group, items }) => (
-      <section class="mt-section" aria-labelledby={`group-${group}`}>
-        <h2 id={`group-${group}`} class="label-mono m-0 mb-tight text-ink-2">
-          {group}
-        </h2>
-        <ol class="m-0 list-none border-t border-dashed border-rule p-0">
-          {items.map(({ name, title, description }) => (
-            <li class="border-b border-dashed border-rule">
-              <a
-                href={`/docs/components/${name}`}
-                class="grid gap-x-section gap-y-hair py-tight no-underline md:grid-cols-[14rem_minmax(0,1fr)] md:items-baseline"
-              >
-                <span class="font-semibold">{title}</span>
-                <span class="max-w-measure text-small leading-small text-ink-2">
-                  {description}
-                </span>
-              </a>
+    <div class="mt-line flex flex-wrap items-center gap-x-line gap-y-tight">
+      <label for="component-filter" class="sr-only">
+        Filter components
+      </label>
+      <input
+        id="component-filter"
+        type="search"
+        placeholder="Filter components"
+        autocomplete="off"
+        class="control-field h-control w-[16rem] max-w-full px-tight [&::-webkit-search-cancel-button]:opacity-70 [&::-webkit-search-cancel-button]:grayscale"
+      />
+      <nav aria-label="Groups">
+        <ul class="label-mono m-0 flex list-none flex-wrap gap-x-snug gap-y-hair p-0">
+          {groups.map(({ group, items }) => (
+            <li>
+              <a href={`#${slug(group)}`}>{group}</a>{" "}
+              <span class="text-ink-3">{items.length}</span>
             </li>
           ))}
-        </ol>
+        </ul>
+      </nav>
+    </div>
+    <p id="component-filter-status" class="sr-only" aria-live="polite"></p>
+    {groups.map(({ group, items }) => (
+      <section
+        id={slug(group)}
+        class="mt-section scroll-mt-line"
+        aria-labelledby={`${slug(group)}-title`}
+      >
+        <h2
+          id={`${slug(group)}-title`}
+          class="m-0 mb-snug flex items-baseline gap-tight text-h2"
+        >
+          {group}
+          <span class="label-mono text-ink-3" data-count>
+            {items.length}
+          </span>
+        </h2>
+        <ul class="m-0 grid list-none gap-line p-0 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map(({ name, title, description, item }) => (
+            <li
+              data-filter={`${title} ${name} ${item} ${description}`.toLowerCase()}
+            >
+              <GalleryCard name={name} />
+            </li>
+          ))}
+        </ul>
       </section>
     ))}
+    <p id="component-filter-empty" class="mt-section text-ink-2" hidden>
+      No component matches that. Try a shorter word, or clear the filter.
+    </p>
   </div>
 </Base>
+
+<script>
+  // Fits each preview into its plate: scaled down to fit, to half size at most, and cropped from the top below that.
+  const MIN_SCALE = 0.5
+  function fit() {
+    for (const plate of document.querySelectorAll<HTMLElement>(
+      "[data-preview-plate]",
+    )) {
+      const preview = plate.firstElementChild as HTMLElement
+      preview.style.zoom = ""
+      const pad = parseFloat(getComputedStyle(plate).paddingTop) * 2
+      const room = { w: plate.clientWidth - pad, h: plate.clientHeight - pad }
+      const size = {
+        w: preview.scrollWidth,
+        h: preview.getBoundingClientRect().height,
+      }
+      const scale = Math.max(
+        MIN_SCALE,
+        Math.min(1, room.w / size.w, room.h / size.h),
+      )
+      if (scale < 0.98) preview.style.zoom = String(scale)
+      plate.toggleAttribute(
+        "data-cropped",
+        size.h * Math.min(scale, 1) > room.h + 1,
+      )
+    }
+  }
+  fit()
+  let pending = 0
+  addEventListener("resize", () => {
+    cancelAnimationFrame(pending)
+    pending = requestAnimationFrame(fit)
+  })
+
+  // Filters the cards by name, registry item and description; a group with no match steps aside.
+  const input = document.getElementById("component-filter") as HTMLInputElement
+  const status = document.getElementById("component-filter-status")!
+  const empty = document.getElementById("component-filter-empty")!
+  const sections = [
+    ...document.querySelectorAll<HTMLElement>("main section[id]"),
+  ]
+  input.addEventListener("input", () => {
+    const query = input.value.trim().toLowerCase()
+    let shown = 0
+    for (const section of sections) {
+      let count = 0
+      for (const card of section.querySelectorAll<HTMLElement>(
+        "li[data-filter]",
+      )) {
+        const match = !query || card.dataset.filter!.includes(query)
+        card.hidden = !match
+        if (match) count++
+      }
+      section.hidden = count === 0
+      section.querySelector("[data-count]")!.textContent = String(count)
+      shown += count
+    }
+    empty.hidden = shown > 0
+    status.textContent = query
+      ? `${shown} ${shown === 1 ? "component" : "components"}`
+      : ""
+  })
+</script>
