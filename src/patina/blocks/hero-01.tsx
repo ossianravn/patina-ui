@@ -210,7 +210,7 @@ export function Hero01({
           </div>
         </Paper>
         {note && (
-          <MarginNote className="mt-snug ms-tight" decorative>
+          <MarginNote point="up" className="mt-snug ms-line" decorative>
             {note}
           </MarginNote>
         )}

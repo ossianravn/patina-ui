@@ -40,3 +40,19 @@
     0 0 0 1px color-mix(in srgb, var(--line) 18%, transparent),
     var(--lift-shadow);
 }
+
+/* A term with its definition in a Tooltip: a dotted underline that firms up while the definition shows, the way a
+   link's underline does. Make the trigger focusable (tabIndex 0) so the definition opens from the keyboard too. */
+@utility term {
+  cursor: help;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.25em;
+  &:hover,
+  &:focus-visible,
+  &[data-popup-open] {
+    text-decoration-color: currentColor;
+  }
+}

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+Fixes from review.
+
+- `progress`: the track clips its fill on both axes, so Chromium no longer draws scrollbar arrows at the end of the bar.
+- `notes`: `MarginNote` takes `point="up"` for a note under what it describes; `hero-01` uses it, so "same seed, same print" points at the seed.
+- `base`: a `term` utility, a dotted underline for a term whose definition shows in a `Tooltip`.
+- `appearance-control`: the chosen ink set or accent is named before its swatches, so the swatches line up with the other controls.
+- Site: the Press sets its sheet at the left with the settings beside it, and each setting's name explains itself in a tooltip; Fieldbook's reviewers' notes start under the avatar; the Components and Specimen leads keep their spaces before links.
+
 Phase 4: Patina's own extras, the theme studio, blocks and the home page.
 
 - Extras: `index-card`, `index-row` (with `IndexList`), `ticket`, `postmark`, `edition-number`, `pull-quote`, `sidenote` (with `SidenoteRef` and `SidenoteLayout`), `checklist`, `steps`, `scale`, `concept-map`, `decision-map`, `reading-progress` and `appearance-control`.

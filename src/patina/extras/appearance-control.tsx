@@ -247,12 +247,20 @@ function Swatches({
 }: ControlProps & { row: "inks" | "accent" }) {
   const name = useId()
   const { options, names } = optionsOf(row)
-  // The chosen name sits beside the swatches, as wide as the longest, so the swatches never move.
+  // The chosen name sits before the swatches, set to their side and as wide as the longest, so the swatches line up
+  // with the other controls and never move.
   const longest = Math.max(
     ...options.map((option) => (names[option] ?? option).length),
   )
   return (
     <span className="flex items-center gap-tight">
+      <span
+        aria-hidden="true"
+        className="label-mono text-end text-ink-2"
+        style={{ width: `calc(${longest}ch + ${longest * 0.06}em)` }}
+      >
+        {names[value]}
+      </span>
       <span
         role="radiogroup"
         aria-labelledby={labelledBy}
@@ -278,13 +286,6 @@ function Swatches({
             <Drums row={row} option={option} />
           </label>
         ))}
-      </span>
-      <span
-        aria-hidden="true"
-        className="label-mono text-ink-2"
-        style={{ width: `calc(${longest}ch + ${longest * 0.06}em)` }}
-      >
-        {names[value]}
       </span>
     </span>
   )

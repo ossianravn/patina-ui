@@ -1,14 +1,9 @@
-import {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type CSSProperties,
-  type ReactNode,
-} from "react"
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import { INK_SETS, MOTIFS } from "@/patina/ink"
 import { Print } from "@/patina/print/print"
+import { TooltipProvider } from "@/patina/ui/tooltip"
 import { MOTIF_INFO } from "@/site/data/motifs"
+import { Row, termId } from "./press-row"
 import { rerollSeed, sheetSeeds } from "./seeds"
 import { downloadSvg, jsxFor, type PressState } from "./state"
 import { usePressState } from "./use-press-state"
@@ -17,26 +12,6 @@ const field =
   "h-control rounded-sheet border-[1.5px] border-line bg-card px-tight text-ui text-ink"
 const button =
   "label-mono inline-flex h-control items-center rounded-sheet px-snug font-semibold tracking-[0.08em] cursor-pointer"
-
-function Row({
-  label,
-  htmlFor,
-  children,
-}: {
-  label: string
-  htmlFor?: string
-  children: ReactNode
-}) {
-  const Tag = htmlFor ? "label" : "div"
-  return (
-    <div className="flex flex-col gap-hair">
-      <Tag {...(htmlFor ? { htmlFor } : {})} className="label-mono text-ink-2">
-        {label}
-      </Tag>
-      {children}
-    </div>
-  )
-}
 
 /** The Press: choose a motif, a seed and inks, reroll, and take the print away. */
 export function Press() {
@@ -63,12 +38,12 @@ export function Press() {
   } as CSSProperties
 
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)] gap-x-section gap-y-line lg:grid-cols-[minmax(0,1fr)_22rem]">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-x-section gap-y-line lg:grid-cols-[minmax(0,34rem)_22rem]">
       <figure
         ref={sheetRef}
         data-inks={state.inks}
         style={register}
-        className="m-0 flex flex-col items-center"
+        className="m-0 flex flex-col"
       >
         <div
           className="w-full max-w-[34rem] rounded-sheet bg-card p-line shadow-sheet"
@@ -120,116 +95,126 @@ export function Press() {
         </p>
       </figure>
 
-      <form
-        className="flex flex-col gap-snug"
-        aria-label="Print settings"
-        onSubmit={(e) => e.preventDefault()}
-      >
-        <Row label="Motif" htmlFor="press-motif">
-          <select
-            id="press-motif"
-            className={`${field} w-fit`}
-            value={state.motif}
-            onChange={(e) =>
-              set({ motif: e.target.value as PressState["motif"] })
-            }
-          >
-            {MOTIFS.map((m) => (
-              <option key={m} value={m}>
-                {m}
-              </option>
-            ))}
-          </select>
-          <span className="text-small leading-small text-ink-2">
-            {MOTIF_INFO[state.motif].picture}
-          </span>
-        </Row>
-        <Row label="Seed" htmlFor="press-seed">
-          <span className="flex gap-hair">
-            <input
-              id="press-seed"
-              className={`${field} w-[calc(18ch+1.5rem)] font-label`}
-              value={state.seed}
-              spellCheck={false}
-              onChange={(e) => set({ seed: e.target.value })}
-            />
-            <button
-              type="button"
-              className={`${button} bg-ink text-paper hover:bg-print-violet`}
-              onClick={() => set({ seed: rerollSeed() })}
+      <TooltipProvider delay={300}>
+        <form
+          className="flex flex-col gap-snug"
+          aria-label="Print settings"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <Row label="Motif" term="motif" htmlFor="press-motif">
+            <select
+              id="press-motif"
+              aria-describedby={`${termId("motif")} press-motif-picture`}
+              className={`${field} w-fit`}
+              value={state.motif}
+              onChange={(e) =>
+                set({ motif: e.target.value as PressState["motif"] })
+              }
             >
-              Reroll
-            </button>
-          </span>
-        </Row>
-        {state.motif === "monogram" && (
-          <Row label="Name" htmlFor="press-name">
-            <input
-              id="press-name"
-              className={`${field} w-[calc(20ch+1.5rem)]`}
-              value={state.text}
-              onChange={(e) => set({ text: e.target.value })}
-            />
-          </Row>
-        )}
-        <Row label="Inks">
-          <span className="flex items-center gap-tight">
-            <div
-              role="radiogroup"
-              aria-label="Inks"
-              className="inline-flex w-fit rounded-sheet border-[1.5px] border-line"
-            >
-              {INK_SETS.map((inks) => (
-                <label
-                  key={inks}
-                  data-inks={inks}
-                  title={inks}
-                  className="flex h-control cursor-pointer items-center px-tight hover:bg-paper-2 has-checked:bg-ink has-focus-visible:outline-2 has-focus-visible:outline-dashed has-focus-visible:outline-k-ink"
-                >
-                  <input
-                    type="radio"
-                    name="press-inks"
-                    aria-label={inks}
-                    className="sr-only"
-                    checked={state.inks === inks}
-                    onChange={() => set({ inks })}
-                  />
-                  <span aria-hidden="true" className="flex -space-x-1">
-                    {["line", "accent", "detail"].map((d) => (
-                      <span
-                        key={d}
-                        className="size-2.5 rounded-full"
-                        style={{ background: `var(--print-${d})` }}
-                      />
-                    ))}
-                  </span>
-                </label>
+              {MOTIFS.map((m) => (
+                <option key={m} value={m}>
+                  {m}
+                </option>
               ))}
-            </div>
-            <span className="label-mono text-ink-2">{state.inks}</span>
-          </span>
-        </Row>
-        <Row label="Misregistration" htmlFor="press-register">
-          <span className="flex items-center gap-tight">
-            <input
-              id="press-register"
-              type="range"
-              min={0}
-              max={4}
-              step={0.1}
-              value={state.misregister}
-              className="w-44 accent-ink"
-              onChange={(e) => set({ misregister: Number(e.target.value) })}
-            />
-            <output
-              htmlFor="press-register"
-              className="label-mono w-12 text-ink"
+            </select>
+            <span
+              id="press-motif-picture"
+              className="text-small leading-small text-ink-2"
             >
-              {state.misregister.toFixed(1)} px
-            </output>
-          </span>
-        </Row>
-      </form>
+              {MOTIF_INFO[state.motif].picture}
+            </span>
+          </Row>
+          <Row label="Seed" term="seed" htmlFor="press-seed">
+            <span className="flex gap-hair">
+              <input
+                id="press-seed"
+                className={`${field} w-[calc(18ch+1.5rem)] font-label`}
+                aria-describedby={termId("seed")}
+                value={state.seed}
+                spellCheck={false}
+                onChange={(e) => set({ seed: e.target.value })}
+              />
+              <button
+                type="button"
+                className={`${button} bg-ink text-paper hover:bg-print-violet`}
+                onClick={() => set({ seed: rerollSeed() })}
+              >
+                Reroll
+              </button>
+            </span>
+          </Row>
+          {state.motif === "monogram" && (
+            <Row label="Name" term="name" htmlFor="press-name">
+              <input
+                id="press-name"
+                aria-describedby={termId("name")}
+                className={`${field} w-[calc(20ch+1.5rem)]`}
+                value={state.text}
+                onChange={(e) => set({ text: e.target.value })}
+              />
+            </Row>
+          )}
+          <Row label="Inks" term="inks">
+            <span className="flex items-center gap-tight">
+              <div
+                role="radiogroup"
+                aria-label="Inks"
+                aria-describedby={termId("inks")}
+                className="inline-flex w-fit rounded-sheet border-[1.5px] border-line"
+              >
+                {INK_SETS.map((inks) => (
+                  <label
+                    key={inks}
+                    data-inks={inks}
+                    title={inks}
+                    className="flex h-control cursor-pointer items-center px-tight hover:bg-paper-2 has-checked:bg-ink has-focus-visible:outline-2 has-focus-visible:outline-dashed has-focus-visible:outline-k-ink"
+                  >
+                    <input
+                      type="radio"
+                      name="press-inks"
+                      aria-label={inks}
+                      className="sr-only"
+                      checked={state.inks === inks}
+                      onChange={() => set({ inks })}
+                    />
+                    <span aria-hidden="true" className="flex -space-x-1">
+                      {["line", "accent", "detail"].map((d) => (
+                        <span
+                          key={d}
+                          className="size-2.5 rounded-full"
+                          style={{ background: `var(--print-${d})` }}
+                        />
+                      ))}
+                    </span>
+                  </label>
+                ))}
+              </div>
+              <span className="label-mono text-ink-2">{state.inks}</span>
+            </span>
+          </Row>
+          <Row label="Misregistration" term="register" htmlFor="press-register">
+            <span className="flex items-center gap-tight">
+              <input
+                id="press-register"
+                type="range"
+                min={0}
+                max={4}
+                step={0.1}
+                aria-describedby={termId("register")}
+                value={state.misregister}
+                className="w-44 accent-ink"
+                onChange={(e) => set({ misregister: Number(e.target.value) })}
+              />
+              <output
+                htmlFor="press-register"
+                className="label-mono w-12 text-ink"
+              >
+                {state.misregister.toFixed(1)} px
+              </output>
+            </span>
+          </Row>
+        </form>
+      </TooltipProvider>
 
       <section aria-labelledby="press-sheet" className="lg:col-span-2">
         <h2 id="press-sheet" className="label-mono m-0 text-ink-2">

@@ -42,20 +42,23 @@ export function DetailThread({ initial }: { initial: Comment[] }) {
       </h2>
       {notes.length > 0 ? (
         <MessageGroup className="gap-snug">
+          {/* A signed note: the avatar and byline on one line, the note under them from the avatar's edge. */}
           {notes.map((note, i) => (
-            <Message key={i}>
-              <MessageAvatar>
-                <Avatar>
-                  <AvatarFallback name={note.author}>
-                    {initials(note.author)}
-                  </AvatarFallback>
-                </Avatar>
-              </MessageAvatar>
-              <MessageContent>
-                <MessageHeader>
+            <Message key={i} className="flex-col gap-hair">
+              <div className="flex items-center gap-tight">
+                <MessageAvatar>
+                  <Avatar>
+                    <AvatarFallback name={note.author}>
+                      {initials(note.author)}
+                    </AvatarFallback>
+                  </Avatar>
+                </MessageAvatar>
+                <MessageHeader className="px-0">
                   <b>{note.author}</b>
                   <time>{note.time}</time>
                 </MessageHeader>
+              </div>
+              <MessageContent>
                 <p className="m-0 max-w-measure">{note.body}</p>
               </MessageContent>
             </Message>

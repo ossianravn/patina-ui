@@ -67,6 +67,20 @@ export default function TooltipDemo() {
             </TooltipContent>
           </Tooltip>
         </StateRow>
+        <StateRow label="On a term">
+          <p className="m-0">
+            Every count is taken along the{" "}
+            <Tooltip>
+              <TooltipTrigger render={<span tabIndex={0} />} className="term">
+                transect
+              </TooltipTrigger>
+              <TooltipContent>
+                A fixed line walked at the same pace each visit
+              </TooltipContent>
+            </Tooltip>{" "}
+            from the sluice to the sea wall.
+          </p>
+        </StateRow>
         <StateRow label="Long label">
           <Tooltip>
             <TooltipTrigger render={<Button variant="outline" />}>
