@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+Deployment.
+
+- Site: lives at patinaui.com, where the registry is `https://patinaui.com/r/{name}.json`. The `Dockerfile` builds it into an nginx image (`deploy/nginx.conf`), and a 404 page answers missing addresses.
+
 Site defaults and scrollbars.
 
 - `base`: scrollbars in pencil everywhere, the page included: a narrow `--ink-3` thumb on no track that firms while hovered, with no arrow buttons (`::-webkit-scrollbar` parts in Chromium and Safari, `scrollbar-width` and `scrollbar-color` in Firefox). `--scrollbar-thumb` recolours or hides one scroller's thumb; `code-block` and `message-scroller` now take theirs from `base`.

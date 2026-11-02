@@ -145,7 +145,7 @@ Exit: the maintainer approves publishing; the site and registry are live.
 Answered on 2026-11-01: Astro with React islands (D3), Base UI (D2), Fieldbook as the demo product and the MIT license (D11). The paper scan question no longer matters: stocks are generated (D9).
 
 1. **Visibility (D8):** when should the repository become public? The GitHub registry form needs it; the hosted registry does not.
-2. **Domain:** later, by the maintainer's choice; until then the site is local only.
+2. **Domain:** answered on 2026-11-02: `patinaui.com`, on the main Dokploy server ([deployment](demo-site.md#deployment)).
 3. **Mark contrast:** meaningful marks in print inks (ticks, radio dots, switch fills, chart lines) miss 3:1 on day paper for verdigris and copper against the darkest texture (about 2.6–2.8:1) and for rose even on flat paper (2.9:1). Options: darker mark tints of each drum for meaning-carrying marks only (prints and washes keep the bright inks), or accept it because state never rests on colour alone. Recommended: the darker mark tints.
 
 ## Next step

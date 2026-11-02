@@ -32,7 +32,7 @@ const touchNewFiles = {
 }
 
 export default defineConfig({
-  site: process.env.SITE_URL || "https://patina.ossianravn.dev",
+  site: process.env.SITE_URL || "https://patinaui.com",
   // Project ports rather than Astro's defaults (4321 and 4322), so Patina never collides with another project.
   server: ({ command }) => ({
     host: "127.0.0.1",

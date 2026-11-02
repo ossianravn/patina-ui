@@ -17,11 +17,13 @@ Open `http://127.0.0.1:4782`: the specimen, the print gallery (`/prints`), the m
 
 ## Use the kit
 
-The kit installs with the shadcn CLI from its registry (`public/r/`, served by the site). Until the site has a domain, serve it locally with `npm run dev` and point a project at it:
+The kit installs with the shadcn CLI from its registry (`public/r/`, served by the site at [patinaui.com](https://patinaui.com)). Point a project at it:
 
 ```json
-{ "registries": { "@patina": "http://127.0.0.1:4782/r/{name}.json" } }
+{ "registries": { "@patina": "https://patinaui.com/r/{name}.json" } }
 ```
+
+To try unpublished changes, run `npm run dev` and use `http://127.0.0.1:4782/r/{name}.json` instead.
 
 ```sh
 npx shadcn add @patina/print @patina/notes

@@ -6,9 +6,10 @@ import { Glyph } from "@/patina/marks/glyph"
 import SectionHead from "@/site/specimen/section-head.astro"
 import { InstallSteps } from "./install-steps"
 
-const registry = (
-  Astro.site?.origin ?? "https://patina.ossianravn.dev"
-).replace(/\/$/, "")
+const registry = (Astro.site?.origin ?? "https://patinaui.com").replace(
+  /\/$/,
+  "",
+)
 const NEXT = [
   {
     title: "Theme studio",

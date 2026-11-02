@@ -99,4 +99,4 @@ Each component, foundation and print page gets a 1200 × 630 share image rendere
 
 ## Deployment
 
-Static build served by nginx on Dokploy, rebuilt on push to `main`. Proposed domain: `patina.ossianravn.dev`. The registry JSON ships with the site under `/r/`.
+The `Dockerfile` builds the static site and serves it with nginx (`deploy/nginx.conf`) as the `frontend` app of the `patina-ui` project on the main Dokploy server, rebuilt on push to `main`, at `https://patinaui.com` (`www` redirects to the apex; Traefik issues the certificate). The registry JSON ships with the site under `/r/`. nginx serves each page at one URL without a trailing slash, as Astro builds them, and `404.html` for anything missing; hashed assets under `/_astro/` cache for a year.
